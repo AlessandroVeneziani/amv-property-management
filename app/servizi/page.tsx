@@ -5,7 +5,7 @@ import { Reveal } from "@/components/reveal";
 import { createMetadata, inquiryLinks, services } from "@/content/site";
 
 export const metadata = createMetadata({
-  title: "Servizi | AMV Asset Direction",
+  title: "Servizi | AVM Asset Direction",
   description:
     "Controllo operativo, direzione estetica e posizionamento per asset residenziali.",
   path: "/servizi"
@@ -17,7 +17,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Servizi"
         title="Interventi essenziali, con una regia che resta coerente."
-        description="I servizi AMV sono pensati per immobili che richiedono controllo, visione e continuità. Ogni ambito dialoga con gli altri: la gestione migliora il progetto, il progetto migliora la gestione."
+        description="I servizi AVM sono pensati per immobili che richiedono controllo, visione e continuità. Ogni ambito dialoga con gli altri: la gestione migliora il progetto, il progetto migliora la gestione."
       />
 
       <section className="pb-10">
@@ -35,7 +35,7 @@ export default function ServicesPage() {
                       0{index + 1}
                     </p>
                     <span className="text-xs uppercase tracking-[0.24em] text-muted">
-                      AMV scope
+                      AVM scope
                     </span>
                   </div>
                   <h2 className="font-serif text-3xl text-sand">{service.title}</h2>

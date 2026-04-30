@@ -39,7 +39,7 @@ export const projects: Project[] = [
     summary:
       "Un appartamento nel centro di Milano riallineato attraverso atmosfera, controllo operativo e una presenza più netta.",
     description:
-      "AMV ha lavorato su un immobile dal forte potenziale ma privo di una lettura coerente. L’intervento ha ricostruito gerarchie, tono materico e qualità dell’esperienza.",
+      "AVM ha lavorato su un immobile dal forte potenziale ma privo di una lettura coerente. L’intervento ha ricostruito gerarchie, tono materico e qualità dell’esperienza.",
     challenge:
       "Restituire autorevolezza a uno spazio elegante ma disperso, migliorando percezione, continuità e gestione.",
     approach:
@@ -78,7 +78,7 @@ export const projects: Project[] = [
     summary:
       "Un interno dal carattere classico reinterpretato con una postura più contemporanea e controllata.",
     description:
-      "L’immobile richiedeva una rilettura capace di conservare autorevolezza architettonica senza scivolare nel decorativo. AMV ha operato per sottrazione, chiarezza e qualità dei dettagli.",
+      "L’immobile richiedeva una rilettura capace di conservare autorevolezza architettonica senza scivolare nel decorativo. AVM ha operato per sottrazione, chiarezza e qualità dei dettagli.",
     challenge:
       "Rendere attuale un appartamento prestigioso senza snaturare il suo impianto originario.",
     approach:
@@ -113,7 +113,7 @@ export const projects: Project[] = [
     summary:
       "Un appartamento gestito con attenzione alla quiete visiva, alla continuità dell’esperienza e al dettaglio d’uso.",
     description:
-      "AMV presidia questo immobile attraverso un modello che integra cura estetica, manutenzione e standard operativi costanti.",
+      "AVM presidia questo immobile attraverso un modello che integra cura estetica, manutenzione e standard operativi costanti.",
     challenge:
       "Mantenere alto il valore percepito nel quotidiano, senza lasciare che la gestione intacchi l’identità dello spazio.",
     approach:

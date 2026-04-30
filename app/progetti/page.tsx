@@ -5,7 +5,7 @@ import { projectCities, projects, projectStatuses } from "@/content/projects";
 import { createMetadata } from "@/content/site";
 
 export const metadata = createMetadata({
-  title: "Progetti | AMV Asset Direction",
+  title: "Progetti | AVM Asset Direction",
   description:
     "Portfolio di residenze e appartamenti seguiti attraverso gestione, valorizzazione e direzione estetica.",
   path: "/progetti"

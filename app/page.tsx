@@ -15,7 +15,7 @@ import {
 import { projects } from "@/content/projects";
 
 export const metadata = createMetadata({
-  title: "AMV Asset Direction | Diamo direzione al valore immobiliare",
+  title: "AVM Asset Direction | Diamo direzione al valore immobiliare",
   description:
     "Dalla gestione all’identità: ogni immobile diventa un asset più chiaro, più solido, più desiderabile.",
   path: "/"

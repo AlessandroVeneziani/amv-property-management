@@ -45,7 +45,7 @@ export function ContactForm() {
       .join("\n");
 
     const mailto = createMailtoLink({
-      subject: `Richiesta ${payload.interest.toLowerCase()} dal sito AMV`,
+      subject: `Richiesta ${payload.interest.toLowerCase()} dal sito AVM`,
       body
     });
 

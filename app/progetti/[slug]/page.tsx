@@ -26,14 +26,14 @@ export async function generateMetadata({
 
   if (!project) {
     return createMetadata({
-      title: "Progetto non trovato | AMV Asset Direction",
+      title: "Progetto non trovato | AVM Asset Direction",
       description: "Il progetto richiesto non è disponibile.",
       path: "/progetti"
     });
   }
 
   return createMetadata({
-    title: `${project.title} | AMV Asset Direction`,
+    title: `${project.title} | AVM Asset Direction`,
     description: project.summary,
     path: `/progetti/${project.slug}`
   });

@@ -1,0 +1,5 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="3" y="3" width="186" height="186" rx="32" fill="#0D0D0D" />
+  <rect x="7" y="7" width="178" height="178" rx="28" stroke="#D4AF37" stroke-width="2.5" />
+  <text x="96" y="110" text-anchor="middle" fill="#D4AF37" font-family="Georgia, 'Times New Roman', serif" font-size="58" letter-spacing="0.03em">AVM</text>
+</svg>

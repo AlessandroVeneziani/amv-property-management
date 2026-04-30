@@ -37,7 +37,7 @@ export function ProjectExplorer({
           </div>
           <p className="text-sm leading-6 text-muted">
             Una lettura per città e stato del progetto. Nessun rumore, solo gli
-            immobili che restano coerenti con la visione AMV.
+            immobili che restano coerenti con la visione AVM.
           </p>
         </div>
 

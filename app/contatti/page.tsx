@@ -4,7 +4,7 @@ import { Reveal } from "@/components/reveal";
 import { createMetadata, siteConfig } from "@/content/site";
 
 export const metadata = createMetadata({
-  title: "Contatti | AMV Asset Direction",
+  title: "Contatti | AVM Asset Direction",
   description:
     "Parliamo del tuo immobile. Diamo una direzione più chiara e più solida al tuo asset.",
   path: "/contatti"

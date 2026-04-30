@@ -5,9 +5,9 @@ import { Reveal } from "@/components/reveal";
 import { methodSteps, createMetadata } from "@/content/site";
 
 export const metadata = createMetadata({
-  title: "Metodo | AMV Asset Direction",
+  title: "Metodo | AVM Asset Direction",
   description:
-    "Come AMV integra gestione, design e posizionamento per creare valore immobiliare nel tempo.",
+    "Come AVM integra gestione, design e posizionamento per creare valore immobiliare nel tempo.",
   path: "/metodo"
 });
 
@@ -17,7 +17,7 @@ export default function MethodPage() {
       <PageHero
         eyebrow="Metodo"
         title="Una pratica che tiene insieme progetto, gestione e percezione."
-        description="AMV interviene sul valore immobiliare con un approccio che unisce lettura del contesto, direzione estetica e controllo operativo. Ogni scelta deve essere bella, utile e sostenibile nel tempo."
+        description="AVM interviene sul valore immobiliare con un approccio che unisce lettura del contesto, direzione estetica e controllo operativo. Ogni scelta deve essere bella, utile e sostenibile nel tempo."
       />
 
       <section className="pb-10">

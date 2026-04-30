@@ -3,7 +3,7 @@ import { Reveal } from "@/components/reveal";
 import { createMetadata, inquiryLinks, investorPrinciples } from "@/content/site";
 
 export const metadata = createMetadata({
-  title: "Investitori | AMV Asset Direction",
+  title: "Investitori | AVM Asset Direction",
   description:
     "Collaborazioni immobiliari riservate, strutturate caso per caso e accessibili solo a partner selezionati.",
   path: "/investitori"
@@ -15,7 +15,7 @@ export default function InvestorsPage() {
       <PageHero
         eyebrow="Investitori"
         title="Operazioni immobiliari riservate"
-        description="AMV valuta collaborazioni project-based con partner selezionati. L’accesso è riservato, il perimetro operativo è definito caso per caso e la comunicazione resta sempre conforme."
+        description="AVM valuta collaborazioni project-based con partner selezionati. L’accesso è riservato, il perimetro operativo è definito caso per caso e la comunicazione resta sempre conforme."
       >
         <p className="text-sm leading-6 text-muted">
           Nessuna offerta al pubblico. Nessuna promessa finanziaria. Solo
@@ -80,7 +80,7 @@ export default function InvestorsPage() {
                   </h2>
                   <p className="max-w-2xl text-base leading-7 text-muted">
                     Se desideri presentare il tuo profilo o valutare una possibile
-                    collaborazione, AMV può aprire una prima interlocuzione privata.
+                    collaborazione, AVM può aprire una prima interlocuzione privata.
                   </p>
                 </div>
                 <a href={inquiryLinks.investors} className="gold-fill-btn">

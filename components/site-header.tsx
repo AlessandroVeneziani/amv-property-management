@@ -37,11 +37,11 @@ export function SiteHeader() {
         <div className="flex items-center justify-between gap-6 px-5 py-4 sm:px-6">
           <Link href="/" className="flex items-center gap-3 text-sand">
             <Image
-              src="/images/brand/amv-wordmark.svg"
-              alt={siteConfig.shortName}
-              width={286}
-              height={74}
-              className="h-11 w-auto sm:h-12"
+              src="/images/brand/avm-wordmark.svg"
+              alt={siteConfig.name}
+              width={640}
+              height={164}
+              className="h-10 w-auto sm:h-11"
               priority
             />
           </Link>

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "AMV Asset Direction",
-  shortName: "AMV",
+  name: "AVM Asset Direction",
+  shortName: "AVM",
   description:
     "Diamo direzione al valore immobiliare attraverso gestione, identità e valorizzazione.",
   url: "https://amvpropertymanagement.it",
@@ -14,6 +14,7 @@ export const siteConfig = {
 export const legalInfo = {
   companyName: "AMV Property Management",
   owner: "Alessandro Veneziani",
+  collaborator: "Andrea Mirone",
   vatNumber: "IT13770340969",
   taxCode: "VNZLSN74S17F205A",
   address: "Piazza Napoli 11, 20146 Milano",
@@ -40,13 +41,13 @@ export const createMailtoLink = ({ subject, body }: MailtoOptions) => {
 
 export const inquiryLinks = {
   consultation: createMailtoLink({
-    subject: "Richiesta consulenza dal sito AMV"
+    subject: "Richiesta consulenza dal sito AVM"
   }),
   investors: createMailtoLink({
-    subject: "Richiesta accesso area investitori AMV"
+    subject: "Richiesta accesso area investitori AVM"
   }),
   general: createMailtoLink({
-    subject: "Richiesta informazioni dal sito AMV"
+    subject: "Richiesta informazioni dal sito AVM"
   })
 } as const;
 
@@ -192,6 +193,33 @@ export const createMetadata = ({
   return {
     title,
     description,
+    manifest: "/site.webmanifest",
+    icons: {
+      icon: [
+        {
+          url: "/favicon.svg",
+          type: "image/svg+xml"
+        },
+        {
+          url: "/icon-192.svg",
+          sizes: "192x192",
+          type: "image/svg+xml"
+        },
+        {
+          url: "/icon-512.svg",
+          sizes: "512x512",
+          type: "image/svg+xml"
+        }
+      ],
+      apple: [
+        {
+          url: "/apple-touch-icon.svg",
+          sizes: "180x180",
+          type: "image/svg+xml"
+        }
+      ],
+      shortcut: "/favicon.svg"
+    },
     alternates: {
       canonical: url
     },
