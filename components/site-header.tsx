@@ -39,13 +39,13 @@ export function SiteHeader() {
             href="/"
             className="flex min-w-0 flex-1 items-center text-sand lg:flex-none"
           >
-            <span className="flex h-[56px] items-center overflow-hidden sm:h-[60px] md:h-[64px] lg:h-[96px] xl:h-[104px]">
+            <span className="flex h-[84px] items-center overflow-hidden sm:h-[90px] md:h-[96px] lg:h-[144px] xl:h-[156px]">
               <Image
                 src={brandAssets.wordmark}
                 alt={siteConfig.name}
                 width={707}
                 height={353}
-                className="h-full w-auto max-w-none shrink-0 -ml-[0.85rem] sm:-ml-[0.95rem] md:-ml-[1rem] lg:-ml-[1.15rem] xl:-ml-[1.2rem]"
+                className="h-full w-auto max-w-none shrink-0 -ml-[1.25rem] sm:-ml-[1.4rem] md:-ml-[1.5rem] lg:-ml-[1.7rem] xl:-ml-[1.8rem]"
                 priority
               />
             </span>
