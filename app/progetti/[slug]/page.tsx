@@ -173,7 +173,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 </div>
                 <div className="flex flex-wrap gap-4">
                   <a href={inquiryLinks.consultation} className="gold-fill-btn">
-                    Richiedi una consulenza
+                    Richiedi una prima analisi
                   </a>
                   <Link href="/progetti" className="gold-outline-btn">
                     Torna ai progetti

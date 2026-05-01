@@ -79,7 +79,7 @@ export default function ServicesPage() {
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <a href={inquiryLinks.consultation} className="gold-fill-btn">
-                      Richiedi una consulenza
+                      Richiedi una prima analisi
                     </a>
                     <Link href="/metodo" className="gold-outline-btn">
                       Leggi il metodo

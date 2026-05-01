@@ -1,4 +1,4 @@
-# AMV Property Management
+# AVM Property Management
 
 Sito Next.js per un brand premium di property management, interior direction e real estate value enhancement. Il progetto adotta App Router, Tailwind CSS, immagini locali ottimizzate e contenuti in italiano con tono editoriale, essenziale e architettonico.
 

@@ -17,7 +17,7 @@ import { projects } from "@/content/projects";
 export const metadata = createMetadata({
   title: "AVM Asset Direction | Diamo direzione al valore immobiliare",
   description:
-    "Dalla gestione all’identità: ogni immobile diventa un asset più chiaro, più solido, più desiderabile.",
+    "Ogni immobile diventa un asset più chiaro, più solido, più desiderabile.",
   path: "/"
 });
 
@@ -32,36 +32,36 @@ export default function HomePage() {
             <div className="space-y-6">
               <p className="eyebrow">Asset Direction</p>
               <h1 className="max-w-3xl font-serif text-4xl leading-tight text-balance text-sand sm:text-5xl lg:text-7xl">
-                Diamo direzione e forza al valore immobiliare.
+                Diamo direzione al valore immobiliare.
               </h1>
               <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg">
-                Dalla gestione all’identità: ogni immobile diventa un asset più
-                chiaro, più solido, più desiderabile.
+                Ogni immobile diventa un asset più chiaro, più solido, più
+                desiderabile.
               </p>
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <a href={inquiryLinks.consultation} className="gold-outline-btn">
-                Richiedi una consulenza
+              <a href={inquiryLinks.consultation} className="gold-fill-btn">
+                Richiedi una prima analisi
               </a>
-              <Link href="/progetti" className="gold-fill-btn">
-                Vedi i progetti
+              <Link href="/progetti" className="gold-outline-btn">
+                Scopri i progetti
               </Link>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3">
               {[
                 {
-                  title: "Controllo operativo",
-                  text: "Processi, manutenzione e standard coerenti."
+                  title: "Controllo",
+                  text: "Processi chiari, standard coerenti, continuità reale."
                 },
                 {
-                  title: "Direzione estetica",
+                  title: "Direzione",
                   text: "Materia, luce e tono al servizio del valore."
                 },
                 {
                   title: "Posizionamento",
-                  text: "Un’identità più chiara per immobili più forti."
+                  text: "Un’identità più netta per immobili più forti."
                 }
               ].map((item, index) => (
                 <div
@@ -137,7 +137,7 @@ export default function HomePage() {
               <SectionHeading
                 eyebrow="Posizionamento"
                 title="Non ci limitiamo a gestire immobili. Li rendiamo più forti."
-                description="Quando gestione, estetica e strategia lavorano insieme, il valore diventa percepibile. E misurabile."
+                description="Quando gestione, estetica e strategia lavorano insieme, il valore diventa più leggibile, più solido, più desiderabile."
               />
 
               <div className="grid gap-4">
@@ -202,7 +202,7 @@ export default function HomePage() {
                 description="Ogni progetto è un lavoro di allineamento tra spazio, percezione e valore."
               />
               <Link href="/progetti" className="gold-outline-btn">
-                Vedi i progetti
+                Scopri i progetti
               </Link>
             </div>
           </Reveal>
@@ -326,13 +326,13 @@ export default function HomePage() {
                 <div className="space-y-4">
                   <p className="eyebrow">Contatto</p>
                   <h2 className="max-w-3xl font-serif text-4xl leading-tight text-sand sm:text-5xl">
-                    Richiedi una prima analisi del tuo immobile
+                    Richiedi una prima analisi del tuo immobile.
                   </h2>
                   <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg">
-                    Valutiamo insieme se esiste margine reale di valorizzazione.
+                    Valutiamo se esiste un margine reale di valorizzazione.
                   </p>
                   <p className="max-w-2xl text-sm leading-6 text-sand/72">
-                    Lavoriamo solo su immobili dove possiamo creare un miglioramento reale.
+                    Lavoriamo solo su immobili dove possiamo creare un miglioramento concreto.
                   </p>
                 </div>
 
@@ -341,7 +341,7 @@ export default function HomePage() {
                     Richiedi una prima analisi
                   </a>
                   <Link href="/progetti" className="gold-outline-btn">
-                    Vedi i progetti
+                    Scopri i progetti
                   </Link>
                 </div>
               </div>

@@ -5,16 +5,22 @@ export const siteConfig = {
   shortName: "AVM",
   description:
     "Diamo direzione al valore immobiliare attraverso gestione, identità e valorizzazione.",
-  url: "https://amvpropertymanagement.it",
   email: "info@alessandroveneziani.it",
   pec: "a.veneziani@pec.it",
   location: "Piazza Napoli 11, 20146 Milano"
 } as const;
 
+export const brandAssets = {
+  wordmark: "/avm-wordmark.svg",
+  favicon: "/favicon.svg",
+  icon192: "/icon-192.svg",
+  icon512: "/icon-512.svg",
+  appleTouchIcon: "/apple-touch-icon.svg"
+} as const;
+
 export const legalInfo = {
-  companyName: "AMV Property Management",
-  owner: "Alessandro Veneziani",
-  collaborator: "Andrea Mirone",
+  companyName: "AVM Property Management",
+  directors: ["Alessandro Veneziani", "Andrea Mirone"],
   vatNumber: "IT13770340969",
   taxCode: "VNZLSN74S17F205A",
   address: "Piazza Napoli 11, 20146 Milano",
@@ -63,21 +69,21 @@ export const navigation = [
 export const homePillars = [
   {
     id: "01",
-    title: "Controllo operativo",
+    title: "Controllo",
     description:
-      "Processi chiari. Continuità reale. Nessuna dispersione."
+      "Processi chiari, standard coerenti, continuità reale."
   },
   {
     id: "02",
-    title: "Direzione estetica",
+    title: "Direzione",
     description:
-      "Materia, luce e proporzioni al servizio del valore."
+      "Materia, luce e tono al servizio del valore."
   },
   {
     id: "03",
     title: "Posizionamento",
     description:
-      "Ogni immobile trova una direzione più precisa, più credibile, più selettiva."
+      "Un’identità più netta per immobili più forti."
   }
 ] as const;
 
@@ -99,23 +105,23 @@ export const positioningPoints = [
 export const methodSteps = [
   {
     index: "01",
-    title: "Diagnosi del contesto",
+    title: "Diagnosi",
     text: "Leggiamo immobile, target e potenziale reale."
   },
   {
     index: "02",
-    title: "Direzione progettuale",
+    title: "Direzione",
     text: "Definiamo identità, tono e coerenza."
   },
   {
     index: "03",
-    title: "Attivazione operativa",
+    title: "Attivazione",
     text: "Traduciamo la visione in gestione concreta."
   },
   {
     index: "04",
-    title: "Consolidamento del valore",
-    text: "Manteniamo standard, percezione e risultato nel tempo."
+    title: "Consolidamento",
+    text: "Manteniamo standard, percezione e valore nel tempo."
   }
 ] as const;
 
@@ -133,7 +139,7 @@ export const audienceSegments = [
   {
     title: "Partner / Developer",
     description:
-      "Un interlocutore che unisce visione e execution."
+      "Un interlocutore che unisce visione ed execution."
   }
 ] as const;
 
@@ -183,12 +189,27 @@ type MetadataInput = {
   path?: string;
 };
 
+export const getSiteUrl = () => {
+  const envUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ??
+    process.env.VERCEL_URL ??
+    "http://localhost:3000";
+
+  const normalizedUrl = envUrl.startsWith("http")
+    ? envUrl
+    : `https://${envUrl}`;
+
+  return new URL(normalizedUrl);
+};
+
 export const createMetadata = ({
   title,
   description,
   path = "/"
 }: MetadataInput): Metadata => {
-  const url = new URL(path, siteConfig.url);
+  const siteUrl = getSiteUrl();
+  const pageUrl = new URL(path, siteUrl);
 
   return {
     title,
@@ -197,36 +218,36 @@ export const createMetadata = ({
     icons: {
       icon: [
         {
-          url: "/favicon.svg",
+          url: brandAssets.favicon,
           type: "image/svg+xml"
         },
         {
-          url: "/icon-192.svg",
+          url: brandAssets.icon192,
           sizes: "192x192",
           type: "image/svg+xml"
         },
         {
-          url: "/icon-512.svg",
+          url: brandAssets.icon512,
           sizes: "512x512",
           type: "image/svg+xml"
         }
       ],
       apple: [
         {
-          url: "/apple-touch-icon.svg",
+          url: brandAssets.appleTouchIcon,
           sizes: "180x180",
           type: "image/svg+xml"
         }
       ],
-      shortcut: "/favicon.svg"
+      shortcut: brandAssets.favicon
     },
     alternates: {
-      canonical: url
+      canonical: pageUrl
     },
     openGraph: {
       title,
       description,
-      url,
+      url: pageUrl,
       siteName: siteConfig.name,
       locale: "it_IT",
       type: "website"
