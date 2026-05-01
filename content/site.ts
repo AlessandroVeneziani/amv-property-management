@@ -11,7 +11,7 @@ export const siteConfig = {
 } as const;
 
 export const brandAssets = {
-  wordmark: "/avm-wordmark.svg",
+  wordmark: "/avm-wordmark.png",
   favicon: "/favicon.svg",
   icon192: "/icon-192.svg",
   icon512: "/icon-512.svg",

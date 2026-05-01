@@ -37,14 +37,14 @@ export function SiteHeader() {
         <div className="flex items-center justify-between gap-4 px-4 py-3.5 sm:px-6 sm:py-4 lg:gap-6 lg:px-7">
           <Link
             href="/"
-            className="flex min-w-0 max-w-[15.5rem] flex-1 items-center text-sand sm:max-w-[17.75rem] md:max-w-[19.75rem] lg:max-w-[24rem] lg:flex-none xl:max-w-[26rem]"
+            className="flex min-w-0 max-w-[14rem] flex-1 items-center text-sand sm:max-w-[15.5rem] md:max-w-[17rem] lg:max-w-[20rem] lg:flex-none xl:max-w-[22rem]"
           >
             <Image
               src={brandAssets.wordmark}
               alt={siteConfig.name}
-              width={920}
-              height={232}
-              className="h-[46px] w-auto max-w-full sm:h-[52px] lg:h-[66px] xl:h-[70px]"
+              width={707}
+              height={353}
+              className="h-[52px] w-auto max-w-full sm:h-[58px] lg:h-[74px] xl:h-[78px]"
               priority
             />
           </Link>
