@@ -37,18 +37,18 @@ export function SiteHeader() {
         <div className="flex items-center justify-between gap-4 px-4 py-3.5 sm:px-6 sm:py-4 lg:gap-6 lg:px-7">
           <Link
             href="/"
-            className="flex min-w-0 max-w-[15.75rem] flex-1 items-center text-sand sm:max-w-[18rem] md:max-w-[20rem] lg:max-w-[24rem] lg:flex-none xl:max-w-[26rem]"
+            className="flex min-w-0 max-w-[15.25rem] flex-1 items-center text-sand sm:max-w-[17.5rem] md:max-w-[19.5rem] lg:max-w-[23rem] lg:flex-none xl:max-w-[25rem]"
           >
             <div className="min-w-0">
               <Image
                 src={brandAssets.wordmark}
                 alt={siteConfig.name}
-                width={640}
-                height={148}
-                className="h-[42px] w-auto sm:h-[46px] lg:h-[58px] xl:h-[62px]"
+                width={760}
+                height={164}
+                className="h-[40px] w-auto max-w-full sm:h-[46px] lg:h-[56px] xl:h-[60px]"
                 priority
               />
-              <p className="mt-1.5 text-[0.52rem] font-semibold uppercase leading-[1.35] tracking-[0.22em] text-[#C6A75E]/95 sm:text-[0.56rem] sm:tracking-[0.24em] lg:mt-2 lg:text-[0.66rem] lg:tracking-[0.28em] xl:text-[0.72rem]">
+              <p className="mt-1 text-[0.49rem] font-semibold uppercase leading-[1.3] tracking-[0.2em] text-[#C6A75E]/95 sm:mt-1.5 sm:text-[0.54rem] sm:tracking-[0.22em] lg:text-[0.62rem] lg:tracking-[0.26em] xl:text-[0.68rem]">
                 Gestione e valorizzazione
                 <span className="block sm:inline"> immobiliare</span>
               </p>
