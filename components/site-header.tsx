@@ -34,16 +34,25 @@ export function SiteHeader() {
             : "border-transparent bg-black/20 backdrop-blur-sm"
         }`}
       >
-        <div className="flex items-center justify-between gap-5 px-4 py-3 sm:px-6 sm:py-3.5 lg:gap-6">
-          <Link href="/" className="flex shrink-0 items-center text-sand">
-            <Image
-              src={brandAssets.wordmark}
-              alt={siteConfig.name}
-              width={640}
-              height={176}
-              className="h-[36px] w-auto sm:h-[38px] lg:h-[46px] xl:h-[48px]"
-              priority
-            />
+        <div className="flex items-center justify-between gap-4 px-4 py-3.5 sm:px-6 sm:py-4 lg:gap-6 lg:px-7">
+          <Link
+            href="/"
+            className="flex min-w-0 max-w-[15.75rem] flex-1 items-center text-sand sm:max-w-[18rem] md:max-w-[20rem] lg:max-w-[24rem] lg:flex-none xl:max-w-[26rem]"
+          >
+            <div className="min-w-0">
+              <Image
+                src={brandAssets.wordmark}
+                alt={siteConfig.name}
+                width={640}
+                height={148}
+                className="h-[42px] w-auto sm:h-[46px] lg:h-[58px] xl:h-[62px]"
+                priority
+              />
+              <p className="mt-1.5 text-[0.52rem] font-semibold uppercase leading-[1.35] tracking-[0.22em] text-[#C6A75E]/95 sm:text-[0.56rem] sm:tracking-[0.24em] lg:mt-2 lg:text-[0.66rem] lg:tracking-[0.28em] xl:text-[0.72rem]">
+                Gestione e valorizzazione
+                <span className="block sm:inline"> immobiliare</span>
+              </p>
+            </div>
           </Link>
 
           <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
@@ -73,7 +82,7 @@ export function SiteHeader() {
 
           <button
             type="button"
-            className="inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.2em] text-sand lg:hidden"
+            className="inline-flex shrink-0 items-center gap-2.5 text-sm uppercase tracking-[0.2em] text-sand lg:hidden"
             onClick={() => setOpen((current) => !current)}
             aria-expanded={open}
             aria-label="Apri menu"
