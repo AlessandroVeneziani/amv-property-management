@@ -26,7 +26,7 @@ export function SiteHeader() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 px-4 pt-3 sm:px-6 sm:pt-4">
+    <header className="sticky top-0 z-50 px-4 pt-2.5 sm:px-6 sm:pt-3">
       <div
         className={`mx-auto max-w-7xl rounded-full border transition duration-300 ${
           scrolled
@@ -34,19 +34,21 @@ export function SiteHeader() {
             : "border-transparent bg-black/20 backdrop-blur-sm"
         }`}
       >
-        <div className="flex items-center justify-between gap-4 px-4 py-3.5 sm:px-6 sm:py-4 lg:gap-6 lg:px-7">
+        <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-3.5 lg:gap-6 lg:px-7">
           <Link
             href="/"
-            className="flex min-w-0 max-w-[14rem] flex-1 items-center text-sand sm:max-w-[15.5rem] md:max-w-[17rem] lg:max-w-[20rem] lg:flex-none xl:max-w-[22rem]"
+            className="flex min-w-0 flex-1 items-center text-sand lg:flex-none"
           >
-            <Image
-              src={brandAssets.wordmark}
-              alt={siteConfig.name}
-              width={707}
-              height={353}
-              className="h-[52px] w-auto max-w-full sm:h-[58px] lg:h-[74px] xl:h-[78px]"
-              priority
-            />
+            <span className="flex h-[56px] items-center overflow-hidden sm:h-[60px] md:h-[64px] lg:h-[96px] xl:h-[104px]">
+              <Image
+                src={brandAssets.wordmark}
+                alt={siteConfig.name}
+                width={707}
+                height={353}
+                className="h-full w-auto max-w-none shrink-0 -ml-[0.85rem] sm:-ml-[0.95rem] md:-ml-[1rem] lg:-ml-[1.15rem] xl:-ml-[1.2rem]"
+                priority
+              />
+            </span>
           </Link>
 
           <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
