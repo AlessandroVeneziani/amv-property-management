@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { brandAssets, inquiryLinks, navigation, siteConfig } from "@/content/site";
+import { brandAssets, navigation, siteConfig } from "@/content/site";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -60,8 +60,14 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`text-sm tracking-[0.16em] transition ${
-                    active ? "text-sand" : "text-muted hover:text-sand"
+                  className={`rounded-full border px-0 py-0 text-sm tracking-[0.16em] transition ${
+                    item.emphasized
+                      ? active
+                        ? "border-accent bg-accent text-ink"
+                        : "border-accent/70 px-5 py-2.5 text-accent hover:border-accent hover:bg-accent hover:text-ink"
+                      : active
+                        ? "border-transparent text-sand"
+                        : "border-transparent text-muted hover:text-sand"
                   }`}
                 >
                   {item.label}
@@ -69,12 +75,6 @@ export function SiteHeader() {
               );
             })}
           </nav>
-
-          <div className="hidden lg:block">
-            <a href={inquiryLinks.consultation} className="gold-outline-btn">
-              Richiedi una prima analisi
-            </a>
-          </div>
 
           <button
             type="button"
@@ -115,22 +115,20 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`rounded-2xl px-3 py-3 text-sm uppercase tracking-[0.18em] transition ${
-                    active
-                      ? "bg-white/[0.06] text-sand"
-                      : "text-muted hover:bg-white/[0.05] hover:text-sand"
+                  className={`rounded-2xl border px-3 py-3 text-sm uppercase tracking-[0.18em] transition ${
+                    item.emphasized
+                      ? active
+                        ? "border-accent bg-accent text-ink"
+                        : "border-accent/70 text-accent hover:border-accent hover:bg-accent hover:text-ink"
+                      : active
+                        ? "border-white/10 bg-white/[0.06] text-sand"
+                        : "border-transparent text-muted hover:bg-white/[0.05] hover:text-sand"
                   }`}
                 >
                   {item.label}
                 </Link>
               );
             })}
-            <a
-              href={inquiryLinks.consultation}
-              className="gold-fill-btn mt-2 justify-center"
-            >
-              Richiedi una prima analisi
-            </a>
           </nav>
         </div>
       </div>

@@ -1,34 +1,54 @@
+import Image from "next/image";
 import Link from "next/link";
 
-import { legalInfo, navigation, siteConfig } from "@/content/site";
+import {
+  brandAssets,
+  footerLegalNavigation,
+  footerNavigation,
+  legalInfo,
+  siteConfig,
+  socialLinks
+} from "@/content/site";
 
 export function SiteFooter() {
+  const socialItems = [
+    socialLinks.instagram
+      ? { href: socialLinks.instagram, label: "Instagram" }
+      : null,
+    socialLinks.linkedin
+      ? { href: socialLinks.linkedin, label: "LinkedIn" }
+      : null
+  ].filter(Boolean) as Array<{ href: string; label: string }>;
+
   return (
     <footer>
       <div className="border-t border-line">
         <div className="mx-auto grid max-w-7xl gap-14 px-6 py-16 lg:grid-cols-[1.08fr_0.58fr_1fr] lg:gap-18 lg:py-18">
           <div className="space-y-7 lg:pr-8">
-            <h2 className="font-serif text-[1.75rem] leading-tight tracking-[0.01em] text-sand">
-              AVM Property Management
-            </h2>
-            <div className="max-w-lg space-y-5 text-sm leading-[1.95] text-muted sm:text-base">
-              <p>
-                Direzione e valorizzazione immobiliare.
-                <br />
-                Asset gestiti con metodo, estetica e posizionamento.
+            <Link href="/" className="inline-flex">
+              <span className="relative block h-14 w-[17rem] sm:h-16 sm:w-[19rem]">
+                <Image
+                  src={brandAssets.wordmark}
+                  alt={siteConfig.name}
+                  fill
+                  sizes="304px"
+                  className="object-contain object-left"
+                />
+              </span>
+            </Link>
+            <div className="max-w-lg space-y-4 text-sm leading-[1.9] text-muted sm:text-base">
+              <p className="font-serif text-xl leading-tight text-sand">
+                {siteConfig.definition}
               </p>
-              <p>
-                Ogni immobile non è solo uno spazio.
-                <br />
-                È un valore da costruire e consolidare nel tempo.
-              </p>
+              <p>{siteConfig.guidingStatement}</p>
+              <p>{siteConfig.description}</p>
             </div>
           </div>
 
           <div className="space-y-6">
             <p className="text-xs uppercase tracking-[0.24em] text-muted">Navigazione</p>
             <nav className="grid gap-3.5">
-              {navigation.map((item) => (
+              {footerNavigation.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -38,6 +58,38 @@ export function SiteFooter() {
                 </Link>
               ))}
             </nav>
+            {socialItems.length > 0 ? (
+              <div className="space-y-3 pt-3">
+                <p className="text-xs uppercase tracking-[0.24em] text-muted">Social</p>
+                <div className="grid gap-3">
+                  {socialItems.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm text-muted transition hover:text-sand"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+            <div className="space-y-3 pt-3">
+              <p className="text-xs uppercase tracking-[0.24em] text-muted">Legale</p>
+              <div className="grid gap-3">
+                {footerLegalNavigation.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm text-muted transition hover:text-sand"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="space-y-6">
@@ -65,7 +117,7 @@ export function SiteFooter() {
 
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-7xl flex-col gap-2.5 px-6 py-6 text-sm text-muted/90 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 AVM Property Management</p>
+          <p>© 2026 {siteConfig.name}</p>
           <p>Tutti i diritti riservati</p>
         </div>
       </div>

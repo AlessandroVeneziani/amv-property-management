@@ -5,12 +5,27 @@ import { getSiteUrl } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl().toString().replace(/\/$/, "");
-  const routes = ["", "/progetti", "/metodo", "/servizi", "/investitori", "/contatti"];
+  const routes = [
+    "",
+    "/asset-direction",
+    "/metodo-avm",
+    "/progetti",
+    "/chi-e-avm",
+    "/contatti",
+    "/consulenza",
+    "/privacy-policy",
+    "/cookie-policy"
+  ];
   const staticRoutes: MetadataRoute.Sitemap = routes.map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: route === "" ? ("weekly" as const) : ("monthly" as const),
-    priority: route === "" ? 1 : 0.8
+    priority:
+      route === ""
+        ? 1
+        : route === "/progetti" || route === "/asset-direction" || route === "/metodo-avm"
+          ? 0.9
+          : 0.72
   }));
 
   const projectRoutes: MetadataRoute.Sitemap = projects.map((project) => ({

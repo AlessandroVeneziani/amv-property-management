@@ -3,8 +3,14 @@ import type { Metadata } from "next";
 export const siteConfig = {
   name: "AVM Asset Direction",
   shortName: "AVM",
+  definition: "Direzione strategica dell’immobile",
+  guidingStatement:
+    "Ogni immobile possiede un potenziale. AVM ne definisce la direzione.",
   description:
-    "Diamo direzione al valore immobiliare attraverso gestione, identità e valorizzazione.",
+    "AVM Asset Direction osserva, interpreta e guida la trasformazione dell’immobile, coordinando spazio, luce, materia e investimento all’interno di una visione unica.",
+  metadataDescription:
+    "AVM Asset Direction guida la trasformazione e la valorizzazione degli immobili attraverso distribuzione, luce, materia, funzione e strategia.",
+  url: "https://alessandroveneziani.it",
   email: "info@alessandroveneziani.it",
   pec: "a.veneziani@pec.it",
   location: "Piazza Napoli 11, 20146 Milano"
@@ -47,24 +53,42 @@ export const createMailtoLink = ({ subject, body }: MailtoOptions) => {
 
 export const inquiryLinks = {
   consultation: createMailtoLink({
-    subject: "Richiesta consulenza dal sito AVM"
+    subject: "Richiesta consulenza dal sito AVM Asset Direction"
   }),
   investors: createMailtoLink({
-    subject: "Richiesta accesso area investitori AVM"
+    subject: "Richiesta accesso area investitori AVM Asset Direction"
   }),
   general: createMailtoLink({
-    subject: "Richiesta informazioni dal sito AVM"
+    subject: "Richiesta informazioni dal sito AVM Asset Direction"
   })
 } as const;
 
-export const navigation = [
+type NavigationItem = {
+  href: string;
+  label: string;
+  emphasized?: boolean;
+};
+
+export const navigation: readonly NavigationItem[] = [
   { href: "/", label: "Home" },
+  { href: "/asset-direction", label: "Asset Direction" },
+  { href: "/metodo-avm", label: "Metodo" },
   { href: "/progetti", label: "Progetti" },
-  { href: "/metodo", label: "Metodo" },
-  { href: "/servizi", label: "Servizi" },
-  { href: "/investitori", label: "Investitori" },
-  { href: "/contatti", label: "Contatti" }
+  { href: "/chi-e-avm", label: "Chi è AVM" },
+  { href: "/contatti", label: "Contatti", emphasized: true }
 ] as const;
+
+export const footerNavigation = navigation;
+
+export const footerLegalNavigation = [
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/cookie-policy", label: "Cookie Policy" }
+] as const;
+
+export const socialLinks = {
+  instagram: null,
+  linkedin: null
+} as const;
 
 export const homePillars = [
   {
@@ -190,11 +214,7 @@ type MetadataInput = {
 };
 
 export const getSiteUrl = () => {
-  const envUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    process.env.VERCEL_PROJECT_PRODUCTION_URL ??
-    process.env.VERCEL_URL ??
-    "http://localhost:3000";
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url;
 
   const normalizedUrl = envUrl.startsWith("http")
     ? envUrl
@@ -212,6 +232,8 @@ export const createMetadata = ({
   const pageUrl = new URL(path, siteUrl);
 
   return {
+    metadataBase: siteUrl,
+    applicationName: siteConfig.name,
     title,
     description,
     manifest: "/site.webmanifest",

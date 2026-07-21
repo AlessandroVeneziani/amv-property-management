@@ -20,8 +20,8 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = createMetadata({
-  title: `${siteConfig.name} | Gestione immobiliare e valorizzazione`,
-  description: siteConfig.description
+  title: `${siteConfig.name} | ${siteConfig.definition}`,
+  description: siteConfig.metadataDescription
 });
 
 export default function RootLayout({
