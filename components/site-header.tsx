@@ -51,7 +51,7 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
+          <nav className="hidden items-center gap-5 xl:flex xl:gap-6">
             {navigation.map((item) => {
               const active =
                 item.href === "/" ? pathname === item.href : pathname.startsWith(item.href);
@@ -78,7 +78,7 @@ export function SiteHeader() {
 
           <button
             type="button"
-            className="inline-flex shrink-0 items-center gap-2.5 text-sm uppercase tracking-[0.2em] text-sand lg:hidden"
+            className="inline-flex shrink-0 items-center gap-2.5 text-sm uppercase tracking-[0.2em] text-sand xl:hidden"
             onClick={() => setOpen((current) => !current)}
             aria-expanded={open}
             aria-label="Apri menu"
@@ -102,7 +102,7 @@ export function SiteHeader() {
         </div>
 
         <div
-          className={`overflow-hidden transition-all duration-300 lg:hidden ${
+          className={`overflow-hidden transition-all duration-300 xl:hidden ${
             open ? "max-h-[24rem] border-t border-white/10" : "max-h-0"
           }`}
         >

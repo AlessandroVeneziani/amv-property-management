@@ -90,6 +90,190 @@ export const socialLinks = {
   linkedin: null
 } as const;
 
+export const homeMetadata = {
+  h1: "Asset Direction e valorizzazione immobiliare",
+  seoTitle: "AVM Asset Direction | Valorizzazione immobiliare a Milano",
+  seoDescription:
+    "AVM Asset Direction guida la trasformazione degli immobili attraverso distribuzione, luce, materia, funzione e strategia."
+} as const;
+
+export const homeHero = {
+  eyebrow: "Asset Direction",
+  title: [
+    "Ogni immobile possiede un potenziale.",
+    "AVM ne definisce la direzione."
+  ],
+  description:
+    "AVM Asset Direction osserva, interpreta e guida la trasformazione dell’immobile, coordinando spazio, luce, materia e investimento all’interno di una visione unica.",
+  primaryCta: {
+    label: "Scopri l’Asset Direction",
+    href: "/asset-direction"
+  },
+  secondaryCta: {
+    label: "Esplora i progetti",
+    href: "/progetti"
+  },
+  image: {
+    src: "/images/hero-milano.png",
+    alt: "Interno residenziale con vista su Milano e luce serale controllata"
+  }
+} as const;
+
+export const homePositioning = {
+  eyebrow: "Posizionamento",
+  title: "Prima di progettare come apparirà, definiamo cosa deve diventare.",
+  paragraphs: [
+    "AVM non parte da uno stile da applicare.",
+    "Parte dalla pianta, dalla destinazione, dal contesto e dal potenziale reale dell’immobile.",
+    "Ogni scelta viene guidata da una direzione precisa."
+  ],
+  statement: ["Osservare.", "Interpretare.", "Dirigere."],
+  question:
+    "Ogni decisione progettuale deve rispondere a una domanda: questa scelta aiuta davvero l’immobile a esprimere il suo potenziale?",
+  cta: {
+    label: "Che cos’è Asset Direction",
+    href: "/asset-direction"
+  },
+  image: {
+    src: "/images/projects/method-detail.png",
+    alt: "Soglia architettonica con rivestimenti materici e luce integrata"
+  }
+} as const;
+
+export const homeSelectedProjects = {
+  eyebrow: "Progetti selezionati",
+  title: "Progetti in cui la direzione diventa spazio.",
+  description:
+    "Una selezione di trasformazioni costruite attraverso distribuzione, luce, materia e valore.",
+  cta: {
+    label: "Esplora tutti i progetti",
+    href: "/progetti"
+  },
+  slugs: ["la-galleria", "certosa-residence", "marco-aurelio"]
+} as const;
+
+export const homeMethod = {
+  eyebrow: "Metodo AVM",
+  title: "Dalla comprensione alla realizzazione.",
+  description: "Ogni progetto segue un processo preciso.",
+  cta: {
+    label: "Scopri il Metodo AVM",
+    href: "/metodo-avm"
+  },
+  steps: [
+    {
+      index: "01",
+      title: "Osservare",
+      text: "Leggere lo spazio, i vincoli e le qualità esistenti."
+    },
+    {
+      index: "02",
+      title: "Definire la destinazione",
+      text: "Comprendere quale ruolo deve assumere l’immobile."
+    },
+    {
+      index: "03",
+      title: "Individuare il potenziale",
+      text: "Stabilire cosa conservare, correggere e trasformare."
+    },
+    {
+      index: "04",
+      title: "Costruire la strategia",
+      text: "Definire priorità, investimento e direzione."
+    },
+    {
+      index: "05",
+      title: "Progettare con coerenza",
+      text: "Tradurre la visione in scelte concrete."
+    },
+    {
+      index: "06",
+      title: "Proteggere la direzione",
+      text: "Mantenere coerenza fino alla realizzazione."
+    }
+  ],
+  image: {
+    src: "/images/projects/certosa-residence.png",
+    alt: "Interno residenziale con gerarchie luminose e materiali controllati"
+  }
+} as const;
+
+export const homeTransformationStory = {
+  eyebrow: "Prima. Processo. Dopo.",
+  title: "Il risultato mostra la trasformazione. Il processo mostra il valore.",
+  description:
+    "AVM racconta ogni progetto attraverso il punto di partenza, le decisioni che hanno guidato la trasformazione e il risultato finale.",
+  archiveNote: "Archivio iniziale non ancora pubblicato.",
+  processTitle: "Decisione centrale",
+  processText:
+    "Ridefinizione dell’identità spaziale e calibrazione della presentazione.",
+  cta: {
+    label: "Scopri i progetti",
+    href: "/progetti"
+  },
+  processImage: {
+    src: "/images/projects/method-detail.png",
+    alt: "Dettaglio di progetto che mostra soglie, materia e luce indiretta"
+  }
+} as const;
+
+export const homeMatterAndLight = {
+  eyebrow: "Materia e luce",
+  title: "La materia dà corpo allo spazio. La luce lo rende leggibile.",
+  description:
+    "Materiali e illuminazione non vengono aggiunti alla fine. Sono parte della struttura del progetto.",
+  images: [
+    {
+      src: "/images/hero-milano.png",
+      alt: "Living con superfici scure, luce calda e skyline milanese"
+    },
+    {
+      src: "/images/projects/method-detail.png",
+      alt: "Passaggio architettonico con boiserie, metalli e luce integrata"
+    },
+    {
+      src: "/images/projects/marco-aurelio.png",
+      alt: "Camera con testata tessile e illuminazione soffusa"
+    },
+    {
+      src: "/images/projects/la-galleria.png",
+      alt: "Zona giorno con tavolo scultoreo, tessuti neutri e luce calibrata"
+    }
+  ]
+} as const;
+
+export const homeFounder = {
+  eyebrow: "Alessandro Veneziani",
+  title: "Una direzione richiede qualcuno che se ne assuma la responsabilità.",
+  paragraphs: [
+    "Alessandro Veneziani fonda AVM come evoluzione di un percorso tra valorizzazione immobiliare, progetto, gestione e direzione creativa.",
+    "Il suo lavoro parte dalla capacità di leggere il potenziale dell’immobile e tradurlo in una strategia concreta."
+  ],
+  cta: {
+    label: "Scopri la visione AVM",
+    href: "/chi-e-avm"
+  },
+  image: {
+    src: "/images/projects/method-detail.png",
+    alt: "Interno AVM con soglie materiche, luce indiretta e profondità controllata"
+  }
+} as const;
+
+export const homeFinalContact = {
+  eyebrow: "Contatto finale",
+  title: "Parliamo del tuo immobile.",
+  description:
+    "Raccontaci brevemente il progetto oppure prenota una consulenza con Alessandro Veneziani.",
+  primaryCta: {
+    label: "Richiedi una prima valutazione",
+    href: "/contatti"
+  },
+  secondaryCta: {
+    label: "Prenota una consulenza",
+    href: "/consulenza"
+  }
+} as const;
+
 export const homePillars = [
   {
     id: "01",
