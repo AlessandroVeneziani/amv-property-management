@@ -135,8 +135,8 @@ export const homePositioning = {
     href: "/asset-direction"
   },
   image: {
-    src: "/images/projects/method-detail.png",
-    alt: "Soglia architettonica con rivestimenti materici e luce integrata"
+    src: "/images/projects/certosa-residence.png",
+    alt: "Interno residenziale con gerarchie luminose, materiali caldi e proporzioni controllate"
   }
 } as const;
 
@@ -149,7 +149,33 @@ export const homeSelectedProjects = {
     label: "Esplora tutti i progetti",
     href: "/progetti"
   },
-  slugs: ["la-galleria", "certosa-residence", "marco-aurelio"]
+  slugs: ["la-galleria", "marco-aurelio", "certosa-residence"],
+  overrides: {
+    "la-galleria": {
+      title: "La Galleria",
+      city: "Milano — zona Piazza Napoli / Bosco Naviglio",
+      category: "Residenza e hospitality",
+      status: "Realizzato e in gestione",
+      summary:
+        "Da showroom e spazio per eventi a residenza hospitality, attraverso una nuova identità abitativa, luce e atmosfera."
+    },
+    "marco-aurelio": {
+      title: "Marco Aurelio 45",
+      city: "Milano",
+      category: "Operazione immobiliare completa",
+      status: "Operazione conclusa",
+      summary:
+        "Due monolocali gemelli valorizzati attraverso acquisto, ristrutturazione, locazione e vendita."
+    },
+    "certosa-residence": {
+      title: "Viale Certosa",
+      city: "Milano",
+      category: "Monolocale residenziale",
+      status: "In gestione",
+      summary:
+        "Un monolocale ristrutturato e organizzato per una gestione residenziale semplice, funzionale e continuativa."
+    }
+  }
 } as const;
 
 export const homeMethod = {
@@ -193,8 +219,12 @@ export const homeMethod = {
     }
   ],
   image: {
-    src: "/images/projects/certosa-residence.png",
-    alt: "Interno residenziale con gerarchie luminose e materiali controllati"
+    src: "/images/projects/method-detail.png",
+    alt: "Passaggio architettonico con soglia materica, boiserie e luce integrata"
+  },
+  detailImage: {
+    src: "/images/hero-milano.png",
+    alt: "Interno serale con skyline milanese, luce controllata e atmosfera raccolta"
   }
 } as const;
 
@@ -202,18 +232,19 @@ export const homeTransformationStory = {
   eyebrow: "Prima. Processo. Dopo.",
   title: "Il risultato mostra la trasformazione. Il processo mostra il valore.",
   description:
-    "AVM racconta ogni progetto attraverso il punto di partenza, le decisioni che hanno guidato la trasformazione e il risultato finale.",
-  archiveNote: "Archivio iniziale non ancora pubblicato.",
-  processTitle: "Decisione centrale",
+    "La Galleria viene raccontata attraverso il punto di partenza, la ridefinizione della destinazione e il risultato finale raggiunto.",
+  beforeTitle: "Showroom e spazio per eventi",
+  beforeText:
+    "Uno spazio di circa 160 mq utilizzato principalmente come showroom, ufficio e luogo per eventi, privo di una vera identità abitativa.",
+  processTitle: "Ridefinizione della destinazione",
   processText:
-    "Ridefinizione dell’identità spaziale e calibrazione della presentazione.",
+    "La distribuzione, la luce, gli arredi e l’atmosfera sono stati coordinati per trasformare lo spazio in una residenza destinata all’ospitalità.",
+  afterTitle: "La Galleria",
+  afterText:
+    "Una residenza hospitality riconoscibile, più leggibile e coerente con l’esperienza degli ospiti.",
   cta: {
     label: "Scopri i progetti",
     href: "/progetti"
-  },
-  processImage: {
-    src: "/images/projects/method-detail.png",
-    alt: "Dettaglio di progetto che mostra soglie, materia e luce indiretta"
   }
 } as const;
 
@@ -224,8 +255,8 @@ export const homeMatterAndLight = {
     "Materiali e illuminazione non vengono aggiunti alla fine. Sono parte della struttura del progetto.",
   images: [
     {
-      src: "/images/hero-milano.png",
-      alt: "Living con superfici scure, luce calda e skyline milanese"
+      src: "/images/projects/certosa-residence.png",
+      alt: "Living con camino, superfici travertino e vista serale su Milano"
     },
     {
       src: "/images/projects/method-detail.png",
@@ -234,10 +265,6 @@ export const homeMatterAndLight = {
     {
       src: "/images/projects/marco-aurelio.png",
       alt: "Camera con testata tessile e illuminazione soffusa"
-    },
-    {
-      src: "/images/projects/la-galleria.png",
-      alt: "Zona giorno con tavolo scultoreo, tessuti neutri e luce calibrata"
     }
   ]
 } as const;
@@ -254,8 +281,8 @@ export const homeFounder = {
     href: "/chi-e-avm"
   },
   image: {
-    src: "/images/projects/method-detail.png",
-    alt: "Interno AVM con soglie materiche, luce indiretta e profondità controllata"
+    src: "/images/projects/la-galleria.png",
+    alt: "Zona living e dining di La Galleria con materia scura e luce calibrata"
   }
 } as const;
 

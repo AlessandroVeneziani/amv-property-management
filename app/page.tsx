@@ -24,16 +24,59 @@ export const metadata = createMetadata({
 });
 
 const selectedProjects = homeSelectedProjects.slugs
-  .map((slug) => projects.find((project) => project.slug === slug))
-  .filter((project): project is Project => Boolean(project));
+  .map<HomeProjectPreview | null>((slug) => {
+    const project = projects.find((candidate) => candidate.slug === slug);
 
-const primaryProject = selectedProjects[0] ?? projects[0];
-const secondaryProject = selectedProjects[1] ?? projects[1] ?? primaryProject;
-const tertiaryProject = selectedProjects[2] ?? projects[2] ?? secondaryProject;
-const transformationProject = selectedProjects[0] ?? projects[0];
+    if (!project) {
+      return null;
+    }
+
+    const override =
+      homeSelectedProjects.overrides[
+        project.slug as keyof typeof homeSelectedProjects.overrides
+      ];
+
+    return {
+      slug: project.slug,
+      href: `/progetti/${project.slug}`,
+      image: project.image,
+      title: override?.title ?? project.title,
+      city: override?.city ?? project.city,
+      status: override?.status ?? project.status,
+      category: override?.category ?? project.category,
+      summary: override?.summary ?? project.summary
+    };
+  })
+  .filter((project): project is HomeProjectPreview => project !== null);
+
+const fallbackProject = projects[0];
+const primaryProject = selectedProjects[0] ?? {
+  slug: fallbackProject.slug,
+  href: `/progetti/${fallbackProject.slug}`,
+  image: fallbackProject.image,
+  title: fallbackProject.title,
+  city: fallbackProject.city,
+  status: fallbackProject.status,
+  category: fallbackProject.category,
+  summary: fallbackProject.summary
+};
+const secondaryProject = selectedProjects[1] ?? primaryProject;
+const tertiaryProject = selectedProjects[2] ?? secondaryProject;
+const transformationProject = primaryProject;
+
+type HomeProjectPreview = {
+  slug: Project["slug"];
+  href: string;
+  image: string;
+  title: string;
+  city: string;
+  status: string;
+  category: string;
+  summary: string;
+};
 
 type EditorialProjectPreviewProps = {
-  project: Project;
+  project: HomeProjectPreview;
   variant: "feature" | "split" | "stack";
 };
 
@@ -44,15 +87,15 @@ function EditorialProjectPreview({
   if (variant === "feature") {
     return (
       <Link
-        href={`/progetti/${project.slug}`}
+        href={project.href}
         className="group block overflow-hidden rounded-[34px] border border-line bg-white/[0.03] shadow-glow"
       >
-        <div className="relative min-h-[34rem] sm:min-h-[38rem]">
+        <div className="relative min-h-[31rem] sm:min-h-[34rem] lg:min-h-[36rem]">
           <Image
             src={project.image}
             alt={`Vista interna del progetto ${project.title} a ${project.city}`}
             fill
-            sizes="(min-width: 1024px) 56vw, 100vw"
+            sizes="100vw"
             className="object-cover transition duration-700 group-hover:scale-[1.02]"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,15,15,0.06),rgba(15,15,15,0.42)_52%,rgba(15,15,15,0.92))]" />
@@ -88,7 +131,7 @@ function EditorialProjectPreview({
   if (variant === "split") {
     return (
       <Link
-        href={`/progetti/${project.slug}`}
+        href={project.href}
         className="group block overflow-hidden rounded-[32px] border border-line bg-white/[0.03] shadow-glow"
       >
         <div className="grid gap-0 md:grid-cols-[0.52fr_0.48fr]">
@@ -130,7 +173,7 @@ function EditorialProjectPreview({
 
   return (
     <Link
-      href={`/progetti/${project.slug}`}
+      href={project.href}
       className="group block overflow-hidden rounded-[32px] border border-line bg-white/[0.03] shadow-glow"
     >
       <div className="relative min-h-[18rem] overflow-hidden">
@@ -169,7 +212,7 @@ function EditorialProjectPreview({
 export default function HomePage() {
   return (
     <>
-      <section className="overflow-hidden px-6 pb-14 pt-8 sm:pb-16 sm:pt-10">
+      <section className="overflow-hidden px-6 pb-12 pt-6 sm:pb-14 sm:pt-8">
         <div className="mx-auto max-w-7xl">
           <Reveal>
             <div className="relative overflow-hidden rounded-[40px] border border-line shadow-glow">
@@ -184,18 +227,18 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(15,15,15,0.9),rgba(15,15,15,0.62)_38%,rgba(15,15,15,0.18)_72%,rgba(15,15,15,0.55))]" />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,15,15,0.08),rgba(15,15,15,0.45)_48%,rgba(15,15,15,0.82))]" />
 
-              <div className="relative flex min-h-[37rem] items-end px-6 py-8 sm:min-h-[42rem] sm:px-8 sm:py-10 lg:min-h-[48rem] lg:px-12 lg:py-12">
-                <div className="max-w-3xl space-y-6 sm:space-y-7">
+              <div className="relative flex min-h-[34rem] items-end px-6 py-8 sm:min-h-[38rem] sm:px-8 sm:py-10 lg:min-h-[42rem] lg:px-12 lg:py-11">
+                <div className="max-w-[62rem] space-y-5 sm:space-y-6">
                   <h1 className="sr-only">{homeMetadata.h1}</h1>
                   <p className="eyebrow">{homeHero.eyebrow}</p>
                   <p
                     aria-hidden="true"
-                    className="max-w-3xl font-serif text-4xl leading-[0.96] text-sand text-balance sm:text-5xl lg:text-[clamp(4.25rem,6.1vw,6.6rem)]"
+                    className="max-w-[62rem] font-serif text-[clamp(3rem,10vw,4.55rem)] leading-[0.98] text-sand text-balance lg:text-[clamp(3.9rem,5vw,5.85rem)]"
                   >
                     <span className="block">{homeHero.title[0]}</span>
-                    <span className="mt-2 block">{homeHero.title[1]}</span>
+                    <span className="mt-1.5 block sm:mt-2">{homeHero.title[1]}</span>
                   </p>
-                  <p className="max-w-2xl text-base leading-7 text-sand/82 sm:text-lg">
+                  <p className="max-w-3xl text-base leading-7 text-sand/82 sm:text-lg">
                     {homeHero.description}
                   </p>
 
@@ -301,15 +344,15 @@ export default function HomePage() {
             </Link>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7">
+          <div className="mt-12 grid gap-6">
+            <Reveal>
               <EditorialProjectPreview
                 project={primaryProject}
                 variant="feature"
               />
             </Reveal>
 
-            <div className="grid gap-6 lg:col-span-5">
+            <div className="grid gap-6 md:grid-cols-2">
               <Reveal delay={90}>
                 <EditorialProjectPreview
                   project={secondaryProject}
@@ -319,7 +362,7 @@ export default function HomePage() {
               <Reveal delay={160}>
                 <EditorialProjectPreview
                   project={tertiaryProject}
-                  variant="stack"
+                  variant="split"
                 />
               </Reveal>
             </div>
@@ -355,8 +398,8 @@ export default function HomePage() {
                 <div className="grid gap-4">
                   <div className="relative min-h-[9.5rem] overflow-hidden rounded-[28px] border border-line">
                     <Image
-                      src={homePositioning.image.src}
-                      alt={homePositioning.image.alt}
+                      src={homeMethod.detailImage.src}
+                      alt={homeMethod.detailImage.alt}
                       fill
                       sizes="(min-width: 1024px) 14vw, 100vw"
                       className="object-cover"
@@ -405,106 +448,90 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="prima-processo-dopo" className="section-space">
+      <section id="prima-processo-dopo" className="section-space pt-4">
         <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="max-w-3xl space-y-4">
-            <p className="eyebrow">{homeTransformationStory.eyebrow}</p>
-            <h2 className="font-serif text-3xl leading-tight text-balance text-sand sm:text-4xl lg:text-5xl">
-              {homeTransformationStory.title}
-            </h2>
-            <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg">
-              {homeTransformationStory.description}
-            </p>
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 lg:grid-cols-[0.82fr_1fr_1fr]">
-            <Reveal>
-              <div className="panel flex min-h-[24rem] flex-col justify-between p-6 sm:p-7">
-                <div className="space-y-5">
-                  <p className="text-xs uppercase tracking-[0.24em] text-accent">
-                    Prima
+          <Reveal>
+            <div className="overflow-hidden rounded-[38px] border border-black/10 bg-sand text-ink shadow-[0_30px_90px_rgba(0,0,0,0.18)]">
+              <div className="px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+                <div className="max-w-3xl space-y-4">
+                  <p className="text-xs uppercase tracking-[0.26em] text-[#8f7430]">
+                    {homeTransformationStory.eyebrow}
                   </p>
-                  <div className="space-y-3">
-                    <h3 className="font-serif text-2xl text-sand">
-                      {transformationProject.title}
-                    </h3>
-                    <p className="text-sm uppercase tracking-[0.2em] text-muted">
-                      {transformationProject.city} · {transformationProject.category}
-                    </p>
-                  </div>
-                  <p className="text-sm leading-7 text-muted sm:text-base">
-                    {transformationProject.valueStory?.before ??
-                      transformationProject.challenge}
+                  <h2 className="font-serif text-3xl leading-tight text-balance sm:text-4xl lg:text-5xl">
+                    {homeTransformationStory.title}
+                  </h2>
+                  <p className="max-w-2xl text-base leading-7 text-ink/78 sm:text-lg">
+                    {homeTransformationStory.description}
                   </p>
                 </div>
 
-                <div className="border-t border-line pt-5">
-                  <p className="text-xs uppercase tracking-[0.22em] text-sand/50">
-                    {homeTransformationStory.archiveNote}
-                  </p>
+                <div className="mt-12 grid gap-6 lg:grid-cols-[0.92fr_0.92fr_1.16fr]">
+                  <div className="rounded-[32px] border border-black/10 bg-white/60 p-6 sm:p-7">
+                    <div className="space-y-5">
+                      <p className="text-xs uppercase tracking-[0.24em] text-[#8f7430]">
+                        Prima
+                      </p>
+                      <h3 className="font-serif text-2xl text-ink">
+                        {homeTransformationStory.beforeTitle}
+                      </h3>
+                      <p className="text-sm leading-7 text-ink/72 sm:text-base">
+                        {homeTransformationStory.beforeText}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="rounded-[32px] border border-black/10 bg-white/70 p-6 sm:p-7">
+                    <div className="space-y-5">
+                      <p className="text-xs uppercase tracking-[0.24em] text-[#8f7430]">
+                        Processo
+                      </p>
+                      <h3 className="font-serif text-2xl text-ink">
+                        {homeTransformationStory.processTitle}
+                      </h3>
+                      <p className="text-sm leading-7 text-ink/72 sm:text-base">
+                        {homeTransformationStory.processText}
+                      </p>
+                    </div>
+                  </div>
+
+                  <Link
+                    href={transformationProject.href}
+                    className="group block overflow-hidden rounded-[32px] border border-black/10 shadow-[0_30px_80px_rgba(0,0,0,0.22)]"
+                  >
+                    <div className="relative min-h-[24rem]">
+                      <Image
+                        src={transformationProject.image}
+                        alt={`Esito del progetto ${transformationProject.title} a ${transformationProject.city}`}
+                        fill
+                        sizes="(min-width: 1024px) 34vw, 100vw"
+                        className="object-cover transition duration-700 group-hover:scale-[1.02]"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/24 to-transparent" />
+                      <div className="absolute inset-x-0 bottom-0 space-y-3 p-6 sm:p-7">
+                        <p className="text-xs uppercase tracking-[0.24em] text-accent">
+                          Dopo
+                        </p>
+                        <h3 className="font-serif text-2xl text-sand">
+                          {homeTransformationStory.afterTitle}
+                        </h3>
+                        <p className="max-w-md text-sm leading-7 text-sand/80 sm:text-base">
+                          {homeTransformationStory.afterText}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+
+                <div className="mt-8 flex justify-start">
+                  <Link
+                    href={homeTransformationStory.cta.href}
+                    className="gold-outline-btn border-[#8f7430] text-[#8f7430] hover:border-[#8f7430] hover:bg-[#8f7430] hover:text-sand"
+                  >
+                    {homeTransformationStory.cta.label}
+                  </Link>
                 </div>
               </div>
-            </Reveal>
-
-            <Reveal delay={90}>
-              <div className="relative min-h-[24rem] overflow-hidden rounded-[32px] border border-line">
-                <Image
-                  src={homeTransformationStory.processImage.src}
-                  alt={homeTransformationStory.processImage.alt}
-                  fill
-                  sizes="(min-width: 1024px) 26vw, 100vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,15,15,0.15),rgba(15,15,15,0.25)_38%,rgba(15,15,15,0.88))]" />
-                <div className="absolute inset-x-0 bottom-0 space-y-3 p-6 sm:p-7">
-                  <p className="text-xs uppercase tracking-[0.24em] text-accent">
-                    Processo
-                  </p>
-                  <h3 className="font-serif text-2xl text-sand">
-                    {homeTransformationStory.processTitle}
-                  </h3>
-                  <p className="max-w-md text-sm leading-7 text-sand/82 sm:text-base">
-                    {homeTransformationStory.processText}
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={160}>
-              <Link
-                href={`/progetti/${transformationProject.slug}`}
-                className="group block overflow-hidden rounded-[32px] border border-line shadow-glow"
-              >
-                <div className="relative min-h-[24rem]">
-                  <Image
-                    src={transformationProject.image}
-                    alt={`Esito del progetto ${transformationProject.title} a ${transformationProject.city}`}
-                    fill
-                    sizes="(min-width: 1024px) 26vw, 100vw"
-                    className="object-cover transition duration-700 group-hover:scale-[1.02]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/26 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 space-y-3 p-6 sm:p-7">
-                    <p className="text-xs uppercase tracking-[0.24em] text-accent">
-                      Dopo
-                    </p>
-                    <h3 className="font-serif text-2xl text-sand">
-                      {transformationProject.title}
-                    </h3>
-                    <p className="max-w-md text-sm leading-7 text-sand/80 sm:text-base">
-                      {transformationProject.valueStory?.after ??
-                        transformationProject.outcome}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            </Reveal>
-          </div>
-
-          <Reveal delay={220} className="mt-8 flex justify-start">
-            <Link href={homeTransformationStory.cta.href} className="gold-outline-btn">
-              {homeTransformationStory.cta.label}
-            </Link>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -521,31 +548,27 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-4 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7">
+          <div className="mt-12 grid gap-4 lg:grid-cols-[1.18fr_0.82fr]">
+            <Reveal>
               <div className="relative min-h-[32rem] overflow-hidden rounded-[34px] border border-line">
                 <Image
                   src={homeMatterAndLight.images[0].src}
                   alt={homeMatterAndLight.images[0].alt}
                   fill
-                  loading="eager"
-                  unoptimized
-                  sizes="(min-width: 1024px) 56vw, 100vw"
+                  sizes="(min-width: 1024px) 58vw, 100vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/72 via-transparent to-transparent" />
               </div>
             </Reveal>
 
-            <div className="grid gap-4 lg:col-span-5">
+            <div className="grid gap-4">
               <Reveal delay={80}>
                 <div className="relative min-h-[15rem] overflow-hidden rounded-[30px] border border-line">
                   <Image
                     src={homeMatterAndLight.images[1].src}
                     alt={homeMatterAndLight.images[1].alt}
                     fill
-                    loading="eager"
-                    unoptimized
                     sizes="(min-width: 1024px) 38vw, 100vw"
                     className="object-cover"
                   />
@@ -553,24 +576,18 @@ export default function HomePage() {
                 </div>
               </Reveal>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                {homeMatterAndLight.images.slice(2).map((image, index) => (
-                  <Reveal key={image.src} delay={140 + index * 70}>
-                    <div className="relative min-h-[15rem] overflow-hidden rounded-[28px] border border-line">
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        loading="eager"
-                        unoptimized
-                        sizes="(min-width: 640px) 20vw, 100vw"
-                        className="object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/45 to-transparent" />
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
+              <Reveal delay={140}>
+                <div className="relative min-h-[15rem] overflow-hidden rounded-[28px] border border-line">
+                  <Image
+                    src={homeMatterAndLight.images[2].src}
+                    alt={homeMatterAndLight.images[2].alt}
+                    fill
+                    sizes="(min-width: 1024px) 38vw, 100vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/45 to-transparent" />
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>

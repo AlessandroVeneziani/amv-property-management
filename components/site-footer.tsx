@@ -97,11 +97,19 @@ export function SiteFooter() {
               Informazioni societarie
             </p>
             <div className="grid gap-1.5 text-sm leading-7 text-muted sm:text-base">
-              <p className="text-sand/88">{legalInfo.companyName}</p>
-              <p className="pt-2.5 text-sand/76">Direzione:</p>
+              <div className="space-y-1 pb-3">
+                <p className="text-[11px] uppercase tracking-[0.24em] text-accent/85">
+                  Denominazione operativa
+                </p>
+                <p className="text-sand/78">{legalInfo.companyName}</p>
+              </div>
+              <p className="pt-1 text-sand/76">Direzione:</p>
               <p>{legalInfo.directors[0]}</p>
               <p>{legalInfo.directors[1]}</p>
-              <p className="pt-2.5">P. IVA {legalInfo.vatNumber}</p>
+              <p className="pt-2.5 text-[11px] uppercase tracking-[0.24em] text-accent/85">
+                Dati societari
+              </p>
+              <p>P. IVA {legalInfo.vatNumber}</p>
               <p>C.F. {legalInfo.taxCode}</p>
               <p className="pt-2.5">{legalInfo.address}</p>
               <a href={`mailto:${siteConfig.email}`} className="pt-2.5 transition hover:text-sand">
