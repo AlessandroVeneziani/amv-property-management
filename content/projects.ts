@@ -74,9 +74,9 @@ export const projects: Project[] = [
     ],
     homeMedia: {
       feature: {
-        src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg",
+        src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-02.jpg",
         alt: "La Galleria dopo la trasformazione in residenza hospitality a Milano",
-        objectPosition: "center center",
+        objectPosition: "56% center",
         recommendedRatio: "3:2",
         suggestedRealAssetName:
           "public/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg"
