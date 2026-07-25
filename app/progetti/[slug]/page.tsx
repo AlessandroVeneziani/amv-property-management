@@ -6,7 +6,11 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/reveal";
 import { projects } from "@/content/projects";
-import { createMetadata, inquiryLinks } from "@/content/site";
+import {
+  createMetadata,
+  homeTransformationStory,
+  inquiryLinks
+} from "@/content/site";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -47,6 +51,17 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     notFound();
   }
 
+  const transformationMedia =
+    project.slug === "la-galleria" &&
+    project.homeMedia?.before &&
+    project.homeMedia.after
+      ? {
+          before: project.homeMedia.before,
+          after: project.homeMedia.after
+        }
+      : null;
+  const hasTransformationSections = transformationMedia !== null;
+
   return (
     <div className="pb-16">
       <PageHero
@@ -69,7 +84,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <section className="pb-10">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <div className="relative aspect-[16/10] min-h-[28rem] overflow-hidden rounded-[34px] border border-line shadow-glow sm:min-h-[36rem]">
+            <div className="relative w-full aspect-[16/10] min-h-[28rem] overflow-hidden rounded-[34px] border border-line shadow-glow sm:min-h-[36rem]">
               <Image
                 src={project.coverImage.src}
                 alt={project.coverImage.alt}
@@ -139,38 +154,116 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </div>
       </section>
 
-      <section className="section-space pt-4">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal>
-            <div className="grid gap-5 lg:grid-cols-3">
-              {project.galleryImages.map((image, index) => (
-                <div
-                  key={`${image.src}-${index}`}
-                  className={`relative overflow-hidden rounded-[28px] border border-line ${
-                    index === 0
-                      ? "aspect-[16/10] lg:col-span-2 min-h-[26rem]"
-                      : "aspect-[4/5] min-h-[26rem]"
-                  }`}
-                >
+      {hasTransformationSections ? (
+        <section className="section-space pt-4">
+          <div className="mx-auto max-w-7xl space-y-6 px-6">
+            <Reveal>
+              <div className="grid gap-6 rounded-[34px] border border-line bg-white/[0.03] p-6 sm:p-8 lg:grid-cols-[1.18fr_0.82fr] lg:p-10">
+                <div className="relative aspect-[3/2] overflow-hidden rounded-[28px] border border-line">
                   <Image
-                    src={image.src}
-                    alt={image.alt}
+                    src={transformationMedia.before.src}
+                    alt={transformationMedia.before.alt}
                     fill
-                    sizes={
-                      index === 0 ? "(min-width: 1024px) 52vw, 100vw" : "(min-width: 1024px) 26vw, 100vw"
-                    }
+                    sizes="(min-width: 1024px) 56vw, 100vw"
                     className="object-cover"
                     style={
-                      image.objectPosition ? { objectPosition: image.objectPosition } : undefined
+                      transformationMedia.before.objectPosition
+                        ? { objectPosition: transformationMedia.before.objectPosition }
+                        : undefined
                     }
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
                 </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
+
+                <div className="flex flex-col justify-center space-y-5">
+                  <p className="eyebrow">{homeTransformationStory.beforeSectionTitle}</p>
+                  <h2 className="font-serif text-3xl leading-tight text-sand sm:text-4xl">
+                    {homeTransformationStory.beforeTitle}
+                  </h2>
+                  <p className="text-base leading-7 text-muted sm:text-lg">
+                    {homeTransformationStory.beforeText}
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={90}>
+              <div className="panel space-y-4 p-6 sm:p-8">
+                <p className="eyebrow">Processo</p>
+                <h3 className="font-serif text-2xl text-sand sm:text-3xl">
+                  {homeTransformationStory.processTitle}
+                </h3>
+                <p className="max-w-3xl text-base leading-7 text-muted sm:text-lg">
+                  {homeTransformationStory.processText}
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={160}>
+              <div className="grid gap-6 rounded-[34px] border border-line bg-white/[0.03] p-6 sm:p-8 lg:grid-cols-[0.82fr_1.18fr] lg:p-10">
+                <div className="order-2 flex flex-col justify-center space-y-5 lg:order-1">
+                  <p className="eyebrow">{homeTransformationStory.resultSectionTitle}</p>
+                  <h2 className="font-serif text-3xl leading-tight text-sand sm:text-4xl">
+                    {homeTransformationStory.afterTitle}
+                  </h2>
+                  <p className="text-base leading-7 text-muted sm:text-lg">
+                    {homeTransformationStory.afterText}
+                  </p>
+                </div>
+
+                <div className="order-1 relative aspect-[3/2] overflow-hidden rounded-[28px] border border-line lg:order-2">
+                  <Image
+                    src={transformationMedia.after.src}
+                    alt={transformationMedia.after.alt}
+                    fill
+                    sizes="(min-width: 1024px) 56vw, 100vw"
+                    className="object-cover"
+                    style={
+                      transformationMedia.after.objectPosition
+                        ? { objectPosition: transformationMedia.after.objectPosition }
+                        : undefined
+                    }
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      ) : (
+        <section className="section-space pt-4">
+          <div className="mx-auto max-w-7xl px-6">
+            <Reveal>
+              <div className="grid gap-5 lg:grid-cols-3">
+                {project.galleryImages.map((image, index) => (
+                  <div
+                    key={`${image.src}-${index}`}
+                    className={`relative overflow-hidden rounded-[28px] border border-line ${
+                      index === 0
+                        ? "aspect-[16/10] lg:col-span-2 min-h-[26rem]"
+                        : "aspect-[4/5] min-h-[26rem]"
+                    }`}
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes={
+                        index === 0 ? "(min-width: 1024px) 52vw, 100vw" : "(min-width: 1024px) 26vw, 100vw"
+                      }
+                      className="object-cover"
+                      style={
+                        image.objectPosition
+                          ? { objectPosition: image.objectPosition }
+                          : undefined
+                      }
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       <section className="section-space pt-4">
         <div className="mx-auto max-w-7xl px-6">
