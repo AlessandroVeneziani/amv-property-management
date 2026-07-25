@@ -255,9 +255,11 @@ export const homeTransformationStory = {
   title: "Il risultato mostra la trasformazione. Il processo mostra il valore.",
   description:
     "La Galleria viene raccontata attraverso il punto di partenza, la ridefinizione della destinazione e il risultato finale raggiunto.",
+  beforeSectionTitle: "Prima della trasformazione",
+  resultSectionTitle: "Il risultato",
   beforeTitle: "Showroom e spazio per eventi",
   beforeText:
-    "Uno spazio di circa 160 mq utilizzato principalmente come showroom, ufficio e luogo per eventi, privo di una vera identità abitativa.",
+    "Uno spazio di circa 160 mq utilizzato come showroom, ufficio e location per eventi. La distribuzione, gli arredi espositivi e l’illuminazione non costruivano ancora una vera esperienza abitativa.",
   processTitle: "Ridefinizione della destinazione",
   processText:
     "La distribuzione, la luce, gli arredi e l’atmosfera sono stati coordinati per trasformare lo spazio in una residenza destinata all’ospitalità.",

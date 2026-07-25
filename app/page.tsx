@@ -51,6 +51,7 @@ const selectedProjects = homeSelectedProjects.slugs
         feature: project.homeMedia?.feature ?? project.coverImage,
         split: project.homeMedia?.split ?? project.coverImage,
         stack: project.homeMedia?.stack ?? project.coverImage,
+        before: project.homeMedia?.before ?? project.coverImage,
         after: project.homeMedia?.after ?? project.coverImage
       },
       title: override?.title ?? project.title,
@@ -70,6 +71,7 @@ const primaryProject = selectedProjects[0] ?? {
     feature: fallbackProject.homeMedia?.feature ?? fallbackProject.coverImage,
     split: fallbackProject.homeMedia?.split ?? fallbackProject.coverImage,
     stack: fallbackProject.homeMedia?.stack ?? fallbackProject.coverImage,
+    before: fallbackProject.homeMedia?.before ?? fallbackProject.coverImage,
     after: fallbackProject.homeMedia?.after ?? fallbackProject.coverImage
   },
   title: fallbackProject.title,
@@ -89,6 +91,7 @@ type HomeProjectPreview = {
     feature: Project["coverImage"];
     split: Project["coverImage"];
     stack: Project["coverImage"];
+    before: Project["coverImage"];
     after: Project["coverImage"];
   };
   title: string;
@@ -516,22 +519,34 @@ export default function HomePage() {
                 </div>
 
                 <div className="mt-12 grid gap-6 lg:grid-cols-[0.92fr_0.92fr_1.16fr]">
-                  <div className="editorial-light-surface p-6 sm:p-7">
-                    <div className="space-y-5">
-                      <p className="text-xs uppercase tracking-[0.24em] text-[#8f7430]">
+                  <div className="editorial-dark-surface overflow-hidden rounded-[32px] border border-black/10">
+                    <div className="relative aspect-[3/2]">
+                      <Image
+                        src={transformationProject.images.before.src}
+                        alt={transformationProject.images.before.alt}
+                        fill
+                        sizes="(min-width: 1024px) 28vw, 100vw"
+                        className="object-cover"
+                        style={getObjectPositionStyle(transformationProject.images.before)}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/28 via-transparent to-transparent" />
+                    </div>
+
+                    <div className="space-y-3 p-6 sm:p-7">
+                      <p className="text-xs uppercase tracking-[0.24em] text-accent">
                         Prima
                       </p>
-                      <h3 className="font-serif text-2xl text-ink">
+                      <h3 className="font-serif text-2xl text-sand">
                         {homeTransformationStory.beforeTitle}
                       </h3>
-                      <p className="text-sm leading-7 text-ink/72 sm:text-base">
+                      <p className="text-sm leading-7 text-sand/82 sm:text-base">
                         {homeTransformationStory.beforeText}
                       </p>
                     </div>
                   </div>
 
-                  <div className="editorial-light-surface p-6 sm:p-7">
-                    <div className="space-y-5">
+                  <div className="editorial-light-surface flex h-full p-6 sm:p-7">
+                    <div className="space-y-5 self-end">
                       <p className="text-xs uppercase tracking-[0.24em] text-[#8f7430]">
                         Processo
                       </p>
@@ -548,27 +563,28 @@ export default function HomePage() {
                     href={transformationProject.href}
                     className="group editorial-dark-surface block overflow-hidden rounded-[32px] border border-black/10"
                   >
-                    <div className="relative aspect-[4/5] min-h-[24rem]">
+                    <div className="relative aspect-[3/2]">
                       <Image
                         src={transformationProject.images.after.src}
-                        alt={`Esito del progetto ${transformationProject.title} a ${transformationProject.city}`}
+                        alt={transformationProject.images.after.alt}
                         fill
                         sizes="(min-width: 1024px) 34vw, 100vw"
                         className="object-cover transition duration-700 group-hover:scale-[1.02]"
                         style={getObjectPositionStyle(transformationProject.images.after)}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/24 to-transparent" />
-                      <div className="absolute inset-x-0 bottom-0 space-y-3 p-6 sm:p-7">
-                        <p className="text-xs uppercase tracking-[0.24em] text-accent">
-                          Dopo
-                        </p>
-                        <h3 className="font-serif text-2xl text-sand">
-                          {homeTransformationStory.afterTitle}
-                        </h3>
-                        <p className="max-w-md text-sm leading-7 text-sand/80 sm:text-base">
-                          {homeTransformationStory.afterText}
-                        </p>
-                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/22 via-transparent to-transparent" />
+                    </div>
+
+                    <div className="space-y-3 p-6 sm:p-7">
+                      <p className="text-xs uppercase tracking-[0.24em] text-accent">
+                        Dopo
+                      </p>
+                      <h3 className="font-serif text-2xl text-sand">
+                        {homeTransformationStory.afterTitle}
+                      </h3>
+                      <p className="text-sm leading-7 text-sand/80 sm:text-base">
+                        {homeTransformationStory.afterText}
+                      </p>
                     </div>
                   </Link>
                 </div>

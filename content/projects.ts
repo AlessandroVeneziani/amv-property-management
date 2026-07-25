@@ -10,6 +10,7 @@ export type ProjectHomeMedia = {
   feature?: EditorialImageAsset;
   split?: EditorialImageAsset;
   stack?: EditorialImageAsset;
+  before?: EditorialImageAsset;
   after?: EditorialImageAsset;
 };
 
@@ -46,63 +47,63 @@ export const projects: Project[] = [
     category: "Residenza hospitality",
     year: "2026",
     coverImage: {
-      src: "/images/projects/la-galleria.png",
-      alt: "La Galleria, living e dining con materia scura e luce calibrata",
+      src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg",
+      alt: "La Galleria dopo la trasformazione in residenza hospitality a Milano",
       objectPosition: "center center",
-      recommendedRatio: "16:10",
+      recommendedRatio: "3:2",
       suggestedRealAssetName:
-        "public/images/projects/la-galleria/avm-la-galleria-cover-16x10.jpg"
+        "public/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg"
     },
     galleryImages: [
       {
-        src: "/images/projects/la-galleria.png",
-        alt: "La Galleria, zona living e dining con atmosfera serale controllata",
+        src: "/images/projects/la-galleria/before/la-galleria-showroom-before-01.jpg",
+        alt: "La Galleria prima della trasformazione, utilizzata come showroom, ufficio e spazio eventi",
         objectPosition: "center center",
-        recommendedRatio: "16:10",
+        recommendedRatio: "3:2",
         suggestedRealAssetName:
-          "public/images/projects/la-galleria/avm-la-galleria-gallery-01-16x10.jpg"
+          "public/images/projects/la-galleria/before/la-galleria-showroom-before-01.jpg"
       },
       {
-        src: "/images/projects/method-detail.png",
-        alt: "Dettaglio materico e passaggio di La Galleria",
+        src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg",
+        alt: "La Galleria dopo la trasformazione in residenza hospitality a Milano",
         objectPosition: "center center",
-        recommendedRatio: "4:5",
+        recommendedRatio: "3:2",
         suggestedRealAssetName:
-          "public/images/projects/la-galleria/avm-la-galleria-gallery-02-4x5.jpg"
-      },
-      {
-        src: "/images/hero-milano.png",
-        alt: "Vista serale e atmosfera di La Galleria",
-        objectPosition: "center center",
-        recommendedRatio: "4:5",
-        suggestedRealAssetName:
-          "public/images/projects/la-galleria/avm-la-galleria-gallery-03-4x5.jpg"
+          "public/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg"
       }
     ],
     homeMedia: {
       feature: {
-        src: "/images/projects/la-galleria.png",
-        alt: "La Galleria, living e dining per la card hero dei progetti",
+        src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg",
+        alt: "La Galleria dopo la trasformazione in residenza hospitality a Milano",
         objectPosition: "center center",
-        recommendedRatio: "16:10",
+        recommendedRatio: "3:2",
         suggestedRealAssetName:
-          "public/images/projects/la-galleria/avm-la-galleria-home-feature-16x10.jpg"
+          "public/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg"
       },
       split: {
-        src: "/images/projects/la-galleria.png",
-        alt: "La Galleria, dettaglio ambientale per card editoriale",
+        src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg",
+        alt: "La Galleria dopo la trasformazione in residenza hospitality a Milano",
         objectPosition: "center center",
-        recommendedRatio: "5:4",
+        recommendedRatio: "3:2",
         suggestedRealAssetName:
-          "public/images/projects/la-galleria/avm-la-galleria-home-split-5x4.jpg"
+          "public/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg"
+      },
+      before: {
+        src: "/images/projects/la-galleria/before/la-galleria-showroom-before-01.jpg",
+        alt: "La Galleria prima della trasformazione, utilizzata come showroom, ufficio e spazio eventi",
+        objectPosition: "center center",
+        recommendedRatio: "3:2",
+        suggestedRealAssetName:
+          "public/images/projects/la-galleria/before/la-galleria-showroom-before-01.jpg"
       },
       after: {
-        src: "/images/projects/la-galleria.png",
-        alt: "La Galleria, esito finale della trasformazione",
+        src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg",
+        alt: "La Galleria dopo la trasformazione in residenza hospitality a Milano",
         objectPosition: "center center",
-        recommendedRatio: "4:5",
+        recommendedRatio: "3:2",
         suggestedRealAssetName:
-          "public/images/projects/la-galleria/avm-la-galleria-home-after-4x5.jpg"
+          "public/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg"
       }
     },
     summary:
