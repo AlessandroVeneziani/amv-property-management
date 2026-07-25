@@ -251,16 +251,7 @@ function EditorialProjectPreview({
 
 export default function HomePage() {
   return (
-    <div className="relative isolate overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -z-20 h-[120rem] bg-[radial-gradient(circle_at_12%_8%,rgba(198,167,94,0.12),transparent_26%),radial-gradient(circle_at_84%_14%,rgba(244,241,234,0.05),transparent_18%),radial-gradient(circle_at_48%_44%,rgba(198,167,94,0.04),transparent_28%),linear-gradient(140deg,rgba(255,255,255,0.025),transparent_24%,transparent_78%,rgba(198,167,94,0.05))]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,transparent_48%,rgba(0,0,0,0.16)_100%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_14%,transparent_84%,rgba(255,255,255,0.015)),linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.016)_36%,transparent_50%)] opacity-90"
-      />
-
+    <div className="home-ambient-background">
       <section className="overflow-hidden px-6 pb-12 pt-6 sm:pb-14 sm:pt-8">
         <div className="mx-auto max-w-7xl">
           <Reveal>

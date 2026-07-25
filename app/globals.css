@@ -57,6 +57,51 @@ main::before {
 }
 
 @layer components {
+  .home-ambient-background {
+    @apply relative isolate overflow-hidden;
+    background:
+      radial-gradient(circle at 14% 10%, rgba(198, 167, 94, 0.08), transparent 24%),
+      radial-gradient(circle at 82% 14%, rgba(124, 93, 56, 0.1), transparent 22%),
+      radial-gradient(circle at 48% 38%, rgba(244, 241, 234, 0.025), transparent 30%),
+      linear-gradient(180deg, #14110f 0%, #0f0f0f 44%, #12100f 100%);
+  }
+
+  .home-ambient-background::before {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        125deg,
+        rgba(255, 255, 255, 0.018) 0%,
+        transparent 22%,
+        rgba(198, 167, 94, 0.018) 48%,
+        transparent 72%
+      ),
+      radial-gradient(circle at 20% 24%, rgba(255, 255, 255, 0.028), transparent 36%),
+      radial-gradient(circle at 76% 68%, rgba(0, 0, 0, 0.16), transparent 42%);
+    content: "";
+    opacity: 0.72;
+    pointer-events: none;
+  }
+
+  .home-ambient-background::after {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.016), transparent 16%, transparent 84%, rgba(0, 0, 0, 0.1)),
+      radial-gradient(circle at 50% 18%, rgba(198, 167, 94, 0.028), transparent 32%),
+      radial-gradient(circle at 12% 74%, rgba(244, 241, 234, 0.016), transparent 24%);
+    content: "";
+    filter: blur(32px);
+    opacity: 0.62;
+    pointer-events: none;
+  }
+
+  .home-ambient-background > * {
+    position: relative;
+    z-index: 1;
+  }
+
   .section-space {
     @apply py-20 sm:py-24 lg:py-28;
   }
