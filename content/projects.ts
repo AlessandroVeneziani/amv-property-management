@@ -1,8 +1,17 @@
+import type { EditorialImageAsset } from "@/content/site";
+
 export type ProjectStatus =
   | "In portfolio"
   | "In valorizzazione"
   | "Gestione attiva"
   | "Completato";
+
+export type ProjectHomeMedia = {
+  feature?: EditorialImageAsset;
+  split?: EditorialImageAsset;
+  stack?: EditorialImageAsset;
+  after?: EditorialImageAsset;
+};
 
 export type Project = {
   slug: string;
@@ -11,7 +20,9 @@ export type Project = {
   status: ProjectStatus;
   category: string;
   year: string;
-  image: string;
+  coverImage: EditorialImageAsset;
+  galleryImages: EditorialImageAsset[];
+  homeMedia?: ProjectHomeMedia;
   summary: string;
   description: string;
   challenge: string;
@@ -19,7 +30,6 @@ export type Project = {
   outcome: string;
   focus: string[];
   metrics: { label: string; value: string }[];
-  gallery: string[];
   valueStory?: {
     before: string;
     after: string;
@@ -32,20 +42,79 @@ export const projects: Project[] = [
     slug: "la-galleria",
     title: "La Galleria",
     city: "Milano",
-    status: "In portfolio",
-    category: "Residenza storica",
+    status: "Gestione attiva",
+    category: "Residenza hospitality",
     year: "2026",
-    image: "/images/projects/la-galleria.png",
+    coverImage: {
+      src: "/images/projects/la-galleria.png",
+      alt: "La Galleria, living e dining con materia scura e luce calibrata",
+      objectPosition: "center center",
+      recommendedRatio: "16:10",
+      suggestedRealAssetName:
+        "public/images/projects/la-galleria/avm-la-galleria-cover-16x10.jpg"
+    },
+    galleryImages: [
+      {
+        src: "/images/projects/la-galleria.png",
+        alt: "La Galleria, zona living e dining con atmosfera serale controllata",
+        objectPosition: "center center",
+        recommendedRatio: "16:10",
+        suggestedRealAssetName:
+          "public/images/projects/la-galleria/avm-la-galleria-gallery-01-16x10.jpg"
+      },
+      {
+        src: "/images/projects/method-detail.png",
+        alt: "Dettaglio materico e passaggio di La Galleria",
+        objectPosition: "center center",
+        recommendedRatio: "4:5",
+        suggestedRealAssetName:
+          "public/images/projects/la-galleria/avm-la-galleria-gallery-02-4x5.jpg"
+      },
+      {
+        src: "/images/hero-milano.png",
+        alt: "Vista serale e atmosfera di La Galleria",
+        objectPosition: "center center",
+        recommendedRatio: "4:5",
+        suggestedRealAssetName:
+          "public/images/projects/la-galleria/avm-la-galleria-gallery-03-4x5.jpg"
+      }
+    ],
+    homeMedia: {
+      feature: {
+        src: "/images/projects/la-galleria.png",
+        alt: "La Galleria, living e dining per la card hero dei progetti",
+        objectPosition: "center center",
+        recommendedRatio: "16:10",
+        suggestedRealAssetName:
+          "public/images/projects/la-galleria/avm-la-galleria-home-feature-16x10.jpg"
+      },
+      split: {
+        src: "/images/projects/la-galleria.png",
+        alt: "La Galleria, dettaglio ambientale per card editoriale",
+        objectPosition: "center center",
+        recommendedRatio: "5:4",
+        suggestedRealAssetName:
+          "public/images/projects/la-galleria/avm-la-galleria-home-split-5x4.jpg"
+      },
+      after: {
+        src: "/images/projects/la-galleria.png",
+        alt: "La Galleria, esito finale della trasformazione",
+        objectPosition: "center center",
+        recommendedRatio: "4:5",
+        suggestedRealAssetName:
+          "public/images/projects/la-galleria/avm-la-galleria-home-after-4x5.jpg"
+      }
+    },
     summary:
-      "Un appartamento nel centro di Milano riallineato attraverso atmosfera, controllo operativo e una presenza più netta.",
+      "Uno showroom riconvertito in residenza hospitality, realizzato e oggi gestito con una regia coerente tra atmosfera, esperienza e standard operativi.",
     description:
-      "AVM ha lavorato su un immobile dal forte potenziale ma privo di una lettura coerente. L’intervento ha ricostruito gerarchie, tono materico e qualità dell’esperienza.",
+      "AVM ha trasformato uno spazio privo di identità abitativa in una residenza hospitality riconoscibile, leggibile e pronta alla gestione.",
     challenge:
-      "Restituire autorevolezza a uno spazio elegante ma disperso, migliorando percezione, continuità e gestione.",
+      "Ridefinire la destinazione d’uso, correggere la percezione dello spazio e costruire un asset più forte e più chiaro.",
     approach:
-      "Ridefinizione dell’identità spaziale, editing degli arredi, standard operativi e calibrazione della presentazione.",
+      "Ridefinizione della destinazione, coordinamento di atmosfera, arredi e standard operativi, fino alla messa in gestione.",
     outcome:
-      "Un asset più leggibile, più forte e più allineato al proprio contesto urbano e al pubblico di riferimento.",
+      "Uno spazio trasformato, realizzato e in gestione, con una lettura più solida e una presenza più credibile.",
     focus: [
       "Spatial editing",
       "Restyling percettivo",
@@ -53,13 +122,8 @@ export const projects: Project[] = [
     ],
     metrics: [
       { label: "Focus", value: "Atmosfera e posizionamento" },
-      { label: "Asset", value: "Residenziale premium" },
+      { label: "Asset", value: "Hospitality residence" },
       { label: "Processo", value: "Design + management" }
-    ],
-    gallery: [
-      "/images/projects/la-galleria.png",
-      "/images/projects/method-detail.png",
-      "/images/hero-milano.png"
     ],
     valueStory: {
       before: "immobile elegante ma poco posizionato.",
@@ -69,32 +133,78 @@ export const projects: Project[] = [
   },
   {
     slug: "certosa-residence",
-    title: "Certosa Residence",
+    title: "Viale Certosa",
     city: "Milano",
     status: "In valorizzazione",
-    category: "Appartamento d’epoca",
+    category: "Monolocale residenziale",
     year: "2026",
-    image: "/images/projects/certosa-residence.png",
+    coverImage: {
+      src: "/images/projects/certosa-residence.png",
+      alt: "Viale Certosa, interno residenziale con assetto ordinato e tono caldo",
+      objectPosition: "center center",
+      recommendedRatio: "5:4",
+      suggestedRealAssetName:
+        "public/images/projects/viale-certosa/avm-viale-certosa-cover-5x4.jpg"
+    },
+    galleryImages: [
+      {
+        src: "/images/projects/certosa-residence.png",
+        alt: "Viale Certosa, veduta principale del living",
+        objectPosition: "center center",
+        recommendedRatio: "16:10",
+        suggestedRealAssetName:
+          "public/images/projects/viale-certosa/avm-viale-certosa-gallery-01-16x10.jpg"
+      },
+      {
+        src: "/images/projects/la-galleria.png",
+        alt: "Viale Certosa, dettaglio di atmosfera e materiali",
+        objectPosition: "center center",
+        recommendedRatio: "4:5",
+        suggestedRealAssetName:
+          "public/images/projects/viale-certosa/avm-viale-certosa-gallery-02-4x5.jpg"
+      },
+      {
+        src: "/images/projects/method-detail.png",
+        alt: "Viale Certosa, dettaglio luce e materia",
+        objectPosition: "center center",
+        recommendedRatio: "4:5",
+        suggestedRealAssetName:
+          "public/images/projects/viale-certosa/avm-viale-certosa-gallery-03-4x5.jpg"
+      }
+    ],
+    homeMedia: {
+      split: {
+        src: "/images/projects/certosa-residence.png",
+        alt: "Viale Certosa, immagine principale per card Home",
+        objectPosition: "center center",
+        recommendedRatio: "5:4",
+        suggestedRealAssetName:
+          "public/images/projects/viale-certosa/avm-viale-certosa-home-split-5x4.jpg"
+      },
+      stack: {
+        src: "/images/projects/certosa-residence.png",
+        alt: "Viale Certosa, dettaglio verticale per stack editoriale",
+        objectPosition: "center center",
+        recommendedRatio: "4:5",
+        suggestedRealAssetName:
+          "public/images/projects/viale-certosa/avm-viale-certosa-home-stack-4x5.jpg"
+      }
+    },
     summary:
-      "Un interno dal carattere classico reinterpretato con una postura più contemporanea e controllata.",
+      "Un monolocale ristrutturato e organizzato per una gestione residenziale semplice, funzionale e continuativa.",
     description:
-      "L’immobile richiedeva una rilettura capace di conservare autorevolezza architettonica senza scivolare nel decorativo. AVM ha operato per sottrazione, chiarezza e qualità dei dettagli.",
+      "L’immobile viene seguito con un’impostazione più chiara e ordinata, per rendere la gestione lineare e la percezione più coerente.",
     challenge:
-      "Rendere attuale un appartamento prestigioso senza snaturare il suo impianto originario.",
+      "Tradurre un potenziale poco espresso in una lettura più contemporanea e più facilmente gestibile.",
     approach:
-      "Direzione estetica, revisione dei materiali percepiti, regia della presentazione e criteri di utilizzo più rigorosi.",
+      "Riorganizzazione del tono complessivo, semplificazione percettiva e maggiore controllo dell’utilizzo quotidiano.",
     outcome:
-      "Uno spazio più coerente, capace di sostenere una narrazione sobria ma distintiva.",
+      "Un asset più chiaro, più funzionale e più stabile nella gestione.",
     focus: ["Valorizzazione estetica", "Direzione immagine", "Controllo qualità"],
     metrics: [
       { label: "Focus", value: "Tono materico" },
       { label: "Asset", value: "Interno signorile" },
       { label: "Processo", value: "Audit + intervento" }
-    ],
-    gallery: [
-      "/images/projects/certosa-residence.png",
-      "/images/projects/la-galleria.png",
-      "/images/projects/method-detail.png"
     ],
     valueStory: {
       before: "potenziale non espresso in modo coerente.",
@@ -104,32 +214,78 @@ export const projects: Project[] = [
   },
   {
     slug: "marco-aurelio",
-    title: "Marco Aurelio",
+    title: "Marco Aurelio 45",
     city: "Roma",
-    status: "Gestione attiva",
-    category: "Suite residenziale",
+    status: "Completato",
+    category: "Operazione immobiliare completa",
     year: "2025",
-    image: "/images/projects/marco-aurelio.png",
-    summary:
-      "Un appartamento gestito con attenzione alla quiete visiva, alla continuità dell’esperienza e al dettaglio d’uso.",
-    description:
-      "AVM presidia questo immobile attraverso un modello che integra cura estetica, manutenzione e standard operativi costanti.",
-    challenge:
-      "Mantenere alto il valore percepito nel quotidiano, senza lasciare che la gestione intacchi l’identità dello spazio.",
-    approach:
-      "Regole d’uso, revisione dell’atmosfera, controllo dell’allestimento e monitoraggio della qualità in ogni passaggio.",
-    outcome:
-      "Uno spazio stabile, credibile e capace di conservare intensità anche nella normale operatività.",
-    focus: ["Gestione operativa", "Controllo esperienza", "Mantenimento del tono"],
-    metrics: [
-      { label: "Focus", value: "Continuità" },
-      { label: "Asset", value: "Suite urbana" },
-      { label: "Processo", value: "Presidio attivo" }
+    coverImage: {
+      src: "/images/projects/marco-aurelio.png",
+      alt: "Marco Aurelio 45, camera e tono residenziale calibrato",
+      objectPosition: "center center",
+      recommendedRatio: "5:4",
+      suggestedRealAssetName:
+        "public/images/projects/marco-aurelio-45/avm-marco-aurelio-45-cover-5x4.jpg"
+    },
+    galleryImages: [
+      {
+        src: "/images/projects/marco-aurelio.png",
+        alt: "Marco Aurelio 45, vista principale dello spazio",
+        objectPosition: "center center",
+        recommendedRatio: "16:10",
+        suggestedRealAssetName:
+          "public/images/projects/marco-aurelio-45/avm-marco-aurelio-45-gallery-01-16x10.jpg"
+      },
+      {
+        src: "/images/projects/method-detail.png",
+        alt: "Marco Aurelio 45, dettaglio di materia e luce",
+        objectPosition: "center center",
+        recommendedRatio: "4:5",
+        suggestedRealAssetName:
+          "public/images/projects/marco-aurelio-45/avm-marco-aurelio-45-gallery-02-4x5.jpg"
+      },
+      {
+        src: "/images/projects/certosa-residence.png",
+        alt: "Marco Aurelio 45, secondo punto di vista dell'intervento",
+        objectPosition: "center center",
+        recommendedRatio: "4:5",
+        suggestedRealAssetName:
+          "public/images/projects/marco-aurelio-45/avm-marco-aurelio-45-gallery-03-4x5.jpg"
+      }
     ],
-    gallery: [
-      "/images/projects/marco-aurelio.png",
-      "/images/projects/method-detail.png",
-      "/images/projects/certosa-residence.png"
+    homeMedia: {
+      split: {
+        src: "/images/projects/marco-aurelio.png",
+        alt: "Marco Aurelio 45, immagine principale per card Home",
+        objectPosition: "center center",
+        recommendedRatio: "5:4",
+        suggestedRealAssetName:
+          "public/images/projects/marco-aurelio-45/avm-marco-aurelio-45-home-split-5x4.jpg"
+      },
+      stack: {
+        src: "/images/projects/marco-aurelio.png",
+        alt: "Marco Aurelio 45, dettaglio verticale per stack editoriale",
+        objectPosition: "center center",
+        recommendedRatio: "4:5",
+        suggestedRealAssetName:
+          "public/images/projects/marco-aurelio-45/avm-marco-aurelio-45-home-stack-4x5.jpg"
+      }
+    },
+    summary:
+      "Due monolocali gemelli valorizzati attraverso acquisto, ristrutturazione, locazione e vendita.",
+    description:
+      "Il progetto è stato seguito come operazione immobiliare completa, dalla fase di acquisizione fino alla vendita finale.",
+    challenge:
+      "Coordinare più fasi dell’operazione mantenendo chiarezza economica, controllo esecutivo e qualità percepita.",
+    approach:
+      "Acquisto, ridefinizione dello spazio, ristrutturazione, messa a reddito e successiva dismissione con una regia unitaria.",
+    outcome:
+      "Un’operazione immobiliare conclusa con un asset più leggibile, più forte e più controllato in tutte le sue fasi.",
+    focus: ["Acquisizione", "Ristrutturazione", "Messa a reddito"],
+    metrics: [
+      { label: "Focus", value: "Operazione completa" },
+      { label: "Asset", value: "Residenziale urbano" },
+      { label: "Processo", value: "Acquisto + valorizzazione + vendita" }
     ],
     valueStory: {
       before: "gestione ordinaria e immagine poco distintiva.",
@@ -144,7 +300,40 @@ export const projects: Project[] = [
     status: "Completato",
     category: "Pied-a-terre",
     year: "2025",
-    image: "/images/hero-milano.png",
+    coverImage: {
+      src: "/images/hero-milano.png",
+      alt: "Brera Corte, interno serale con luce controllata",
+      objectPosition: "center center",
+      recommendedRatio: "16:10",
+      suggestedRealAssetName:
+        "public/images/projects/brera-corte/avm-brera-corte-cover-16x10.jpg"
+    },
+    galleryImages: [
+      {
+        src: "/images/hero-milano.png",
+        alt: "Brera Corte, veduta principale dell'interno",
+        objectPosition: "center center",
+        recommendedRatio: "16:10",
+        suggestedRealAssetName:
+          "public/images/projects/brera-corte/avm-brera-corte-gallery-01-16x10.jpg"
+      },
+      {
+        src: "/images/projects/la-galleria.png",
+        alt: "Brera Corte, dettaglio di atmosfera",
+        objectPosition: "center center",
+        recommendedRatio: "4:5",
+        suggestedRealAssetName:
+          "public/images/projects/brera-corte/avm-brera-corte-gallery-02-4x5.jpg"
+      },
+      {
+        src: "/images/projects/method-detail.png",
+        alt: "Brera Corte, dettaglio materico",
+        objectPosition: "center center",
+        recommendedRatio: "4:5",
+        suggestedRealAssetName:
+          "public/images/projects/brera-corte/avm-brera-corte-gallery-03-4x5.jpg"
+      }
+    ],
     summary:
       "Un taglio più essenziale e più preciso per un immobile che aveva bisogno di densità, non di eccesso.",
     description:
@@ -160,11 +349,6 @@ export const projects: Project[] = [
       { label: "Focus", value: "Identità spaziale" },
       { label: "Asset", value: "Residenza urbana" },
       { label: "Processo", value: "Intervento selettivo" }
-    ],
-    gallery: [
-      "/images/hero-milano.png",
-      "/images/projects/la-galleria.png",
-      "/images/projects/method-detail.png"
     ]
   }
 ];

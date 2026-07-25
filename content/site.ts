@@ -34,6 +34,14 @@ export const legalInfo = {
   email: "info@alessandroveneziani.it"
 } as const;
 
+export type EditorialImageAsset = {
+  src: string;
+  alt: string;
+  objectPosition?: string;
+  recommendedRatio?: string;
+  suggestedRealAssetName?: string;
+};
+
 type MailtoOptions = {
   subject: string;
   body?: string;
@@ -115,7 +123,10 @@ export const homeHero = {
   },
   image: {
     src: "/images/hero-milano.png",
-    alt: "Interno residenziale con vista su Milano e luce serale controllata"
+    alt: "Interno residenziale con vista su Milano e luce serale controllata",
+    objectPosition: "center center",
+    recommendedRatio: "16:10",
+    suggestedRealAssetName: "public/images/home/avm-home-hero-la-galleria-16x10.jpg"
   }
 } as const;
 
@@ -136,7 +147,11 @@ export const homePositioning = {
   },
   image: {
     src: "/images/projects/certosa-residence.png",
-    alt: "Interno residenziale con gerarchie luminose, materiali caldi e proporzioni controllate"
+    alt: "Interno residenziale con gerarchie luminose, materiali caldi e proporzioni controllate",
+    objectPosition: "center center",
+    recommendedRatio: "4:5",
+    suggestedRealAssetName:
+      "public/images/projects/viale-certosa/avm-viale-certosa-positioning-4x5.jpg"
   }
 } as const;
 
@@ -161,7 +176,6 @@ export const homeSelectedProjects = {
     },
     "marco-aurelio": {
       title: "Marco Aurelio 45",
-      city: "Milano",
       category: "Operazione immobiliare completa",
       status: "Operazione conclusa",
       summary:
@@ -220,11 +234,19 @@ export const homeMethod = {
   ],
   image: {
     src: "/images/projects/method-detail.png",
-    alt: "Passaggio architettonico con soglia materica, boiserie e luce integrata"
+    alt: "Passaggio architettonico con soglia materica, boiserie e luce integrata",
+    objectPosition: "center center",
+    recommendedRatio: "4:5",
+    suggestedRealAssetName:
+      "public/images/home/avm-home-method-main-4x5.jpg"
   },
   detailImage: {
     src: "/images/hero-milano.png",
-    alt: "Interno serale con skyline milanese, luce controllata e atmosfera raccolta"
+    alt: "Interno serale con skyline milanese, luce controllata e atmosfera raccolta",
+    objectPosition: "center center",
+    recommendedRatio: "5:4",
+    suggestedRealAssetName:
+      "public/images/home/avm-home-method-detail-5x4.jpg"
   }
 } as const;
 
@@ -256,15 +278,27 @@ export const homeMatterAndLight = {
   images: [
     {
       src: "/images/projects/certosa-residence.png",
-      alt: "Living con camino, superfici travertino e vista serale su Milano"
+      alt: "Living con camino, superfici travertino e vista serale su Milano",
+      objectPosition: "center center",
+      recommendedRatio: "16:10",
+      suggestedRealAssetName:
+        "public/images/home/avm-home-materia-luce-wide-16x10.jpg"
     },
     {
       src: "/images/projects/method-detail.png",
-      alt: "Passaggio architettonico con boiserie, metalli e luce integrata"
+      alt: "Passaggio architettonico con boiserie, metalli e luce integrata",
+      objectPosition: "center center",
+      recommendedRatio: "5:4",
+      suggestedRealAssetName:
+        "public/images/home/avm-home-materia-luce-detail-5x4.jpg"
     },
     {
       src: "/images/projects/marco-aurelio.png",
-      alt: "Camera con testata tessile e illuminazione soffusa"
+      alt: "Camera con testata tessile e illuminazione soffusa",
+      objectPosition: "center center",
+      recommendedRatio: "4:5",
+      suggestedRealAssetName:
+        "public/images/home/avm-home-materia-luce-vertical-4x5.jpg"
     }
   ]
 } as const;
@@ -282,7 +316,11 @@ export const homeFounder = {
   },
   image: {
     src: "/images/projects/la-galleria.png",
-    alt: "Zona living e dining di La Galleria con materia scura e luce calibrata"
+    alt: "Zona living e dining di La Galleria con materia scura e luce calibrata",
+    objectPosition: "center center",
+    recommendedRatio: "4:5",
+    suggestedRealAssetName:
+      "public/images/home/avm-home-founder-la-galleria-4x5.jpg"
   }
 } as const;
 

@@ -23,6 +23,14 @@ export const metadata = createMetadata({
   path: "/"
 });
 
+type HomeProjectOverride = {
+  title?: string;
+  city?: string;
+  status?: string;
+  category?: string;
+  summary?: string;
+};
+
 const selectedProjects = homeSelectedProjects.slugs
   .map<HomeProjectPreview | null>((slug) => {
     const project = projects.find((candidate) => candidate.slug === slug);
@@ -34,12 +42,17 @@ const selectedProjects = homeSelectedProjects.slugs
     const override =
       homeSelectedProjects.overrides[
         project.slug as keyof typeof homeSelectedProjects.overrides
-      ];
+      ] as HomeProjectOverride | undefined;
 
     return {
       slug: project.slug,
       href: `/progetti/${project.slug}`,
-      image: project.image,
+      images: {
+        feature: project.homeMedia?.feature ?? project.coverImage,
+        split: project.homeMedia?.split ?? project.coverImage,
+        stack: project.homeMedia?.stack ?? project.coverImage,
+        after: project.homeMedia?.after ?? project.coverImage
+      },
       title: override?.title ?? project.title,
       city: override?.city ?? project.city,
       status: override?.status ?? project.status,
@@ -53,7 +66,12 @@ const fallbackProject = projects[0];
 const primaryProject = selectedProjects[0] ?? {
   slug: fallbackProject.slug,
   href: `/progetti/${fallbackProject.slug}`,
-  image: fallbackProject.image,
+  images: {
+    feature: fallbackProject.homeMedia?.feature ?? fallbackProject.coverImage,
+    split: fallbackProject.homeMedia?.split ?? fallbackProject.coverImage,
+    stack: fallbackProject.homeMedia?.stack ?? fallbackProject.coverImage,
+    after: fallbackProject.homeMedia?.after ?? fallbackProject.coverImage
+  },
   title: fallbackProject.title,
   city: fallbackProject.city,
   status: fallbackProject.status,
@@ -67,13 +85,22 @@ const transformationProject = primaryProject;
 type HomeProjectPreview = {
   slug: Project["slug"];
   href: string;
-  image: string;
+  images: {
+    feature: Project["coverImage"];
+    split: Project["coverImage"];
+    stack: Project["coverImage"];
+    after: Project["coverImage"];
+  };
   title: string;
   city: string;
   status: string;
   category: string;
   summary: string;
 };
+
+const getObjectPositionStyle = (
+  image: { objectPosition?: string } | undefined
+) => (image?.objectPosition ? { objectPosition: image.objectPosition } : undefined);
 
 type EditorialProjectPreviewProps = {
   project: HomeProjectPreview;
@@ -84,19 +111,27 @@ function EditorialProjectPreview({
   project,
   variant
 }: EditorialProjectPreviewProps) {
+  const image =
+    variant === "feature"
+      ? project.images.feature
+      : variant === "split"
+        ? project.images.split
+        : project.images.stack;
+
   if (variant === "feature") {
     return (
       <Link
         href={project.href}
-        className="group block overflow-hidden rounded-[34px] border border-line bg-white/[0.03] shadow-glow"
+        className="group editorial-dark-surface block overflow-hidden rounded-[34px] border border-line"
       >
-        <div className="relative min-h-[31rem] sm:min-h-[34rem] lg:min-h-[36rem]">
+        <div className="relative aspect-[16/10] min-h-[31rem] sm:min-h-[34rem] lg:min-h-[36rem]">
           <Image
-            src={project.image}
+            src={image.src}
             alt={`Vista interna del progetto ${project.title} a ${project.city}`}
             fill
             sizes="100vw"
             className="object-cover transition duration-700 group-hover:scale-[1.02]"
+            style={getObjectPositionStyle(image)}
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,15,15,0.06),rgba(15,15,15,0.42)_52%,rgba(15,15,15,0.92))]" />
 
@@ -132,16 +167,17 @@ function EditorialProjectPreview({
     return (
       <Link
         href={project.href}
-        className="group block overflow-hidden rounded-[32px] border border-line bg-white/[0.03] shadow-glow"
+        className="group editorial-dark-surface block overflow-hidden rounded-[32px] border border-line"
       >
         <div className="grid gap-0 md:grid-cols-[0.52fr_0.48fr]">
-          <div className="relative min-h-[18rem] md:min-h-full">
+          <div className="relative aspect-[5/4] min-h-[18rem] md:min-h-full">
             <Image
-              src={project.image}
+              src={image.src}
               alt={`Interno del progetto ${project.title} a ${project.city}`}
               fill
               sizes="(min-width: 1024px) 22vw, 100vw"
               className="object-cover transition duration-700 group-hover:scale-[1.02]"
+              style={getObjectPositionStyle(image)}
             />
           </div>
 
@@ -174,15 +210,16 @@ function EditorialProjectPreview({
   return (
     <Link
       href={project.href}
-      className="group block overflow-hidden rounded-[32px] border border-line bg-white/[0.03] shadow-glow"
+      className="group editorial-dark-surface block overflow-hidden rounded-[32px] border border-line"
     >
-      <div className="relative min-h-[18rem] overflow-hidden">
+      <div className="relative aspect-[4/5] min-h-[18rem] overflow-hidden">
         <Image
-          src={project.image}
+          src={image.src}
           alt={`Camera e atmosfera del progetto ${project.title} a ${project.city}`}
           fill
           sizes="(min-width: 1024px) 30vw, 100vw"
           className="object-cover transition duration-700 group-hover:scale-[1.03]"
+          style={getObjectPositionStyle(image)}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
       </div>
@@ -211,11 +248,20 @@ function EditorialProjectPreview({
 
 export default function HomePage() {
   return (
-    <>
+    <div className="relative isolate overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-20 h-[120rem] bg-[radial-gradient(circle_at_12%_8%,rgba(198,167,94,0.12),transparent_26%),radial-gradient(circle_at_84%_14%,rgba(244,241,234,0.05),transparent_18%),radial-gradient(circle_at_48%_44%,rgba(198,167,94,0.04),transparent_28%),linear-gradient(140deg,rgba(255,255,255,0.025),transparent_24%,transparent_78%,rgba(198,167,94,0.05))]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,transparent_48%,rgba(0,0,0,0.16)_100%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_14%,transparent_84%,rgba(255,255,255,0.015)),linear-gradient(115deg,transparent_0%,rgba(255,255,255,0.016)_36%,transparent_50%)] opacity-90"
+      />
+
       <section className="overflow-hidden px-6 pb-12 pt-6 sm:pb-14 sm:pt-8">
         <div className="mx-auto max-w-7xl">
           <Reveal>
-            <div className="relative overflow-hidden rounded-[40px] border border-line shadow-glow">
+            <div className="editorial-dark-surface relative overflow-hidden rounded-[40px] border border-line">
               <Image
                 src={homeHero.image.src}
                 alt={homeHero.image.alt}
@@ -223,6 +269,7 @@ export default function HomePage() {
                 priority
                 sizes="100vw"
                 className="object-cover"
+                style={getObjectPositionStyle(homeHero.image)}
               />
               <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(15,15,15,0.9),rgba(15,15,15,0.62)_38%,rgba(15,15,15,0.18)_72%,rgba(15,15,15,0.55))]" />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,15,15,0.08),rgba(15,15,15,0.45)_48%,rgba(15,15,15,0.82))]" />
@@ -266,7 +313,7 @@ export default function HomePage() {
       <section id="posizionamento" className="section-space pt-8">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <div className="overflow-hidden rounded-[38px] border border-black/10 bg-sand text-ink shadow-[0_30px_90px_rgba(0,0,0,0.18)]">
+            <div className="editorial-light-panel">
               <div className="grid gap-10 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[1.02fr_0.98fr] lg:px-12 lg:py-12">
                 <div className="space-y-8">
                   <div className="space-y-5">
@@ -309,13 +356,14 @@ export default function HomePage() {
                     ))}
                   </div>
 
-                  <div className="relative min-h-[24rem] overflow-hidden rounded-[32px]">
+                  <div className="relative min-h-[24rem] overflow-hidden rounded-[32px] border border-black/10 shadow-[0_24px_60px_rgba(31,24,17,0.14)]">
                     <Image
                       src={homePositioning.image.src}
                       alt={homePositioning.image.alt}
                       fill
                       sizes="(min-width: 1024px) 40vw, 100vw"
                       className="object-cover"
+                      style={getObjectPositionStyle(homePositioning.image)}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
                   </div>
@@ -385,28 +433,30 @@ export default function HomePage() {
               </div>
 
               <div className="grid gap-4 sm:grid-cols-[1.08fr_0.92fr]">
-                <div className="relative min-h-[20rem] overflow-hidden rounded-[30px] border border-line">
+                <div className="relative aspect-[4/5] min-h-[20rem] overflow-hidden rounded-[30px] border border-line">
                   <Image
                     src={homeMethod.image.src}
                     alt={homeMethod.image.alt}
                     fill
                     sizes="(min-width: 1024px) 24vw, 100vw"
                     className="object-cover"
+                    style={getObjectPositionStyle(homeMethod.image)}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
                 </div>
                 <div className="grid gap-4">
-                  <div className="relative min-h-[9.5rem] overflow-hidden rounded-[28px] border border-line">
+                  <div className="relative aspect-[5/4] min-h-[9.5rem] overflow-hidden rounded-[28px] border border-line">
                     <Image
                       src={homeMethod.detailImage.src}
                       alt={homeMethod.detailImage.alt}
                       fill
                       sizes="(min-width: 1024px) 14vw, 100vw"
                       className="object-cover"
+                      style={getObjectPositionStyle(homeMethod.detailImage)}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" />
                   </div>
-                  <div className="panel flex min-h-[9.5rem] flex-col justify-between p-5">
+                  <div className="panel editorial-dark-surface flex min-h-[9.5rem] flex-col justify-between p-5">
                     <p className="text-xs uppercase tracking-[0.24em] text-accent">
                       Domanda guida
                     </p>
@@ -451,7 +501,7 @@ export default function HomePage() {
       <section id="prima-processo-dopo" className="section-space pt-4">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <div className="overflow-hidden rounded-[38px] border border-black/10 bg-sand text-ink shadow-[0_30px_90px_rgba(0,0,0,0.18)]">
+            <div className="editorial-light-panel">
               <div className="px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
                 <div className="max-w-3xl space-y-4">
                   <p className="text-xs uppercase tracking-[0.26em] text-[#8f7430]">
@@ -466,7 +516,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="mt-12 grid gap-6 lg:grid-cols-[0.92fr_0.92fr_1.16fr]">
-                  <div className="rounded-[32px] border border-black/10 bg-white/60 p-6 sm:p-7">
+                  <div className="editorial-light-surface p-6 sm:p-7">
                     <div className="space-y-5">
                       <p className="text-xs uppercase tracking-[0.24em] text-[#8f7430]">
                         Prima
@@ -480,7 +530,7 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="rounded-[32px] border border-black/10 bg-white/70 p-6 sm:p-7">
+                  <div className="editorial-light-surface p-6 sm:p-7">
                     <div className="space-y-5">
                       <p className="text-xs uppercase tracking-[0.24em] text-[#8f7430]">
                         Processo
@@ -496,15 +546,16 @@ export default function HomePage() {
 
                   <Link
                     href={transformationProject.href}
-                    className="group block overflow-hidden rounded-[32px] border border-black/10 shadow-[0_30px_80px_rgba(0,0,0,0.22)]"
+                    className="group editorial-dark-surface block overflow-hidden rounded-[32px] border border-black/10"
                   >
-                    <div className="relative min-h-[24rem]">
+                    <div className="relative aspect-[4/5] min-h-[24rem]">
                       <Image
-                        src={transformationProject.image}
+                        src={transformationProject.images.after.src}
                         alt={`Esito del progetto ${transformationProject.title} a ${transformationProject.city}`}
                         fill
                         sizes="(min-width: 1024px) 34vw, 100vw"
                         className="object-cover transition duration-700 group-hover:scale-[1.02]"
+                        style={getObjectPositionStyle(transformationProject.images.after)}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-ink/92 via-ink/24 to-transparent" />
                       <div className="absolute inset-x-0 bottom-0 space-y-3 p-6 sm:p-7">
@@ -550,13 +601,14 @@ export default function HomePage() {
 
           <div className="mt-12 grid gap-4 lg:grid-cols-[1.18fr_0.82fr]">
             <Reveal>
-              <div className="relative min-h-[32rem] overflow-hidden rounded-[34px] border border-line">
+              <div className="relative aspect-[16/10] min-h-[32rem] overflow-hidden rounded-[34px] border border-line">
                 <Image
                   src={homeMatterAndLight.images[0].src}
                   alt={homeMatterAndLight.images[0].alt}
                   fill
                   sizes="(min-width: 1024px) 58vw, 100vw"
                   className="object-cover"
+                  style={getObjectPositionStyle(homeMatterAndLight.images[0])}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/72 via-transparent to-transparent" />
               </div>
@@ -564,26 +616,28 @@ export default function HomePage() {
 
             <div className="grid gap-4">
               <Reveal delay={80}>
-                <div className="relative min-h-[15rem] overflow-hidden rounded-[30px] border border-line">
+                <div className="relative aspect-[5/4] min-h-[15rem] overflow-hidden rounded-[30px] border border-line">
                   <Image
                     src={homeMatterAndLight.images[1].src}
                     alt={homeMatterAndLight.images[1].alt}
                     fill
                     sizes="(min-width: 1024px) 38vw, 100vw"
                     className="object-cover"
+                    style={getObjectPositionStyle(homeMatterAndLight.images[1])}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" />
                 </div>
               </Reveal>
 
               <Reveal delay={140}>
-                <div className="relative min-h-[15rem] overflow-hidden rounded-[28px] border border-line">
+                <div className="relative aspect-[4/5] min-h-[15rem] overflow-hidden rounded-[28px] border border-line">
                   <Image
                     src={homeMatterAndLight.images[2].src}
                     alt={homeMatterAndLight.images[2].alt}
                     fill
                     sizes="(min-width: 1024px) 38vw, 100vw"
                     className="object-cover"
+                    style={getObjectPositionStyle(homeMatterAndLight.images[2])}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/45 to-transparent" />
                 </div>
@@ -596,7 +650,7 @@ export default function HomePage() {
       <section id="alessandro" className="section-space">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <div className="overflow-hidden rounded-[38px] border border-black/10 bg-sand text-ink shadow-[0_30px_90px_rgba(0,0,0,0.18)]">
+            <div className="editorial-light-panel">
               <div className="grid gap-0 lg:grid-cols-[0.98fr_1.02fr]">
                 <div className="space-y-6 px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
                   <p className="text-xs uppercase tracking-[0.26em] text-[#8f7430]">
@@ -616,13 +670,14 @@ export default function HomePage() {
                   </Link>
                 </div>
 
-                <div className="relative min-h-[22rem] lg:min-h-full">
+                <div className="relative min-h-[22rem] border-t border-black/10 lg:min-h-full lg:border-l lg:border-t-0">
                   <Image
                     src={homeFounder.image.src}
                     alt={homeFounder.image.alt}
                     fill
                     sizes="(min-width: 1024px) 42vw, 100vw"
                     className="object-cover"
+                    style={getObjectPositionStyle(homeFounder.image)}
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,15,15,0.05),rgba(15,15,15,0.05))]" />
                 </div>
@@ -661,6 +716,6 @@ export default function HomePage() {
           </Reveal>
         </div>
       </section>
-    </>
+    </div>
   );
 }

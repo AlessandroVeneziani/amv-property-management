@@ -69,14 +69,19 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <section className="pb-10">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <div className="relative min-h-[28rem] overflow-hidden rounded-[34px] border border-line shadow-glow sm:min-h-[36rem]">
+            <div className="relative aspect-[16/10] min-h-[28rem] overflow-hidden rounded-[34px] border border-line shadow-glow sm:min-h-[36rem]">
               <Image
-                src={project.image}
-                alt={project.title}
+                src={project.coverImage.src}
+                alt={project.coverImage.alt}
                 fill
                 priority
                 sizes="(min-width: 1024px) 80vw, 100vw"
                 className="object-cover"
+                style={
+                  project.coverImage.objectPosition
+                    ? { objectPosition: project.coverImage.objectPosition }
+                    : undefined
+                }
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/5 to-transparent" />
             </div>
@@ -138,19 +143,26 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
             <div className="grid gap-5 lg:grid-cols-3">
-              {project.gallery.map((image, index) => (
+              {project.galleryImages.map((image, index) => (
                 <div
-                  key={`${image}-${index}`}
+                  key={`${image.src}-${index}`}
                   className={`relative overflow-hidden rounded-[28px] border border-line ${
-                    index === 0 ? "lg:col-span-2 min-h-[26rem]" : "min-h-[26rem]"
+                    index === 0
+                      ? "aspect-[16/10] lg:col-span-2 min-h-[26rem]"
+                      : "aspect-[4/5] min-h-[26rem]"
                   }`}
                 >
                   <Image
-                    src={image}
-                    alt={`${project.title} dettaglio ${index + 1}`}
+                    src={image.src}
+                    alt={image.alt}
                     fill
-                    sizes={index === 0 ? "(min-width: 1024px) 52vw, 100vw" : "(min-width: 1024px) 26vw, 100vw"}
+                    sizes={
+                      index === 0 ? "(min-width: 1024px) 52vw, 100vw" : "(min-width: 1024px) 26vw, 100vw"
+                    }
                     className="object-cover"
+                    style={
+                      image.objectPosition ? { objectPosition: image.objectPosition } : undefined
+                    }
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
                 </div>

@@ -76,6 +76,80 @@ main::before {
   .panel {
     @apply rounded-[30px] border border-line bg-white/[0.03];
   }
+
+  .editorial-dark-surface {
+    background:
+      linear-gradient(
+        160deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.024) 44%,
+        rgba(198, 167, 94, 0.035) 100%
+      );
+    box-shadow:
+      0 30px 84px rgba(0, 0, 0, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .editorial-light-panel {
+    @apply relative overflow-hidden rounded-[38px] border border-black/10 text-ink;
+    background:
+      linear-gradient(
+        155deg,
+        rgba(244, 241, 234, 0.95) 0%,
+        rgba(238, 231, 220, 0.92) 46%,
+        rgba(225, 214, 198, 0.9) 100%
+      );
+    box-shadow:
+      0 30px 90px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.32),
+      inset 0 -1px 0 rgba(15, 15, 15, 0.05);
+  }
+
+  .editorial-light-panel::before {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 18%),
+      radial-gradient(circle at top right, rgba(198, 167, 94, 0.14), transparent 28%),
+      linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.075) 34%, transparent 50%);
+    content: "";
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  .editorial-light-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .editorial-light-surface {
+    @apply relative overflow-hidden rounded-[32px] border border-black/10;
+    background:
+      linear-gradient(
+        165deg,
+        rgba(255, 255, 255, 0.58) 0%,
+        rgba(245, 239, 229, 0.82) 44%,
+        rgba(233, 224, 210, 0.88) 100%
+      );
+    box-shadow:
+      0 24px 54px rgba(35, 28, 20, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  }
+
+  .editorial-light-surface::before {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 20%),
+      radial-gradient(circle at top right, rgba(198, 167, 94, 0.08), transparent 30%);
+    content: "";
+    pointer-events: none;
+  }
+
+  .editorial-light-surface > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 @layer utilities {

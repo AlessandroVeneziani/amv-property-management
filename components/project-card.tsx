@@ -14,13 +14,24 @@ export function ProjectCard({ project, tall = false }: ProjectCardProps) {
       href={`/progetti/${project.slug}`}
       className="group block h-full overflow-hidden rounded-[28px] border border-line bg-white/[0.03] shadow-glow transition duration-500 hover:-translate-y-1 hover:border-accent/40"
     >
-      <div className={`relative ${tall ? "min-h-[26rem]" : "min-h-[22rem]"}`}>
+      <div
+        className={`relative ${
+          tall ? "aspect-[16/10] min-h-[26rem]" : "aspect-[5/4] min-h-[22rem]"
+        }`}
+      >
         <Image
-          src={project.image}
-          alt={project.title}
+          src={project.coverImage.src}
+          alt={project.coverImage.alt}
           fill
-          sizes={tall ? "(min-width: 1024px) 56vw, 100vw" : "(min-width: 1024px) 32vw, 100vw"}
+          sizes={
+            tall ? "(min-width: 1024px) 56vw, 100vw" : "(min-width: 1024px) 32vw, 100vw"
+          }
           className="object-cover transition duration-700 group-hover:scale-105"
+          style={
+            project.coverImage.objectPosition
+              ? { objectPosition: project.coverImage.objectPosition }
+              : undefined
+          }
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/35 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 space-y-3 p-6 sm:p-7">
