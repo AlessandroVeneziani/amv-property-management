@@ -295,12 +295,12 @@ export const homeMatterAndLight = {
         "public/images/home/avm-home-materia-luce-detail-5x4.jpg"
     },
     {
-      src: "/images/projects/marco-aurelio.png",
-      alt: "Camera con testata tessile e illuminazione soffusa",
+      src: "/images/home/avm-materia-luce-corridoio-led.png",
+      alt: "Corridoio con illuminazione LED integrata e geometrie luminose",
       objectPosition: "center center",
       recommendedRatio: "4:5",
       suggestedRealAssetName:
-        "public/images/home/avm-home-materia-luce-vertical-4x5.jpg"
+        "public/images/home/avm-materia-luce-corridoio-led.png"
     }
   ]
 } as const;
