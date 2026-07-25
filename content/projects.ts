@@ -47,12 +47,12 @@ export const projects: Project[] = [
     category: "Residenza hospitality",
     year: "2026",
     coverImage: {
-      src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg",
-      alt: "La Galleria dopo la trasformazione in residenza hospitality a Milano",
-      objectPosition: "center center",
-      recommendedRatio: "3:2",
+      src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-02.jpg",
+      alt: "La Galleria dopo la trasformazione in residenza hospitality, con living, parete listellata e lampadario Dandelion",
+      objectPosition: "56% center",
+      recommendedRatio: "16:10",
       suggestedRealAssetName:
-        "public/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg"
+        "public/images/projects/la-galleria/after/la-galleria-hospitality-after-02.jpg"
     },
     galleryImages: [
       {
@@ -64,12 +64,12 @@ export const projects: Project[] = [
           "public/images/projects/la-galleria/before/la-galleria-showroom-before-01.jpg"
       },
       {
-        src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg",
-        alt: "La Galleria dopo la trasformazione in residenza hospitality a Milano",
-        objectPosition: "center center",
+        src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-02.jpg",
+        alt: "La Galleria dopo la trasformazione in residenza hospitality, con living, parete listellata e lampadario Dandelion",
+        objectPosition: "58% center",
         recommendedRatio: "3:2",
         suggestedRealAssetName:
-          "public/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg"
+          "public/images/projects/la-galleria/after/la-galleria-hospitality-after-02.jpg"
       }
     ],
     homeMedia: {
@@ -98,12 +98,12 @@ export const projects: Project[] = [
           "public/images/projects/la-galleria/before/la-galleria-showroom-before-01.jpg"
       },
       after: {
-        src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg",
-        alt: "La Galleria dopo la trasformazione in residenza hospitality a Milano",
-        objectPosition: "center center",
+        src: "/images/projects/la-galleria/after/la-galleria-hospitality-after-02.jpg",
+        alt: "La Galleria dopo la trasformazione in residenza hospitality, con living, parete listellata e lampadario Dandelion",
+        objectPosition: "58% center",
         recommendedRatio: "3:2",
         suggestedRealAssetName:
-          "public/images/projects/la-galleria/after/la-galleria-hospitality-after-01.jpg"
+          "public/images/projects/la-galleria/after/la-galleria-hospitality-after-02.jpg"
       }
     },
     summary:
