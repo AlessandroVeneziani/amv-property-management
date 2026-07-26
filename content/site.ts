@@ -106,7 +106,7 @@ export const homeMetadata = {
 } as const;
 
 export const homeHero = {
-  eyebrow: "Asset Direction",
+  eyebrow: "ASSET DIRECTION",
   title: [
     "Ogni immobile possiede un potenziale.",
     "AVM ne definisce la direzione."
@@ -122,11 +122,11 @@ export const homeHero = {
     href: "/progetti"
   },
   image: {
-    src: "/images/hero-milano.png",
-    alt: "Interno residenziale con vista su Milano e luce serale controllata",
-    objectPosition: "center center",
-    recommendedRatio: "16:10",
-    suggestedRealAssetName: "public/images/home/avm-home-hero-la-galleria-16x10.jpg"
+    src: "/images/home/avm-home-hero-bedroom.png",
+    alt: "Camera da letto con parete materica, luce architettonica integrata e atmosfera calda",
+    objectPosition: "68% center",
+    recommendedRatio: "21:10",
+    suggestedRealAssetName: "public/images/home/avm-home-hero-bedroom.png"
   }
 } as const;
 

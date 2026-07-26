@@ -252,56 +252,53 @@ function EditorialProjectPreview({
 export default function HomePage() {
   return (
     <div className="home-ambient-background">
-      <section className="overflow-hidden px-6 pb-12 pt-6 sm:pb-14 sm:pt-8">
-        <div className="mx-auto max-w-7xl">
-          <Reveal>
-            <div className="editorial-dark-surface relative overflow-hidden rounded-[40px] border border-line">
-              <Image
-                src={homeHero.image.src}
-                alt={homeHero.image.alt}
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover"
-                style={getObjectPositionStyle(homeHero.image)}
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(15,15,15,0.9),rgba(15,15,15,0.62)_38%,rgba(15,15,15,0.18)_72%,rgba(15,15,15,0.55))]" />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,15,15,0.08),rgba(15,15,15,0.45)_48%,rgba(15,15,15,0.82))]" />
+      <section className="overflow-hidden pb-12 pt-2 sm:pb-14 sm:pt-3">
+        <Reveal>
+          <div className="relative min-h-[82vh] overflow-hidden border-y border-line/70 sm:min-h-[86vh] lg:min-h-[88vh]">
+            <Image
+              src={homeHero.image.src}
+              alt={homeHero.image.alt}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-[60%_center] md:object-[64%_center] lg:object-[68%_center]"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,12,12,0.72)_0%,rgba(12,12,12,0.58)_30%,rgba(12,12,12,0.34)_56%,rgba(12,12,12,0.18)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,12,0.16)_0%,rgba(12,12,12,0.18)_42%,rgba(12,12,12,0.52)_100%)]" />
 
-              <div className="relative flex min-h-[34rem] items-end px-6 py-8 sm:min-h-[38rem] sm:px-8 sm:py-10 lg:min-h-[42rem] lg:px-12 lg:py-11">
-                <div className="max-w-[62rem] space-y-5 sm:space-y-6">
-                  <h1 className="sr-only">{homeMetadata.h1}</h1>
-                  <p className="eyebrow">{homeHero.eyebrow}</p>
-                  <p
-                    aria-hidden="true"
-                    className="max-w-[62rem] font-serif text-[clamp(3rem,10vw,4.55rem)] leading-[0.98] text-sand text-balance lg:text-[clamp(3.9rem,5vw,5.85rem)]"
+            <div className="relative mx-auto flex min-h-[82vh] max-w-7xl items-center px-6 py-14 sm:min-h-[86vh] sm:px-8 sm:py-16 lg:min-h-[88vh] lg:px-12 lg:py-18">
+              <div className="max-w-[36rem] space-y-5 sm:max-w-[38rem] sm:space-y-6 lg:max-w-[40rem]">
+                <h1 className="sr-only">{homeMetadata.h1}</h1>
+                <p className="eyebrow text-sand/88">{homeHero.eyebrow}</p>
+                <p
+                  aria-hidden="true"
+                  className="max-w-[40rem] font-serif text-[clamp(3rem,7.2vw,4.85rem)] leading-[0.98] text-sand text-balance lg:text-[clamp(4rem,4.85vw,5.35rem)]"
+                >
+                  <span className="block">{homeHero.title[0]}</span>
+                  <span className="mt-1.5 block sm:mt-2">{homeHero.title[1]}</span>
+                </p>
+                <p className="max-w-2xl text-base leading-7 text-sand/82 sm:text-lg">
+                  {homeHero.description}
+                </p>
+
+                <div className="flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap">
+                  <Link
+                    href={homeHero.primaryCta.href}
+                    className="gold-fill-btn w-full justify-center sm:w-auto"
                   >
-                    <span className="block">{homeHero.title[0]}</span>
-                    <span className="mt-1.5 block sm:mt-2">{homeHero.title[1]}</span>
-                  </p>
-                  <p className="max-w-3xl text-base leading-7 text-sand/82 sm:text-lg">
-                    {homeHero.description}
-                  </p>
-
-                  <div className="flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap">
-                    <Link
-                      href={homeHero.primaryCta.href}
-                      className="gold-fill-btn w-full justify-center sm:w-auto"
-                    >
-                      {homeHero.primaryCta.label}
-                    </Link>
-                    <Link
-                      href={homeHero.secondaryCta.href}
-                      className="gold-outline-btn w-full justify-center sm:w-auto"
-                    >
-                      {homeHero.secondaryCta.label}
-                    </Link>
-                  </div>
+                    {homeHero.primaryCta.label}
+                  </Link>
+                  <Link
+                    href={homeHero.secondaryCta.href}
+                    className="gold-outline-btn w-full justify-center sm:w-auto"
+                  >
+                    {homeHero.secondaryCta.label}
+                  </Link>
                 </div>
               </div>
             </div>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
       </section>
 
       <section id="posizionamento" className="section-space pt-8">
