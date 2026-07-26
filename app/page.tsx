@@ -501,12 +501,12 @@ export default function HomePage() {
                   </Link>
                 </div>
 
-                <div className="relative min-h-[22rem] border-t border-black/10 lg:min-h-full lg:border-l lg:border-t-0">
+                <div className="relative aspect-[4/5] min-h-[22rem] overflow-hidden border-t border-black/10 sm:aspect-[3/4] lg:aspect-auto lg:min-h-full lg:border-l lg:border-t-0">
                   <Image
                     src={homeFounder.image.src}
                     alt={homeFounder.image.alt}
                     fill
-                    sizes="(min-width: 1024px) 42vw, 100vw"
+                    sizes="(min-width: 1024px) 42vw, (min-width: 640px) 46vw, 100vw"
                     className="object-cover"
                     style={getObjectPositionStyle(homeFounder.image)}
                   />

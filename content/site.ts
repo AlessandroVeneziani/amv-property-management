@@ -284,12 +284,12 @@ export const homeFounder = {
     href: "/chi-e-avm"
   },
   image: {
-    src: "/images/projects/la-galleria.png",
-    alt: "Zona living e dining di La Galleria con materia scura e luce calibrata",
-    objectPosition: "center center",
-    recommendedRatio: "4:5",
+    src: "/images/home/alessandro-veneziani-avm.webp",
+    alt: "Ritratto di Alessandro Veneziani con giacca scura su fondo neutro e luce morbida",
+    objectPosition: "72% center",
+    recommendedRatio: "3:2",
     suggestedRealAssetName:
-      "public/images/home/avm-home-founder-la-galleria-4x5.jpg"
+      "public/images/home/alessandro-veneziani-avm.webp"
   }
 } as const;
 
