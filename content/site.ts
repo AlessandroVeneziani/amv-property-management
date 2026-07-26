@@ -255,20 +255,20 @@ export const homeMatterAndLight = {
   description:
     "Materiali e illuminazione non vengono aggiunti alla fine. Sono parte della struttura del progetto.",
   mainImage: {
-    src: "/images/home/avm-materia-luce-main.webp",
-    alt: "Ambiente con lampadario dorato a raggiera, pareti verdi verticali illuminate, tavolo rotondo centrale e superfici in pietra",
-    objectPosition: "center center",
+    src: "/images/home/avm-materia-luce-living.webp",
+    alt: "Living con divano, parete TV retroilluminata, tavolo da pranzo, parete verde e luce architettonica integrata",
+    objectPosition: "50% center",
     recommendedRatio: "16:9",
     suggestedRealAssetName:
-      "public/images/home/avm-materia-luce-main.webp"
+      "public/images/home/avm-materia-luce-living.webp"
   },
   supportImage: {
-    src: "/images/home/avm-materia-luce-bedroom.webp",
-    alt: "Camera da letto con armadio in vetro fumé illuminato, letto imbottito, parete marmorea retroilluminata e listelli verticali in legno",
-    objectPosition: "center center",
+    src: "/images/home/avm-materia-luce-main.webp",
+    alt: "Ambiente con lampadario dorato a raggiera, pareti verdi verticali illuminate, tavolo rotondo centrale e superfici in pietra",
+    objectPosition: "58% center",
     recommendedRatio: "4:5",
     suggestedRealAssetName:
-      "public/images/home/avm-materia-luce-bedroom.webp"
+      "public/images/home/avm-materia-luce-main.webp"
   }
 } as const;
 

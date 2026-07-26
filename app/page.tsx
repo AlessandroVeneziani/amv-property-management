@@ -448,14 +448,14 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid items-start gap-4 md:grid-cols-[0.6fr_0.4fr] lg:grid-cols-[0.68fr_0.32fr]">
+          <div className="mt-12 grid items-start gap-4 md:grid-cols-[0.62fr_0.38fr] lg:gap-5 lg:grid-cols-[0.74fr_0.26fr]">
             <Reveal>
-              <div className="relative aspect-[16/10] min-h-[24rem] overflow-hidden rounded-[30px] border border-line sm:min-h-[28rem] lg:min-h-[32rem]">
+              <div className="relative aspect-[16/9] min-h-[26rem] overflow-hidden rounded-[30px] border border-line sm:min-h-[30rem] lg:min-h-[36rem]">
                 <Image
                   src={homeMatterAndLight.mainImage.src}
                   alt={homeMatterAndLight.mainImage.alt}
                   fill
-                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  sizes="(min-width: 1024px) 62vw, (min-width: 768px) 60vw, 100vw"
                   className="object-cover"
                   style={getObjectPositionStyle(homeMatterAndLight.mainImage)}
                 />
@@ -463,12 +463,12 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={80}>
-              <div className="relative aspect-[4/5] min-h-[24rem] overflow-hidden rounded-[30px] border border-line sm:min-h-[28rem] lg:min-h-[32rem]">
+              <div className="relative aspect-[4/5] min-h-[22rem] overflow-hidden rounded-[30px] border border-line sm:min-h-[26rem] lg:aspect-[3/4] lg:min-h-[36rem]">
                 <Image
                   src={homeMatterAndLight.supportImage.src}
                   alt={homeMatterAndLight.supportImage.alt}
                   fill
-                  sizes="(min-width: 1024px) 30vw, (min-width: 768px) 38vw, 100vw"
+                  sizes="(min-width: 1024px) 26vw, (min-width: 768px) 36vw, 100vw"
                   className="object-cover"
                   style={getObjectPositionStyle(homeMatterAndLight.supportImage)}
                 />

@@ -201,6 +201,12 @@ main::before {
 
 @media (max-width: 767px) {
   .site-ambient-background {
+    background-image:
+      linear-gradient(rgba(8, 7, 6, 0.14), rgba(8, 7, 6, 0.26)),
+      url("/images/backgrounds/avm-dark-marmorino-mobile.webp");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
     background-attachment: scroll;
   }
 }
