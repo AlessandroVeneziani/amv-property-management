@@ -251,24 +251,44 @@ export const homeMethod = {
 } as const;
 
 export const homeTransformationStory = {
-  eyebrow: "Prima. Processo. Dopo.",
-  title: "Il risultato mostra la trasformazione. Il processo mostra il valore.",
+  eyebrow: "Prima e dopo",
+  title: "Quando cambia la direzione, cambia anche la percezione dello spazio.",
   description:
-    "La Galleria viene raccontata attraverso il punto di partenza, la ridefinizione della destinazione e il risultato finale raggiunto.",
-  beforeSectionTitle: "Prima della trasformazione",
+    "La Galleria racconta un passaggio netto: da ambiente ibrido e temporaneo a residenza hospitality con atmosfera, identità e continuità gestionale.",
+  beforeSectionTitle: "Il punto di partenza",
   resultSectionTitle: "Il risultato",
   beforeTitle: "Showroom e spazio per eventi",
   beforeText:
-    "Uno spazio di circa 160 mq utilizzato come showroom, ufficio e location per eventi. La distribuzione, gli arredi espositivi e l’illuminazione non costruivano ancora una vera esperienza abitativa.",
+    "Uno spazio usato come showroom, ufficio e location per eventi. Funzionale, ma ancora privo di una vera identità abitativa.",
   processTitle: "Ridefinizione della destinazione",
   processText:
     "La distribuzione, la luce, gli arredi e l’atmosfera sono stati coordinati per trasformare lo spazio in una residenza destinata all’ospitalità.",
   afterTitle: "La Galleria",
   afterText:
-    "Una residenza hospitality riconoscibile, più leggibile e coerente con l’esperienza degli ospiti.",
+    "Una residenza hospitality più chiara, più coerente e più riconoscibile.",
+  comparisonTitle: "Un confronto leggibile, senza mediazioni.",
+  changesTitle: "Cosa è cambiato",
+  changes: [
+    {
+      title: "Destinazione",
+      text: "Da showroom ibrido a residenza hospitality."
+    },
+    {
+      title: "Atmosfera",
+      text: "Da neutra e dispersa a calda, riconoscibile e abitabile."
+    },
+    {
+      title: "Lettura",
+      text: "Da frammentata a continua, con una gerarchia più chiara."
+    },
+    {
+      title: "Valore",
+      text: "Da spazio generico a asset più forte e più desiderabile."
+    }
+  ],
   cta: {
-    label: "Scopri i progetti",
-    href: "/progetti"
+    label: "Scopri il progetto completo",
+    href: "/progetti/la-galleria"
   }
 } as const;
 

@@ -492,99 +492,136 @@ export default function HomePage() {
       <section id="prima-processo-dopo" className="section-space pt-4">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <div className="editorial-light-panel">
-              <div className="px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
-                <div className="max-w-3xl space-y-4">
-                  <p className="text-xs uppercase tracking-[0.26em] text-[#8f7430]">
-                    {homeTransformationStory.eyebrow}
-                  </p>
-                  <h2 className="font-serif text-3xl leading-tight text-balance sm:text-4xl lg:text-5xl">
-                    {homeTransformationStory.title}
-                  </h2>
-                  <p className="max-w-2xl text-base leading-7 text-ink/78 sm:text-lg">
-                    {homeTransformationStory.description}
-                  </p>
-                </div>
+            <div className="space-y-10 lg:space-y-12">
+              <div className="max-w-3xl space-y-4">
+                <p className="eyebrow">{homeTransformationStory.eyebrow}</p>
+                <h2 className="font-serif text-3xl leading-tight text-balance text-sand sm:text-4xl lg:text-5xl">
+                  {homeTransformationStory.title}
+                </h2>
+                <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg">
+                  {homeTransformationStory.description}
+                </p>
+              </div>
 
-                <div className="mt-12 grid gap-6 lg:grid-cols-[0.92fr_0.92fr_1.16fr]">
-                  <div className="editorial-dark-surface overflow-hidden rounded-[32px] border border-black/10">
-                    <div className="relative aspect-[3/2]">
-                      <Image
-                        src={transformationProject.images.before.src}
-                        alt={transformationProject.images.before.alt}
-                        fill
-                        sizes="(min-width: 1024px) 28vw, 100vw"
-                        className="object-cover"
-                        style={getObjectPositionStyle(transformationProject.images.before)}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/28 via-transparent to-transparent" />
-                    </div>
+              <Link
+                href={transformationProject.href}
+                className="group block overflow-hidden rounded-[38px] border border-line"
+              >
+                <div className="relative aspect-[4/5] min-h-[30rem] sm:aspect-[16/10] lg:aspect-[16/8.6] lg:min-h-[38rem]">
+                  <Image
+                    src={transformationProject.images.feature.src}
+                    alt={transformationProject.images.feature.alt}
+                    fill
+                    sizes="100vw"
+                    className="object-cover transition duration-700 group-hover:scale-[1.015]"
+                    style={getObjectPositionStyle(transformationProject.images.feature)}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/56 via-black/20 to-black/8" />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/74 via-black/18 to-transparent" />
 
-                    <div className="space-y-3 p-6 sm:p-7">
-                      <p className="text-xs uppercase tracking-[0.24em] text-accent">
-                        Prima
+                  <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10">
+                    <div className="max-w-xl space-y-3">
+                      <p className="text-xs uppercase tracking-[0.26em] text-accent">
+                        {homeTransformationStory.resultSectionTitle}
                       </p>
-                      <h3 className="font-serif text-2xl text-sand">
-                        {homeTransformationStory.beforeTitle}
-                      </h3>
-                      <p className="text-sm leading-7 text-sand/82 sm:text-base">
-                        {homeTransformationStory.beforeText}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="editorial-light-surface flex h-full p-6 sm:p-7">
-                    <div className="space-y-5 self-end">
-                      <p className="text-xs uppercase tracking-[0.24em] text-[#8f7430]">
-                        Processo
-                      </p>
-                      <h3 className="font-serif text-2xl text-ink">
-                        {homeTransformationStory.processTitle}
-                      </h3>
-                      <p className="text-sm leading-7 text-ink/72 sm:text-base">
-                        {homeTransformationStory.processText}
-                      </p>
-                    </div>
-                  </div>
-
-                  <Link
-                    href={transformationProject.href}
-                    className="group editorial-dark-surface block overflow-hidden rounded-[32px] border border-black/10"
-                  >
-                    <div className="relative aspect-[3/2]">
-                      <Image
-                        src={transformationProject.images.after.src}
-                        alt={transformationProject.images.after.alt}
-                        fill
-                        sizes="(min-width: 1024px) 34vw, 100vw"
-                        className="object-cover transition duration-700 group-hover:scale-[1.02]"
-                        style={getObjectPositionStyle(transformationProject.images.after)}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/22 via-transparent to-transparent" />
-                    </div>
-
-                    <div className="space-y-3 p-6 sm:p-7">
-                      <p className="text-xs uppercase tracking-[0.24em] text-accent">
-                        Dopo
-                      </p>
-                      <h3 className="font-serif text-2xl text-sand">
+                      <h3 className="font-serif text-3xl text-sand sm:text-4xl">
                         {homeTransformationStory.afterTitle}
                       </h3>
-                      <p className="text-sm leading-7 text-sand/80 sm:text-base">
+                      <p className="max-w-lg text-sm leading-7 text-sand/82 sm:text-base">
                         {homeTransformationStory.afterText}
                       </p>
                     </div>
-                  </Link>
+                  </div>
+                </div>
+              </Link>
+
+              <div className="grid gap-10 lg:grid-cols-[0.98fr_1.02fr] lg:gap-8">
+                <div className="space-y-5">
+                  <div className="space-y-2">
+                    <p className="text-xs uppercase tracking-[0.24em] text-accent/80">
+                      {homeTransformationStory.beforeSectionTitle}
+                    </p>
+                    <h3 className="font-serif text-2xl text-sand sm:text-[2rem]">
+                      {homeTransformationStory.beforeTitle}
+                    </h3>
+                  </div>
+
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-[32px] border border-line lg:aspect-[16/11]">
+                    <Image
+                      src={transformationProject.images.before.src}
+                      alt={transformationProject.images.before.alt}
+                      fill
+                      sizes="(min-width: 1024px) 46vw, 100vw"
+                      className="object-cover"
+                      style={getObjectPositionStyle(transformationProject.images.before)}
+                    />
+                  </div>
+
+                  <p className="max-w-xl text-sm leading-7 text-muted sm:text-base">
+                    {homeTransformationStory.beforeText}
+                  </p>
                 </div>
 
-                <div className="mt-8 flex justify-start">
-                  <Link
-                    href={homeTransformationStory.cta.href}
-                    className="gold-outline-btn border-[#8f7430] text-[#8f7430] hover:border-[#8f7430] hover:bg-[#8f7430] hover:text-sand"
-                  >
-                    {homeTransformationStory.cta.label}
-                  </Link>
+                <div className="space-y-5">
+                  <div className="space-y-2">
+                    <p className="text-xs uppercase tracking-[0.24em] text-accent/80">
+                      {homeTransformationStory.comparisonTitle}
+                    </p>
+                    <h3 className="font-serif text-2xl text-sand sm:text-[2rem]">
+                      {homeTransformationStory.resultSectionTitle}
+                    </h3>
+                  </div>
+
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-[32px] border border-line lg:aspect-[16/11]">
+                    <Image
+                      src={transformationProject.images.split.src}
+                      alt={transformationProject.images.split.alt}
+                      fill
+                      sizes="(min-width: 1024px) 46vw, 100vw"
+                      className="object-cover"
+                      style={getObjectPositionStyle(transformationProject.images.split)}
+                    />
+                  </div>
+
+                  <p className="max-w-xl text-sm leading-7 text-muted sm:text-base">
+                    {homeTransformationStory.processText}
+                  </p>
                 </div>
+              </div>
+
+              <div className="border-t border-line/80 pt-8">
+                <div className="grid gap-8 lg:grid-cols-[0.48fr_1fr]">
+                  <div className="space-y-3">
+                    <p className="text-xs uppercase tracking-[0.24em] text-accent/80">
+                      {homeTransformationStory.changesTitle}
+                    </p>
+                    <h3 className="font-serif text-2xl text-sand sm:text-[2rem]">
+                      Cosa rende il risultato più forte.
+                    </h3>
+                  </div>
+
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    {homeTransformationStory.changes.map((change) => (
+                      <div
+                        key={change.title}
+                        className="space-y-3 border-t border-accent/20 pt-4"
+                      >
+                        <p className="text-xs uppercase tracking-[0.22em] text-accent">
+                          {change.title}
+                        </p>
+                        <p className="text-sm leading-7 text-sand/82 sm:text-base">
+                          {change.text}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-start">
+                <Link href={transformationProject.href} className="gold-outline-btn">
+                  {homeTransformationStory.cta.label}
+                </Link>
               </div>
             </div>
           </Reveal>

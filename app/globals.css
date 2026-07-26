@@ -63,32 +63,26 @@ main::before {
   .home-ambient-background {
     @apply relative isolate overflow-hidden;
     background:
-      radial-gradient(circle at 12% 10%, rgba(198, 167, 94, 0.07), transparent 24%),
-      radial-gradient(circle at 82% 16%, rgba(133, 101, 66, 0.08), transparent 24%),
-      radial-gradient(circle at 52% 42%, rgba(244, 241, 234, 0.02), transparent 32%),
-      radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.24), transparent 42%),
-      linear-gradient(180deg, #14110f 0%, #0f0f0f 42%, #11100f 100%);
+      radial-gradient(circle at 18% 10%, rgba(198, 167, 94, 0.075), transparent 26%),
+      radial-gradient(circle at 84% 14%, rgba(115, 90, 63, 0.095), transparent 28%),
+      radial-gradient(circle at 48% 58%, rgba(244, 241, 234, 0.022), transparent 34%),
+      linear-gradient(180deg, #12110f 0%, #11100e 38%, #100f0d 100%);
   }
 
   .home-ambient-background::before {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.02), transparent 22%),
-      radial-gradient(circle at 76% 62%, rgba(0, 0, 0, 0.16), transparent 36%),
-      linear-gradient(
-        118deg,
-        rgba(255, 255, 255, 0.014) 0%,
-        transparent 26%,
-        rgba(198, 167, 94, 0.016) 48%,
-        transparent 74%
-      ),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 1200'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.58' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='1200' height='1200' filter='url(%23m)' opacity='0.65'/%3E%3C/svg%3E");
-    background-size: auto, auto, auto, 880px 880px;
-    background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+      url("/images/backgrounds/avm-dark-marmorino.webp"),
+      url("/images/backgrounds/avm-dark-marmorino.webp"),
+      radial-gradient(circle at 20% 24%, rgba(255, 255, 255, 0.03), transparent 24%),
+      radial-gradient(circle at 78% 66%, rgba(0, 0, 0, 0.18), transparent 38%);
+    background-size: 1020px 1020px, 760px 760px, auto, auto;
+    background-position: center top, 18% 22%, 20% 24%, 78% 66%;
+    background-repeat: repeat, repeat, no-repeat, no-repeat;
     content: "";
-    mix-blend-mode: soft-light;
-    opacity: 0.16;
+    mix-blend-mode: overlay;
+    opacity: 0.62;
     pointer-events: none;
   }
 
@@ -96,13 +90,18 @@ main::before {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 14% 12%, rgba(198, 167, 94, 0.032), transparent 24%),
-      radial-gradient(circle at 84% 18%, rgba(143, 114, 80, 0.028), transparent 22%),
-      radial-gradient(circle at 48% 54%, rgba(244, 241, 234, 0.012), transparent 34%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.012), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.08));
+      radial-gradient(circle at 16% 16%, rgba(198, 167, 94, 0.085), transparent 26%),
+      radial-gradient(circle at 82% 20%, rgba(149, 118, 81, 0.072), transparent 24%),
+      radial-gradient(circle at 50% 52%, rgba(244, 241, 234, 0.035), transparent 32%),
+      radial-gradient(circle at 38% 78%, rgba(198, 167, 94, 0.055), transparent 28%),
+      url("/images/backgrounds/avm-dark-marmorino.webp");
+    background-size: auto, auto, auto, auto, 1240px 1240px;
+    background-position: 16% 16%, 82% 20%, 50% 52%, 38% 78%, center 120px;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
     content: "";
-    filter: blur(56px);
-    opacity: 0.58;
+    filter: blur(44px);
+    mix-blend-mode: soft-light;
+    opacity: 0.28;
     pointer-events: none;
   }
 
