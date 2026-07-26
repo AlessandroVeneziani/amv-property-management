@@ -279,12 +279,12 @@ export const homeMatterAndLight = {
     "Materiali e illuminazione non vengono aggiunti alla fine. Sono parte della struttura del progetto.",
   images: [
     {
-      src: "/images/projects/certosa-residence.png",
-      alt: "Living con camino, superfici travertino e vista serale su Milano",
+      src: "/images/home/avm-materia-luce-salotto-led.png",
+      alt: "Soggiorno con parete TV retroilluminata, divano grigio, dining sul fondo e illuminazione architettonica calda",
       objectPosition: "center center",
       recommendedRatio: "16:10",
       suggestedRealAssetName:
-        "public/images/home/avm-home-materia-luce-wide-16x10.jpg"
+        "public/images/home/avm-materia-luce-salotto-led.png"
     },
     {
       src: "/images/projects/method-detail.png",
