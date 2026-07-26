@@ -448,50 +448,32 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-4 lg:grid-cols-[1.18fr_0.82fr]">
+          <div className="mt-12 grid items-start gap-4 md:grid-cols-[0.6fr_0.4fr] lg:grid-cols-[0.68fr_0.32fr]">
             <Reveal>
-              <div className="relative aspect-[16/10] min-h-[32rem] overflow-hidden rounded-[34px] border border-line">
+              <div className="relative aspect-[16/10] min-h-[24rem] overflow-hidden rounded-[30px] border border-line sm:min-h-[28rem] lg:min-h-[32rem]">
                 <Image
-                  src={homeMatterAndLight.images[0].src}
-                  alt={homeMatterAndLight.images[0].alt}
+                  src={homeMatterAndLight.mainImage.src}
+                  alt={homeMatterAndLight.mainImage.alt}
                   fill
                   sizes="(min-width: 1024px) 58vw, 100vw"
                   className="object-cover"
-                  style={getObjectPositionStyle(homeMatterAndLight.images[0])}
+                  style={getObjectPositionStyle(homeMatterAndLight.mainImage)}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/72 via-transparent to-transparent" />
               </div>
             </Reveal>
 
-            <div className="grid gap-4">
-              <Reveal delay={80}>
-                <div className="relative aspect-[5/4] min-h-[15rem] overflow-hidden rounded-[30px] border border-line">
-                  <Image
-                    src={homeMatterAndLight.images[1].src}
-                    alt={homeMatterAndLight.images[1].alt}
-                    fill
-                    sizes="(min-width: 1024px) 38vw, 100vw"
-                    className="object-cover"
-                    style={getObjectPositionStyle(homeMatterAndLight.images[1])}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" />
-                </div>
-              </Reveal>
-
-              <Reveal delay={140}>
-                <div className="relative aspect-[4/5] min-h-[15rem] overflow-hidden rounded-[28px] border border-line">
-                  <Image
-                    src={homeMatterAndLight.images[2].src}
-                    alt={homeMatterAndLight.images[2].alt}
-                    fill
-                    sizes="(min-width: 1024px) 38vw, 100vw"
-                    className="object-cover"
-                    style={getObjectPositionStyle(homeMatterAndLight.images[2])}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/45 to-transparent" />
-                </div>
-              </Reveal>
-            </div>
+            <Reveal delay={80}>
+              <div className="relative aspect-[4/5] min-h-[24rem] overflow-hidden rounded-[30px] border border-line sm:min-h-[28rem] lg:min-h-[32rem]">
+                <Image
+                  src={homeMatterAndLight.supportImage.src}
+                  alt={homeMatterAndLight.supportImage.alt}
+                  fill
+                  sizes="(min-width: 1024px) 30vw, (min-width: 768px) 38vw, 100vw"
+                  className="object-cover"
+                  style={getObjectPositionStyle(homeMatterAndLight.supportImage)}
+                />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>

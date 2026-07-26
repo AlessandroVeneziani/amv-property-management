@@ -254,32 +254,22 @@ export const homeMatterAndLight = {
   title: "La materia dà corpo allo spazio. La luce lo rende leggibile.",
   description:
     "Materiali e illuminazione non vengono aggiunti alla fine. Sono parte della struttura del progetto.",
-  images: [
-    {
-      src: "/images/home/avm-materia-luce-salotto-led.png",
-      alt: "Soggiorno con parete TV retroilluminata, divano grigio, dining sul fondo e illuminazione architettonica calda",
-      objectPosition: "center center",
-      recommendedRatio: "16:10",
-      suggestedRealAssetName:
-        "public/images/home/avm-materia-luce-salotto-led.png"
-    },
-    {
-      src: "/images/projects/method-detail.png",
-      alt: "Passaggio architettonico con boiserie, metalli e luce integrata",
-      objectPosition: "center center",
-      recommendedRatio: "5:4",
-      suggestedRealAssetName:
-        "public/images/home/avm-home-materia-luce-detail-5x4.jpg"
-    },
-    {
-      src: "/images/home/avm-materia-luce-corridoio-led.png",
-      alt: "Corridoio con illuminazione LED integrata e geometrie luminose",
-      objectPosition: "center center",
-      recommendedRatio: "4:5",
-      suggestedRealAssetName:
-        "public/images/home/avm-materia-luce-corridoio-led.png"
-    }
-  ]
+  mainImage: {
+    src: "/images/home/avm-materia-luce-main.webp",
+    alt: "Ambiente con lampadario dorato a raggiera, pareti verdi verticali illuminate, tavolo rotondo centrale e superfici in pietra",
+    objectPosition: "center center",
+    recommendedRatio: "16:9",
+    suggestedRealAssetName:
+      "public/images/home/avm-materia-luce-main.webp"
+  },
+  supportImage: {
+    src: "/images/home/avm-materia-luce-bedroom.webp",
+    alt: "Camera da letto con armadio in vetro fumé illuminato, letto imbottito, parete marmorea retroilluminata e listelli verticali in legno",
+    objectPosition: "center center",
+    recommendedRatio: "4:5",
+    suggestedRealAssetName:
+      "public/images/home/avm-materia-luce-bedroom.webp"
+  }
 } as const;
 
 export const homeFounder = {
