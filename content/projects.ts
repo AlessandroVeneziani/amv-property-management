@@ -38,6 +38,19 @@ export type Project = {
   };
 };
 
+export type ListedProject = {
+  slug: string;
+  title: string;
+  eyebrow: string;
+  description: string;
+  image: EditorialImageAsset;
+  city: string;
+  status: ProjectStatus;
+  href: string | null;
+  summary?: string;
+  valueStory?: Project["valueStory"];
+};
+
 export const projects: Project[] = [
   {
     slug: "la-galleria",
@@ -357,4 +370,74 @@ export const projects: Project[] = [
 export const projectCities = Array.from(new Set(projects.map((project) => project.city)));
 export const projectStatuses = Array.from(
   new Set(projects.map((project) => project.status))
+) as ProjectStatus[];
+
+const laGalleriaProject =
+  projects.find((project) => project.slug === "la-galleria") ?? null;
+
+export const listedProjects: ListedProject[] = [
+  {
+    slug: "brunelleschi",
+    title: "Brunelleschi",
+    eyebrow: "MILANO · CONCEPT RESIDENZIALE",
+    description:
+      "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva.",
+    image: {
+      src: "/images/projects/brunelleschi/brunelleschi-home-cover.webp",
+      alt: "Brunelleschi, living con divano curvo, lampadario ad anelli, tavolo davanti alla finestra e cucina sul fondo",
+      objectPosition: "center center",
+      recommendedRatio: "16:9",
+      suggestedRealAssetName:
+        "public/images/projects/brunelleschi/brunelleschi-home-cover.webp"
+    },
+    city: "Milano",
+    status: "In valorizzazione",
+    href: null,
+    summary:
+      "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva."
+  },
+  {
+    slug: "imbonati-15",
+    title: "Imbonati 15",
+    eyebrow: "MILANO · FRAZIONAMENTO E VALORIZZAZIONE",
+    description:
+      "Un appartamento originario trasformato in due residenze indipendenti, attraverso distribuzione, luce e materia.",
+    image: {
+      src: "/images/projects/imbonati-15/imbonati-home-cover.webp",
+      alt: "Imbonati 15, cucina lineare color tortora con penisola, quattro sgabelli, lampadario scultoreo e zona TV sul fondo",
+      objectPosition: "center center",
+      recommendedRatio: "16:9",
+      suggestedRealAssetName:
+        "public/images/projects/imbonati-15/imbonati-home-cover.webp"
+    },
+    city: "Milano",
+    status: "In valorizzazione",
+    href: null,
+    summary:
+      "Un appartamento originario trasformato in due residenze indipendenti, attraverso distribuzione, luce e materia."
+  },
+  ...(laGalleriaProject
+    ? [
+        {
+          slug: laGalleriaProject.slug,
+          title: laGalleriaProject.title,
+          eyebrow: `${laGalleriaProject.city.toUpperCase()} · ${laGalleriaProject.category.toUpperCase()}`,
+          description: laGalleriaProject.summary,
+          image: laGalleriaProject.coverImage,
+          city: laGalleriaProject.city,
+          status: laGalleriaProject.status,
+          href: `/progetti/${laGalleriaProject.slug}`,
+          summary: laGalleriaProject.summary,
+          valueStory: laGalleriaProject.valueStory
+        } satisfies ListedProject
+      ]
+    : [])
+];
+
+export const listedProjectCities = Array.from(
+  new Set(listedProjects.map((project) => project.city))
+);
+
+export const listedProjectStatuses = Array.from(
+  new Set(listedProjects.map((project) => project.status))
 ) as ProjectStatus[];

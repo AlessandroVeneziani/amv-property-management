@@ -165,38 +165,7 @@ export const homeSelectedProjects = {
     href: "/progetti"
   },
   projectCtaLabel: "Scopri il progetto",
-  projects: [
-    {
-      slug: "brunelleschi",
-      eyebrow: "MILANO · CONCEPT RESIDENZIALE",
-      title: "Brunelleschi",
-      description:
-        "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva.",
-      image: {
-        src: "/images/projects/brunelleschi/brunelleschi-home-cover.webp",
-        alt: "Brunelleschi, living con divano curvo, lampadario ad anelli, tavolo davanti alla finestra e cucina sul fondo",
-        objectPosition: "center center",
-        recommendedRatio: "16:9",
-        suggestedRealAssetName:
-          "public/images/projects/brunelleschi/brunelleschi-home-cover.webp"
-      }
-    },
-    {
-      slug: "imbonati-15",
-      eyebrow: "MILANO · FRAZIONAMENTO E VALORIZZAZIONE",
-      title: "Imbonati 15",
-      description:
-        "Un appartamento originario trasformato in due residenze indipendenti, attraverso distribuzione, luce e materia.",
-      image: {
-        src: "/images/projects/imbonati-15/imbonati-home-cover.webp",
-        alt: "Imbonati 15, cucina lineare color tortora con penisola, quattro sgabelli, lampadario scultoreo e zona TV sul fondo",
-        objectPosition: "center center",
-        recommendedRatio: "16:9",
-        suggestedRealAssetName:
-          "public/images/projects/imbonati-15/imbonati-home-cover.webp"
-      }
-    }
-  ]
+  projectPendingLabel: "Progetto in preparazione"
 } as const;
 
 export const homeMethod = {

@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 
-import type { Project, ProjectStatus } from "@/content/projects";
+import type { ListedProject, ProjectStatus } from "@/content/projects";
 import { ProjectCard } from "@/components/project-card";
 
 type ProjectExplorerProps = {
-  projects: Project[];
+  projects: ListedProject[];
   cities: string[];
   statuses: ProjectStatus[];
 };

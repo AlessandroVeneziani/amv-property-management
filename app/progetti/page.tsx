@@ -1,7 +1,11 @@
 import { PageHero } from "@/components/page-hero";
 import { ProjectExplorer } from "@/components/project-explorer";
 import { Reveal } from "@/components/reveal";
-import { projectCities, projects, projectStatuses } from "@/content/projects";
+import {
+  listedProjectCities,
+  listedProjects,
+  listedProjectStatuses
+} from "@/content/projects";
 import { createMetadata } from "@/content/site";
 
 export const metadata = createMetadata({
@@ -21,9 +25,9 @@ export default function ProjectsPage() {
       >
         <div className="grid gap-3 sm:grid-cols-3">
           {[
-            { label: "Progetti", value: String(projects.length) },
-            { label: "Città", value: String(projectCities.length) },
-            { label: "Stati", value: String(projectStatuses.length) }
+            { label: "Progetti", value: String(listedProjects.length) },
+            { label: "Città", value: String(listedProjectCities.length) },
+            { label: "Stati", value: String(listedProjectStatuses.length) }
           ].map((item) => (
             <div key={item.label} className="rounded-[24px] border border-line bg-white/[0.02] p-4">
               <p className="text-xs uppercase tracking-[0.22em] text-muted">{item.label}</p>
@@ -37,9 +41,9 @@ export default function ProjectsPage() {
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
             <ProjectExplorer
-              projects={projects}
-              cities={projectCities}
-              statuses={projectStatuses}
+              projects={listedProjects}
+              cities={listedProjectCities}
+              statuses={listedProjectStatuses}
             />
           </Reveal>
         </div>

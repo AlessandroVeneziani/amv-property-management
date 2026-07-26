@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/reveal";
-import type { Project } from "@/content/projects";
-import { projects } from "@/content/projects";
+import type { ListedProject, Project } from "@/content/projects";
+import { listedProjects, projects } from "@/content/projects";
 import {
   createMetadata,
   homeFinalContact,
@@ -62,18 +62,7 @@ const transformationSourceProject =
   projects.find((candidate) => candidate.slug === "la-galleria") ?? fallbackProject;
 const transformationProject = buildHomeProjectPreview(transformationSourceProject);
 
-type HomeSelectedProjectItem = (typeof homeSelectedProjects.projects)[number] & {
-  href: string | null;
-};
-
-const availableProjectSlugs = new Set(projects.map((project) => project.slug));
-const selectedHomeProjects: HomeSelectedProjectItem[] =
-  homeSelectedProjects.projects.map((project) => ({
-    ...project,
-    href: availableProjectSlugs.has(project.slug as Project["slug"])
-      ? `/progetti/${project.slug}`
-      : null
-  }));
+const selectedHomeProjects: ListedProject[] = listedProjects;
 
 const getObjectPositionStyle = (
   image: { objectPosition?: string } | undefined
@@ -247,7 +236,7 @@ export default function HomePage() {
                             aria-disabled="true"
                             className="inline-flex items-center gap-3 pt-2 text-sm uppercase tracking-[0.18em] text-accent/78"
                           >
-                            {homeSelectedProjects.projectCtaLabel}
+                            {homeSelectedProjects.projectPendingLabel}
                             <span aria-hidden="true">+</span>
                           </span>
                         )}

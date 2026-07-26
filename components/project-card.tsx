@@ -1,35 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import type { Project } from "@/content/projects";
+import type { ListedProject } from "@/content/projects";
 
 type ProjectCardProps = {
-  project: Project;
+  project: ListedProject;
   tall?: boolean;
 };
 
 export function ProjectCard({ project, tall = false }: ProjectCardProps) {
-  return (
-    <Link
-      href={`/progetti/${project.slug}`}
-      className="group block h-full overflow-hidden rounded-[28px] border border-line bg-white/[0.03] shadow-glow transition duration-500 hover:-translate-y-1 hover:border-accent/40"
-    >
+  const content = (
+    <>
       <div
         className={`relative ${
           tall ? "aspect-[16/10] min-h-[26rem]" : "aspect-[5/4] min-h-[22rem]"
         }`}
       >
         <Image
-          src={project.coverImage.src}
-          alt={project.coverImage.alt}
+          src={project.image.src}
+          alt={project.image.alt}
           fill
           sizes={
             tall ? "(min-width: 1024px) 56vw, 100vw" : "(min-width: 1024px) 32vw, 100vw"
           }
           className="object-cover transition duration-700 group-hover:scale-105"
           style={
-            project.coverImage.objectPosition
-              ? { objectPosition: project.coverImage.objectPosition }
+            project.image.objectPosition
+              ? { objectPosition: project.image.objectPosition }
               : undefined
           }
         />
@@ -55,15 +52,39 @@ export function ProjectCard({ project, tall = false }: ProjectCardProps) {
                 </p>
               </div>
             ) : (
-              <p className="max-w-xl text-sm leading-6 text-sand/75">{project.summary}</p>
+              <p className="max-w-xl text-sm leading-6 text-sand/75">
+                {project.summary ?? project.description}
+              </p>
             )}
           </div>
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-accent transition group-hover:gap-3">
-            Vai al progetto
-            <span aria-hidden="true">+</span>
-          </span>
+          {project.href ? (
+            <span className="inline-flex items-center gap-2 text-sm font-medium text-accent transition group-hover:gap-3">
+              Vai al progetto
+              <span aria-hidden="true">+</span>
+            </span>
+          ) : (
+            <span
+              aria-disabled="true"
+              className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.16em] text-accent/78"
+            >
+              Progetto in preparazione
+            </span>
+          )}
         </div>
       </div>
-    </Link>
+    </>
   );
+
+  const className =
+    "group block h-full overflow-hidden rounded-[28px] border border-line bg-white/[0.03] shadow-glow transition duration-500 hover:-translate-y-1 hover:border-accent/40";
+
+  if (project.href) {
+    return (
+      <Link href={project.href} className={className}>
+        {content}
+      </Link>
+    );
+  }
+
+  return <div className={className}>{content}</div>;
 }
