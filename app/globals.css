@@ -62,47 +62,22 @@ main::before {
 @layer components {
   .home-ambient-background {
     @apply relative isolate overflow-hidden;
-    background:
-      radial-gradient(circle at 18% 10%, rgba(198, 167, 94, 0.075), transparent 26%),
-      radial-gradient(circle at 84% 14%, rgba(115, 90, 63, 0.095), transparent 28%),
-      radial-gradient(circle at 48% 58%, rgba(244, 241, 234, 0.022), transparent 34%),
-      linear-gradient(180deg, #12110f 0%, #11100e 38%, #100f0d 100%);
+    background-color: #0f0f0f;
+    background-image:
+      linear-gradient(rgba(8, 7, 6, 0.18), rgba(8, 7, 6, 0.3)),
+      url("/images/backgrounds/avm-dark-marmorino.webp");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   .home-ambient-background::before {
-    position: absolute;
-    inset: 0;
-    background:
-      url("/images/backgrounds/avm-dark-marmorino.webp"),
-      url("/images/backgrounds/avm-dark-marmorino.webp"),
-      radial-gradient(circle at 20% 24%, rgba(255, 255, 255, 0.03), transparent 24%),
-      radial-gradient(circle at 78% 66%, rgba(0, 0, 0, 0.18), transparent 38%);
-    background-size: 1020px 1020px, 760px 760px, auto, auto;
-    background-position: center top, 18% 22%, 20% 24%, 78% 66%;
-    background-repeat: repeat, repeat, no-repeat, no-repeat;
-    content: "";
-    mix-blend-mode: overlay;
-    opacity: 0.62;
-    pointer-events: none;
+    content: none;
   }
 
   .home-ambient-background::after {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(circle at 16% 16%, rgba(198, 167, 94, 0.085), transparent 26%),
-      radial-gradient(circle at 82% 20%, rgba(149, 118, 81, 0.072), transparent 24%),
-      radial-gradient(circle at 50% 52%, rgba(244, 241, 234, 0.035), transparent 32%),
-      radial-gradient(circle at 38% 78%, rgba(198, 167, 94, 0.055), transparent 28%),
-      url("/images/backgrounds/avm-dark-marmorino.webp");
-    background-size: auto, auto, auto, auto, 1240px 1240px;
-    background-position: 16% 16%, 82% 20%, 50% 52%, 38% 78%, center 120px;
-    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
-    content: "";
-    filter: blur(44px);
-    mix-blend-mode: soft-light;
-    opacity: 0.28;
-    pointer-events: none;
+    content: none;
   }
 
   .home-ambient-background > * {
@@ -234,5 +209,11 @@ main::before {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-ambient-background {
+    background-attachment: scroll;
   }
 }
