@@ -23,67 +23,6 @@ export const metadata = createMetadata({
   path: "/"
 });
 
-type HomeProjectOverride = {
-  title?: string;
-  city?: string;
-  status?: string;
-  category?: string;
-  summary?: string;
-};
-
-const selectedProjects = homeSelectedProjects.slugs
-  .map<HomeProjectPreview | null>((slug) => {
-    const project = projects.find((candidate) => candidate.slug === slug);
-
-    if (!project) {
-      return null;
-    }
-
-    const override =
-      homeSelectedProjects.overrides[
-        project.slug as keyof typeof homeSelectedProjects.overrides
-      ] as HomeProjectOverride | undefined;
-
-    return {
-      slug: project.slug,
-      href: `/progetti/${project.slug}`,
-      images: {
-        feature: project.homeMedia?.feature ?? project.coverImage,
-        split: project.homeMedia?.split ?? project.coverImage,
-        stack: project.homeMedia?.stack ?? project.coverImage,
-        before: project.homeMedia?.before ?? project.coverImage,
-        after: project.homeMedia?.after ?? project.coverImage
-      },
-      title: override?.title ?? project.title,
-      city: override?.city ?? project.city,
-      status: override?.status ?? project.status,
-      category: override?.category ?? project.category,
-      summary: override?.summary ?? project.summary
-    };
-  })
-  .filter((project): project is HomeProjectPreview => project !== null);
-
-const fallbackProject = projects[0];
-const primaryProject = selectedProjects[0] ?? {
-  slug: fallbackProject.slug,
-  href: `/progetti/${fallbackProject.slug}`,
-  images: {
-    feature: fallbackProject.homeMedia?.feature ?? fallbackProject.coverImage,
-    split: fallbackProject.homeMedia?.split ?? fallbackProject.coverImage,
-    stack: fallbackProject.homeMedia?.stack ?? fallbackProject.coverImage,
-    before: fallbackProject.homeMedia?.before ?? fallbackProject.coverImage,
-    after: fallbackProject.homeMedia?.after ?? fallbackProject.coverImage
-  },
-  title: fallbackProject.title,
-  city: fallbackProject.city,
-  status: fallbackProject.status,
-  category: fallbackProject.category,
-  summary: fallbackProject.summary
-};
-const secondaryProject = selectedProjects[1] ?? primaryProject;
-const tertiaryProject = selectedProjects[2] ?? secondaryProject;
-const transformationProject = primaryProject;
-
 type HomeProjectPreview = {
   slug: Project["slug"];
   href: string;
@@ -101,153 +40,44 @@ type HomeProjectPreview = {
   summary: string;
 };
 
+const buildHomeProjectPreview = (project: Project): HomeProjectPreview => ({
+  slug: project.slug,
+  href: `/progetti/${project.slug}`,
+  images: {
+    feature: project.homeMedia?.feature ?? project.coverImage,
+    split: project.homeMedia?.split ?? project.coverImage,
+    stack: project.homeMedia?.stack ?? project.coverImage,
+    before: project.homeMedia?.before ?? project.coverImage,
+    after: project.homeMedia?.after ?? project.coverImage
+  },
+  title: project.title,
+  city: project.city,
+  status: project.status,
+  category: project.category,
+  summary: project.summary
+});
+
+const fallbackProject = projects[0];
+const transformationSourceProject =
+  projects.find((candidate) => candidate.slug === "la-galleria") ?? fallbackProject;
+const transformationProject = buildHomeProjectPreview(transformationSourceProject);
+
+type HomeSelectedProjectItem = (typeof homeSelectedProjects.projects)[number] & {
+  href: string | null;
+};
+
+const availableProjectSlugs = new Set(projects.map((project) => project.slug));
+const selectedHomeProjects: HomeSelectedProjectItem[] =
+  homeSelectedProjects.projects.map((project) => ({
+    ...project,
+    href: availableProjectSlugs.has(project.slug as Project["slug"])
+      ? `/progetti/${project.slug}`
+      : null
+  }));
+
 const getObjectPositionStyle = (
   image: { objectPosition?: string } | undefined
 ) => (image?.objectPosition ? { objectPosition: image.objectPosition } : undefined);
-
-type EditorialProjectPreviewProps = {
-  project: HomeProjectPreview;
-  variant: "feature" | "split" | "stack";
-};
-
-function EditorialProjectPreview({
-  project,
-  variant
-}: EditorialProjectPreviewProps) {
-  const image =
-    variant === "feature"
-      ? project.images.feature
-      : variant === "split"
-        ? project.images.split
-        : project.images.stack;
-
-  if (variant === "feature") {
-    return (
-      <Link
-        href={project.href}
-        className="group editorial-dark-surface block overflow-hidden rounded-[34px] border border-line"
-      >
-        <div className="relative aspect-[16/10] min-h-[31rem] sm:min-h-[34rem] lg:min-h-[36rem]">
-          <Image
-            src={image.src}
-            alt={`Vista interna del progetto ${project.title} a ${project.city}`}
-            fill
-            sizes="100vw"
-            className="object-cover transition duration-700 group-hover:scale-[1.02]"
-            style={getObjectPositionStyle(image)}
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,15,15,0.06),rgba(15,15,15,0.42)_52%,rgba(15,15,15,0.92))]" />
-
-          <div className="absolute inset-x-0 bottom-0 space-y-5 p-6 sm:p-8 lg:p-10">
-            <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.24em] text-sand/70">
-              <span>{project.city}</span>
-              <span className="h-1 w-1 rounded-full bg-accent" />
-              <span>{project.category}</span>
-              <span className="h-1 w-1 rounded-full bg-accent" />
-              <span>{project.status}</span>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="max-w-2xl font-serif text-3xl text-sand sm:text-4xl">
-                {project.title}
-              </h3>
-              <p className="max-w-2xl text-sm leading-7 text-sand/78 sm:text-base">
-                {project.summary}
-              </p>
-            </div>
-
-            <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.18em] text-accent transition group-hover:gap-4">
-              Apri progetto
-              <span aria-hidden="true">+</span>
-            </span>
-          </div>
-        </div>
-      </Link>
-    );
-  }
-
-  if (variant === "split") {
-    return (
-      <Link
-        href={project.href}
-        className="group editorial-dark-surface block overflow-hidden rounded-[32px] border border-line"
-      >
-        <div className="grid gap-0 md:grid-cols-[0.52fr_0.48fr]">
-          <div className="relative aspect-[5/4] min-h-[18rem] md:min-h-full">
-            <Image
-              src={image.src}
-              alt={`Interno del progetto ${project.title} a ${project.city}`}
-              fill
-              sizes="(min-width: 1024px) 22vw, 100vw"
-              className="object-cover transition duration-700 group-hover:scale-[1.02]"
-              style={getObjectPositionStyle(image)}
-            />
-          </div>
-
-          <div className="flex flex-col justify-between gap-6 p-6 sm:p-7">
-            <div className="space-y-4">
-              <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-muted">
-                <span>{project.city}</span>
-                <span className="h-1 w-1 rounded-full bg-accent" />
-                <span>{project.status}</span>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-serif text-2xl text-sand">{project.title}</h3>
-                <p className="text-xs uppercase tracking-[0.22em] text-accent">
-                  {project.category}
-                </p>
-              </div>
-              <p className="text-sm leading-7 text-muted">{project.summary}</p>
-            </div>
-
-            <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.18em] text-accent transition group-hover:gap-4">
-              Apri progetto
-              <span aria-hidden="true">+</span>
-            </span>
-          </div>
-        </div>
-      </Link>
-    );
-  }
-
-  return (
-    <Link
-      href={project.href}
-      className="group editorial-dark-surface block overflow-hidden rounded-[32px] border border-line"
-    >
-      <div className="relative aspect-[4/5] min-h-[18rem] overflow-hidden">
-        <Image
-          src={image.src}
-          alt={`Camera e atmosfera del progetto ${project.title} a ${project.city}`}
-          fill
-          sizes="(min-width: 1024px) 30vw, 100vw"
-          className="object-cover transition duration-700 group-hover:scale-[1.03]"
-          style={getObjectPositionStyle(image)}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent" />
-      </div>
-
-      <div className="space-y-4 p-6 sm:p-7">
-        <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-muted">
-          <span>{project.city}</span>
-          <span className="h-1 w-1 rounded-full bg-accent" />
-          <span>{project.category}</span>
-          <span className="h-1 w-1 rounded-full bg-accent" />
-          <span>{project.status}</span>
-        </div>
-        <div className="space-y-2">
-          <h3 className="font-serif text-2xl text-sand">{project.title}</h3>
-          <p className="text-sm leading-7 text-muted">{project.summary}</p>
-        </div>
-
-        <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.18em] text-accent transition group-hover:gap-4">
-          Apri progetto
-          <span aria-hidden="true">+</span>
-        </span>
-      </div>
-    </Link>
-  );
-}
 
 export default function HomePage() {
   return (
@@ -367,44 +197,66 @@ export default function HomePage() {
 
       <section id="progetti" className="section-space">
         <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-3xl space-y-4">
-              <p className="eyebrow">{homeSelectedProjects.eyebrow}</p>
-              <h2 className="font-serif text-3xl leading-tight text-balance text-sand sm:text-4xl lg:text-5xl">
-                {homeSelectedProjects.title}
-              </h2>
-              <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg">
-                {homeSelectedProjects.description}
-              </p>
-            </div>
-
-            <Link href={homeSelectedProjects.cta.href} className="gold-outline-btn">
-              {homeSelectedProjects.cta.label}
-            </Link>
+          <Reveal className="max-w-3xl space-y-4">
+            <p className="eyebrow">{homeSelectedProjects.eyebrow}</p>
+            <h2 className="font-serif text-3xl leading-tight text-balance text-sand sm:text-4xl lg:text-5xl">
+              {homeSelectedProjects.title}
+            </h2>
+            <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg">
+              {homeSelectedProjects.description}
+            </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6">
-            <Reveal>
-              <EditorialProjectPreview
-                project={primaryProject}
-                variant="feature"
-              />
-            </Reveal>
+          <div className="mt-12 space-y-8 lg:space-y-10">
+            {selectedHomeProjects.map((project, index) => (
+              <Reveal key={project.slug} delay={index * 90}>
+                <article className="relative overflow-hidden rounded-[34px]">
+                  <div className="relative aspect-[16/11] min-h-[24rem] sm:min-h-[28rem] md:aspect-[16/10] lg:aspect-[16/9] lg:min-h-[34rem]">
+                    <Image
+                      src={project.image.src}
+                      alt={project.image.alt}
+                      fill
+                      sizes="100vw"
+                      className="object-cover"
+                      style={getObjectPositionStyle(project.image)}
+                    />
+                    <div className="pointer-events-none absolute bottom-0 left-0 h-[58%] w-full max-w-[44rem] bg-[linear-gradient(180deg,rgba(8,7,6,0)_0%,rgba(8,7,6,0.14)_26%,rgba(8,7,6,0.86)_100%)] sm:max-w-[46rem]" />
 
-            <div className="grid gap-6 md:grid-cols-2">
-              <Reveal delay={90}>
-                <EditorialProjectPreview
-                  project={secondaryProject}
-                  variant="split"
-                />
+                    <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10">
+                      <div className="max-w-[32rem] space-y-3 sm:max-w-[34rem]">
+                        <p className="text-[11px] uppercase tracking-[0.24em] text-sand/72 sm:text-xs">
+                          {project.eyebrow}
+                        </p>
+                        <h3 className="font-serif text-3xl text-sand sm:text-4xl">
+                          {project.title}
+                        </h3>
+                        <p className="text-sm leading-7 text-sand/82 sm:text-base">
+                          {project.description}
+                        </p>
+
+                        {project.href ? (
+                          <Link
+                            href={project.href}
+                            className="inline-flex items-center gap-3 pt-2 text-sm uppercase tracking-[0.18em] text-accent"
+                          >
+                            {homeSelectedProjects.projectCtaLabel}
+                            <span aria-hidden="true">+</span>
+                          </Link>
+                        ) : (
+                          <span
+                            aria-disabled="true"
+                            className="inline-flex items-center gap-3 pt-2 text-sm uppercase tracking-[0.18em] text-accent/78"
+                          >
+                            {homeSelectedProjects.projectCtaLabel}
+                            <span aria-hidden="true">+</span>
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </article>
               </Reveal>
-              <Reveal delay={160}>
-                <EditorialProjectPreview
-                  project={tertiaryProject}
-                  variant="split"
-                />
-              </Reveal>
-            </div>
+            ))}
           </div>
         </div>
       </section>
