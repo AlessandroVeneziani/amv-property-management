@@ -263,75 +263,42 @@ export default function HomePage() {
 
       <section id="metodo" className="section-space pt-4">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr]">
-            <Reveal className="space-y-8 lg:sticky lg:top-28 lg:self-start">
-              <div className="space-y-4">
-                <p className="eyebrow">{homeMethod.eyebrow}</p>
-                <h2 className="font-serif text-3xl leading-tight text-balance text-sand sm:text-4xl lg:text-5xl">
-                  {homeMethod.title}
-                </h2>
-                <p className="max-w-xl text-base leading-7 text-muted sm:text-lg">
-                  {homeMethod.description}
-                </p>
-              </div>
-
-              <div className="grid gap-4 sm:grid-cols-[1.08fr_0.92fr]">
-                <div className="relative aspect-[4/5] min-h-[20rem] overflow-hidden rounded-[30px] border border-line">
-                  <Image
-                    src={homeMethod.image.src}
-                    alt={homeMethod.image.alt}
-                    fill
-                    sizes="(min-width: 1024px) 24vw, 100vw"
-                    className="object-cover"
-                    style={getObjectPositionStyle(homeMethod.image)}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
-                </div>
-                <div className="grid gap-4">
-                  <div className="relative aspect-[5/4] min-h-[9.5rem] overflow-hidden rounded-[28px] border border-line">
-                    <Image
-                      src={homeMethod.detailImage.src}
-                      alt={homeMethod.detailImage.alt}
-                      fill
-                      sizes="(min-width: 1024px) 14vw, 100vw"
-                      className="object-cover"
-                      style={getObjectPositionStyle(homeMethod.detailImage)}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" />
-                  </div>
-                  <div className="panel editorial-dark-surface flex min-h-[9.5rem] flex-col justify-between p-5">
-                    <p className="text-xs uppercase tracking-[0.24em] text-accent">
-                      Domanda guida
-                    </p>
-                    <p className="font-serif text-xl leading-snug text-sand">
-                      Ogni scelta deve aumentare coerenza, funzionalità e valore percepito.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <Link href={homeMethod.cta.href} className="gold-outline-btn">
-                {homeMethod.cta.label}
-              </Link>
+          <div className="space-y-10 lg:space-y-12">
+            <Reveal className="max-w-3xl space-y-4">
+              <p className="eyebrow">{homeMethod.eyebrow}</p>
+              <h2 className="font-serif text-3xl leading-tight text-balance text-sand sm:text-4xl lg:text-5xl">
+                {homeMethod.title}
+              </h2>
+              <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg">
+                {homeMethod.description}
+              </p>
             </Reveal>
 
-            <ol className="space-y-5">
+            <ol className="grid gap-x-10 gap-y-0 border-t border-line/80 md:grid-cols-2 lg:grid-cols-3">
               {homeMethod.steps.map((step, index) => (
                 <Reveal
                   key={step.index}
                   delay={index * 80}
-                  className={index % 2 === 1 ? "lg:ml-12" : ""}
                 >
-                  <li className="relative border-l border-line pl-8">
-                    <span className="absolute -left-[5px] top-2 h-[10px] w-[10px] rounded-full bg-accent shadow-[0_0_0_4px_rgba(198,167,94,0.14)]" />
-                    <div className="grid gap-3 pb-6 sm:grid-cols-[76px_1fr] sm:gap-6">
-                      <p className="font-serif text-3xl text-accent">{step.index}</p>
-                      <div className="space-y-2">
-                        <h3 className="font-serif text-2xl text-sand">{step.title}</h3>
-                        <p className="max-w-2xl text-sm leading-7 text-muted sm:text-base">
-                          {step.text}
-                        </p>
-                      </div>
+                  <li
+                    className={[
+                      "flex min-h-[12.5rem] flex-col gap-4 border-t border-line/80 py-6 sm:min-h-[13.5rem] sm:py-7",
+                      index < 2 ? "md:border-t-0 md:pt-0" : "",
+                      index < 3 ? "lg:border-t-0 lg:pt-0" : ""
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                  >
+                    <p className="text-xs uppercase tracking-[0.22em] text-accent/90">
+                      {step.index}
+                    </p>
+                    <div className="space-y-3">
+                      <h3 className="font-serif text-2xl text-sand sm:text-[2rem]">
+                        {step.title}
+                      </h3>
+                      <p className="max-w-[18rem] text-sm leading-7 text-muted sm:text-base">
+                        {step.text}
+                      </p>
                     </div>
                   </li>
                 </Reveal>

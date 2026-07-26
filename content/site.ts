@@ -200,13 +200,10 @@ export const homeSelectedProjects = {
 } as const;
 
 export const homeMethod = {
-  eyebrow: "Metodo AVM",
-  title: "Dalla comprensione alla realizzazione.",
-  description: "Ogni progetto segue un processo preciso.",
-  cta: {
-    label: "Scopri il Metodo AVM",
-    href: "/metodo-avm"
-  },
+  eyebrow: "METODO AVM",
+  title: "Sei passaggi. Una sola direzione.",
+  description:
+    "Dal potenziale dell’immobile alla realizzazione, ogni scelta segue un ordine preciso.",
   steps: [
     {
       index: "01",
@@ -215,46 +212,30 @@ export const homeMethod = {
     },
     {
       index: "02",
-      title: "Definire la destinazione",
-      text: "Comprendere quale ruolo deve assumere l’immobile."
+      title: "Definire",
+      text: "Stabilire il ruolo e l’obiettivo dell’immobile."
     },
     {
       index: "03",
-      title: "Individuare il potenziale",
-      text: "Stabilire cosa conservare, correggere e trasformare."
+      title: "Selezionare",
+      text: "Capire cosa conservare, correggere e trasformare."
     },
     {
       index: "04",
-      title: "Costruire la strategia",
-      text: "Definire priorità, investimento e direzione."
+      title: "Progettare",
+      text: "Tradurre la strategia in scelte concrete."
     },
     {
       index: "05",
-      title: "Progettare con coerenza",
-      text: "Tradurre la visione in scelte concrete."
+      title: "Coordinare",
+      text: "Tenere insieme spazio, luce, materia e investimento."
     },
     {
       index: "06",
-      title: "Proteggere la direzione",
-      text: "Mantenere coerenza fino alla realizzazione."
+      title: "Verificare",
+      text: "Proteggere la coerenza fino al risultato finale."
     }
-  ],
-  image: {
-    src: "/images/projects/method-detail.png",
-    alt: "Passaggio architettonico con soglia materica, boiserie e luce integrata",
-    objectPosition: "center center",
-    recommendedRatio: "4:5",
-    suggestedRealAssetName:
-      "public/images/home/avm-home-method-main-4x5.jpg"
-  },
-  detailImage: {
-    src: "/images/hero-milano.png",
-    alt: "Interno serale con skyline milanese, luce controllata e atmosfera raccolta",
-    objectPosition: "center center",
-    recommendedRatio: "5:4",
-    suggestedRealAssetName:
-      "public/images/home/avm-home-method-detail-5x4.jpg"
-  }
+  ]
 } as const;
 
 export const homeTransformationStory = {

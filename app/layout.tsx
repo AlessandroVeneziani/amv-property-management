@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it" className={`${inter.variable} ${playfairDisplay.variable}`}>
-      <body className="bg-ink text-sand antialiased">
+      <body className="site-ambient-background text-sand antialiased">
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />
