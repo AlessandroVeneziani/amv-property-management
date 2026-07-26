@@ -13,10 +13,9 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at top left, rgba(198, 167, 94, 0.08), transparent 34%),
-    radial-gradient(circle at top right, rgba(244, 241, 234, 0.05), transparent 26%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 24%),
-    #0f0f0f;
+    radial-gradient(circle at 16% 8%, rgba(198, 167, 94, 0.06), transparent 28%),
+    radial-gradient(circle at 84% 12%, rgba(122, 94, 61, 0.06), transparent 24%),
+    linear-gradient(180deg, #12100f 0%, #0f0f0f 42%, #11100f 100%);
   color: #f4f1ea;
   font-family: var(--font-body), sans-serif;
 }
@@ -33,13 +32,17 @@ main::before {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 120px 120px;
-  mask-image: linear-gradient(180deg, transparent, black 15%, black 85%, transparent);
+  background:
+    radial-gradient(circle at 20% 16%, rgba(255, 255, 255, 0.016), transparent 24%),
+    radial-gradient(circle at 78% 26%, rgba(198, 167, 94, 0.022), transparent 20%),
+    radial-gradient(circle at 52% 74%, rgba(0, 0, 0, 0.12), transparent 28%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='800' height='800' filter='url(%23n)' opacity='0.65'/%3E%3C/svg%3E");
+  background-size: auto, auto, auto, 720px 720px;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
   content: "";
-  opacity: 0.28;
+  mix-blend-mode: soft-light;
+  opacity: 0.22;
+  pointer-events: none;
 }
 
 @layer base {
@@ -60,27 +63,32 @@ main::before {
   .home-ambient-background {
     @apply relative isolate overflow-hidden;
     background:
-      radial-gradient(circle at 14% 10%, rgba(198, 167, 94, 0.08), transparent 24%),
-      radial-gradient(circle at 82% 14%, rgba(124, 93, 56, 0.1), transparent 22%),
-      radial-gradient(circle at 48% 38%, rgba(244, 241, 234, 0.025), transparent 30%),
-      linear-gradient(180deg, #14110f 0%, #0f0f0f 44%, #12100f 100%);
+      radial-gradient(circle at 12% 10%, rgba(198, 167, 94, 0.07), transparent 24%),
+      radial-gradient(circle at 82% 16%, rgba(133, 101, 66, 0.08), transparent 24%),
+      radial-gradient(circle at 52% 42%, rgba(244, 241, 234, 0.02), transparent 32%),
+      radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.24), transparent 42%),
+      linear-gradient(180deg, #14110f 0%, #0f0f0f 42%, #11100f 100%);
   }
 
   .home-ambient-background::before {
     position: absolute;
     inset: 0;
     background:
+      radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.02), transparent 22%),
+      radial-gradient(circle at 76% 62%, rgba(0, 0, 0, 0.16), transparent 36%),
       linear-gradient(
-        125deg,
-        rgba(255, 255, 255, 0.018) 0%,
-        transparent 22%,
-        rgba(198, 167, 94, 0.018) 48%,
-        transparent 72%
+        118deg,
+        rgba(255, 255, 255, 0.014) 0%,
+        transparent 26%,
+        rgba(198, 167, 94, 0.016) 48%,
+        transparent 74%
       ),
-      radial-gradient(circle at 20% 24%, rgba(255, 255, 255, 0.028), transparent 36%),
-      radial-gradient(circle at 76% 68%, rgba(0, 0, 0, 0.16), transparent 42%);
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 1200'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.58' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='1200' height='1200' filter='url(%23m)' opacity='0.65'/%3E%3C/svg%3E");
+    background-size: auto, auto, auto, 880px 880px;
+    background-repeat: no-repeat, no-repeat, no-repeat, repeat;
     content: "";
-    opacity: 0.72;
+    mix-blend-mode: soft-light;
+    opacity: 0.16;
     pointer-events: none;
   }
 
@@ -88,12 +96,13 @@ main::before {
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.016), transparent 16%, transparent 84%, rgba(0, 0, 0, 0.1)),
-      radial-gradient(circle at 50% 18%, rgba(198, 167, 94, 0.028), transparent 32%),
-      radial-gradient(circle at 12% 74%, rgba(244, 241, 234, 0.016), transparent 24%);
+      radial-gradient(circle at 14% 12%, rgba(198, 167, 94, 0.032), transparent 24%),
+      radial-gradient(circle at 84% 18%, rgba(143, 114, 80, 0.028), transparent 22%),
+      radial-gradient(circle at 48% 54%, rgba(244, 241, 234, 0.012), transparent 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.012), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.08));
     content: "";
-    filter: blur(32px);
-    opacity: 0.62;
+    filter: blur(56px);
+    opacity: 0.58;
     pointer-events: none;
   }
 
