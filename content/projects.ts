@@ -1,4 +1,8 @@
-import type { EditorialImageAsset } from "@/content/site";
+import {
+  homeTransformationStory,
+  inquiryLinks,
+  type EditorialImageAsset
+} from "@/content/site";
 
 export type ProjectStatus =
   | "In portfolio"
@@ -441,3 +445,435 @@ export const listedProjectCities = Array.from(
 export const listedProjectStatuses = Array.from(
   new Set(listedProjects.map((project) => project.status))
 ) as ProjectStatus[];
+
+export type ProjectPageVisibility = "published" | "draft";
+
+export type ProjectPageImage = EditorialImageAsset & {
+  mobileObjectPosition?: string;
+};
+
+export type ProjectPageFact = {
+  label: string;
+  value: string;
+};
+
+export type ProjectPageNarrative = {
+  introduction?: string[];
+  startingPoint?: string[];
+  objective?: string[];
+  designDirection?: string[];
+  distribution?: string;
+  light?: string;
+  matter?: string;
+  result?: string[];
+  expectedDirection?: string[];
+};
+
+export type ProjectPageEditorialSection = {
+  type: "editorial";
+  id: string;
+  eyebrow?: string;
+  title: string;
+  paragraphs: string[];
+  image: ProjectPageImage;
+  imageSide?: "left" | "right";
+  surface?: "transparent" | "light";
+};
+
+export type ProjectPageFullWidthSection = {
+  type: "full-width-media";
+  id: string;
+  eyebrow?: string;
+  title?: string;
+  paragraphs?: string[];
+  image: ProjectPageImage;
+};
+
+export type ProjectPageFocusSection = {
+  type: "focus";
+  id: string;
+  eyebrow?: string;
+  title?: string;
+  items: Array<{
+    label: string;
+    text: string;
+  }>;
+};
+
+export type ProjectPageGallerySection = {
+  type: "gallery";
+  id: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  images: ProjectPageImage[];
+};
+
+export type ProjectPageBeforeAfterSection = {
+  type: "before-after";
+  id: string;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  beforeLabel: string;
+  afterLabel: string;
+  before: ProjectPageImage;
+  after: ProjectPageImage;
+};
+
+export type ProjectPageOutcomeSection = {
+  type: "outcome";
+  id: string;
+  eyebrow?: string;
+  title: string;
+  paragraphs: string[];
+  image?: ProjectPageImage;
+  mode?: "result" | "expected";
+};
+
+export type ProjectPageSection =
+  | ProjectPageEditorialSection
+  | ProjectPageFullWidthSection
+  | ProjectPageFocusSection
+  | ProjectPageGallerySection
+  | ProjectPageBeforeAfterSection
+  | ProjectPageOutcomeSection;
+
+export type ProjectPageCta = {
+  eyebrow?: string;
+  title: string;
+  paragraphs: string[];
+  primary: {
+    label: string;
+    href: string;
+  };
+  secondary?: {
+    label: string;
+    href: string;
+  };
+};
+
+export type ProjectPageTemplate = {
+  slug: string;
+  title: string;
+  place: string;
+  category: string;
+  status: string;
+  visibility: ProjectPageVisibility;
+  description: string;
+  hero: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    image?: ProjectPageImage;
+  };
+  summaryCard?: {
+    eyebrow?: string;
+    title?: string;
+    items: ProjectPageFact[];
+  };
+  narrative?: ProjectPageNarrative;
+  sections: ProjectPageSection[];
+  finalCta?: ProjectPageCta;
+  navigation?: {
+    previousSlug?: string;
+    nextSlug?: string;
+  };
+};
+
+const hasText = (value: string | undefined | null): value is string =>
+  Boolean(value && value.trim().length > 0);
+
+const compactText = (values: Array<string | undefined | null>) =>
+  values.filter(hasText);
+
+const toProjectPageImage = (
+  image: EditorialImageAsset,
+  mobileObjectPosition?: string
+): ProjectPageImage => ({
+  ...image,
+  mobileObjectPosition: mobileObjectPosition ?? image.objectPosition
+});
+
+const buildSummaryCard = (project: Project) => ({
+  eyebrow: "Scheda sintetica",
+  title: project.title,
+  items: [
+    { label: "Luogo", value: project.city },
+    { label: "Categoria", value: project.category },
+    { label: "Stato", value: project.status },
+    { label: "Anno", value: project.year },
+    { label: "Focus", value: project.focus.join(" · ") }
+  ]
+});
+
+const buildGenericProjectSections = (project: Project): ProjectPageSection[] => {
+  const sections: ProjectPageSection[] = [];
+  const gallery = project.galleryImages.map((image) => toProjectPageImage(image));
+  const galleryLead = gallery.find((image) => image.src !== project.coverImage.src);
+  const galleryTail = gallery.filter((image) => image.src !== galleryLead?.src);
+  const gallerySectionImages = galleryTail.length ? galleryTail : gallery;
+
+  if (galleryLead) {
+    sections.push({
+      type: "full-width-media",
+      id: "hero-detail",
+      eyebrow: "Fotografia del progetto",
+      image: galleryLead
+    });
+  }
+
+  if (hasText(project.approach)) {
+    sections.push({
+      type: "editorial",
+      id: "direction",
+      eyebrow: "Direzione progettuale",
+      title: "Una regia che tiene insieme spazio, tono e funzione.",
+      paragraphs: compactText([project.approach]),
+      image: toProjectPageImage(galleryTail[0] ?? project.coverImage),
+      imageSide: "left",
+      surface: "light"
+    });
+  }
+
+  if (gallerySectionImages.length > 0) {
+    sections.push({
+      type: "gallery",
+      id: "gallery",
+      eyebrow: "Galleria",
+      title: "Fotografie e dettagli del progetto.",
+      images: gallerySectionImages
+    });
+  }
+
+  if (hasText(project.outcome)) {
+    sections.push({
+      type: "outcome",
+      id: "result",
+      eyebrow: "Risultato",
+      title: "Un risultato che rende l’asset più chiaro e più leggibile.",
+      paragraphs: compactText([project.outcome]),
+      image: galleryTail[1]
+    });
+  }
+
+  return sections;
+};
+
+const buildGenericProjectPage = (project: Project): ProjectPageTemplate => ({
+  slug: project.slug,
+  title: project.title,
+  place: project.city,
+  category: project.category,
+  status: project.status,
+  visibility: "published",
+  description: project.summary,
+  hero: {
+    eyebrow: `${project.city.toUpperCase()} · ${project.category.toUpperCase()}`,
+    title: project.title,
+    description: project.description,
+    image: toProjectPageImage(project.coverImage, "center center")
+  },
+  summaryCard: buildSummaryCard(project),
+  narrative: {
+    introduction: compactText([project.summary, project.description]),
+    startingPoint: compactText([project.summary]),
+    objective: compactText([project.challenge]),
+    designDirection: compactText([project.approach]),
+    result: compactText([project.outcome])
+  },
+  sections: buildGenericProjectSections(project),
+  finalCta: {
+    eyebrow: "Contatto",
+    title: "Ogni trasformazione efficace nasce da una lettura lucida del contesto.",
+    paragraphs: [
+      "Se il progetto richiede direzione, coordinamento e una visione coerente, possiamo partire da qui."
+    ],
+    primary: {
+      label: "Richiedi una prima analisi",
+      href: inquiryLinks.consultation
+    },
+    secondary: {
+      label: "Vai ai contatti",
+      href: "/contatti"
+    }
+  }
+});
+
+const buildLaGalleriaProjectPage = (project: Project): ProjectPageTemplate => {
+  const beforeImage = project.homeMedia?.before
+    ? toProjectPageImage(project.homeMedia.before)
+    : null;
+  const afterImage = project.homeMedia?.after
+    ? toProjectPageImage(project.homeMedia.after, "56% center")
+    : null;
+
+  return {
+    slug: project.slug,
+    title: project.title,
+    place: project.city,
+    category: project.category,
+    status: project.status,
+    visibility: "published",
+    description: project.summary,
+    hero: {
+      eyebrow: `${project.city.toUpperCase()} · ${project.category.toUpperCase()}`,
+      title: project.title,
+      description: project.description,
+      image: toProjectPageImage(project.coverImage, "52% center")
+    },
+    summaryCard: buildSummaryCard(project),
+    narrative: {
+      introduction: compactText([project.summary, project.description]),
+      startingPoint: compactText([homeTransformationStory.beforeText]),
+      objective: compactText([project.challenge]),
+      designDirection: compactText([homeTransformationStory.processText]),
+      distribution:
+        "La destinazione d’uso è stata ridefinita per trasformare uno spazio ibrido in una residenza hospitality leggibile.",
+      light:
+        "La luce è stata coordinata per costruire un’atmosfera più calda, riconoscibile e coerente con l’esperienza abitativa.",
+      matter:
+        "Arredi, superfici e tono complessivo sono stati riallineati per dare continuità percettiva e rafforzare il posizionamento.",
+      result: compactText([project.outcome, homeTransformationStory.afterText])
+    },
+    sections: [
+      ...(beforeImage && afterImage
+        ? ([
+            {
+              type: "before-after",
+              id: "before-after",
+              eyebrow: homeTransformationStory.eyebrow,
+              title: homeTransformationStory.comparisonTitle,
+              description: homeTransformationStory.description,
+              beforeLabel: homeTransformationStory.beforeSectionTitle,
+              afterLabel: homeTransformationStory.resultSectionTitle,
+              before: beforeImage,
+              after: afterImage
+            } satisfies ProjectPageBeforeAfterSection
+          ] as ProjectPageSection[])
+        : []),
+      {
+        type: "focus",
+        id: "distribution-light-matter",
+        eyebrow: "Distribuzione, luce e materia",
+        title: "Tre livelli che lavorano insieme per rendere il progetto più solido.",
+        items: [
+          {
+            label: "Distribuzione",
+            text: "Il passaggio da showroom ibrido a residenza hospitality parte dalla ridefinizione dell’uso e delle gerarchie spaziali."
+          },
+          {
+            label: "Luce",
+            text: "L’illuminazione costruisce un’atmosfera più calda, riconoscibile e coerente con la permanenza degli ospiti."
+          },
+          {
+            label: "Materia",
+            text: "Arredi, superfici e continuità visiva danno densità al progetto e rafforzano la percezione del valore."
+          }
+        ]
+      },
+      {
+        type: "outcome",
+        id: "result",
+        eyebrow: "Risultato",
+        title: "Una residenza hospitality più chiara, più coerente e più riconoscibile.",
+        paragraphs: compactText([project.outcome, homeTransformationStory.afterText]),
+        image: toProjectPageImage(project.coverImage, "56% center"),
+        mode: "result"
+      }
+    ],
+    finalCta: {
+      eyebrow: "Prossimo passo",
+      title: "Quando direzione e gestione lavorano insieme, il valore diventa più leggibile.",
+      paragraphs: [
+        "Se vuoi costruire un asset più chiaro, più solido e più desiderabile, possiamo partire da una prima analisi."
+      ],
+      primary: {
+        label: "Richiedi una prima analisi",
+        href: inquiryLinks.consultation
+      },
+      secondary: {
+        label: "Torna ai progetti",
+        href: "/progetti"
+      }
+    }
+  };
+};
+
+const publishedProjectPageTemplates = projects.map((project) =>
+  project.slug === "la-galleria"
+    ? buildLaGalleriaProjectPage(project)
+    : buildGenericProjectPage(project)
+);
+
+const projectPageDrafts: ProjectPageTemplate[] = [
+  {
+    slug: "brunelleschi",
+    title: "Brunelleschi",
+    place: "Milano",
+    category: "Concept residenziale",
+    status: "Progetto in preparazione",
+    visibility: "draft",
+    description:
+      "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva.",
+    hero: {
+      eyebrow: "MILANO · CONCEPT RESIDENZIALE",
+      title: "Brunelleschi",
+      description:
+        "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva."
+    },
+    summaryCard: {
+      eyebrow: "Scheda sintetica",
+      title: "Brunelleschi",
+      items: [
+        { label: "Luogo", value: "Milano" },
+        { label: "Categoria", value: "Concept residenziale" },
+        { label: "Stato", value: "Progetto in preparazione" }
+      ]
+    },
+    narrative: {
+      introduction: [
+        "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva."
+      ]
+    },
+    sections: []
+  }
+];
+
+export const projectPageTemplates: ProjectPageTemplate[] = [
+  ...publishedProjectPageTemplates,
+  ...projectPageDrafts
+];
+
+export const publishedProjectPages = projectPageTemplates.filter(
+  (project): project is ProjectPageTemplate => project.visibility === "published"
+);
+
+export const getProjectPageBySlug = (slug: string) =>
+  publishedProjectPages.find((project) => project.slug === slug) ?? null;
+
+export const getProjectPageNavigation = (slug: string) => {
+  const index = publishedProjectPages.findIndex((project) => project.slug === slug);
+
+  if (index === -1) {
+    return {
+      previous: null,
+      next: null
+    };
+  }
+
+  const current = publishedProjectPages[index];
+  const previousSlug = current.navigation?.previousSlug;
+  const nextSlug = current.navigation?.nextSlug;
+
+  const previous =
+    (previousSlug
+      ? publishedProjectPages.find((project) => project.slug === previousSlug)
+      : publishedProjectPages[index - 1]) ?? null;
+  const next =
+    (nextSlug
+      ? publishedProjectPages.find((project) => project.slug === nextSlug)
+      : publishedProjectPages[index + 1]) ?? null;
+
+  return { previous, next };
+};
