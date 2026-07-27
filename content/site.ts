@@ -254,22 +254,25 @@ export const homeMatterAndLight = {
   title: "La materia dà corpo allo spazio. La luce lo rende leggibile.",
   description:
     "Materiali e illuminazione non vengono aggiunti alla fine. Sono parte della struttura del progetto.",
-  mainImage: {
-    src: "/images/home/avm-materia-luce-living.webp",
-    alt: "Living con divano, parete TV retroilluminata, tavolo da pranzo, parete verde e luce architettonica integrata",
-    objectPosition: "50% center",
-    recommendedRatio: "16:9",
-    suggestedRealAssetName:
-      "public/images/home/avm-materia-luce-living.webp"
-  },
-  supportImage: {
-    src: "/images/home/avm-materia-luce-main.webp",
-    alt: "Ambiente con lampadario dorato a raggiera, pareti verdi verticali illuminate, tavolo rotondo centrale e superfici in pietra",
-    objectPosition: "58% center",
-    recommendedRatio: "4:5",
-    suggestedRealAssetName:
-      "public/images/home/avm-materia-luce-main.webp"
-  }
+  cards: [
+    {
+      label: "Luce",
+      src: "/images/home/avm-materia-luce-main.webp",
+      alt: "Ambiente con lampadario dorato a raggiera, pareti verdi verticali illuminate, tavolo rotondo centrale e superfici in pietra",
+      objectPosition: "center center",
+      recommendedRatio: "6:5",
+      suggestedRealAssetName: "public/images/home/avm-materia-luce-main.webp"
+    },
+    {
+      label: "Materia",
+      src: "/images/home/avm-materia-luce-bedroom.webp",
+      alt: "Camera con armadio in vetro fume illuminato, letto imbottito, parete marmorea retroilluminata e listelli verticali in legno",
+      objectPosition: "58% center",
+      recommendedRatio: "6:5",
+      suggestedRealAssetName:
+        "public/images/home/avm-materia-luce-bedroom.webp"
+    }
+  ]
 } as const;
 
 export const homeFounder = {

@@ -448,32 +448,29 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid items-start gap-4 md:grid-cols-[0.62fr_0.38fr] lg:gap-5 lg:grid-cols-[0.74fr_0.26fr]">
-            <Reveal>
-              <div className="relative aspect-[16/9] min-h-[26rem] overflow-hidden rounded-[30px] border border-line sm:min-h-[30rem] lg:min-h-[36rem]">
-                <Image
-                  src={homeMatterAndLight.mainImage.src}
-                  alt={homeMatterAndLight.mainImage.alt}
-                  fill
-                  sizes="(min-width: 1024px) 62vw, (min-width: 768px) 60vw, 100vw"
-                  className="object-cover"
-                  style={getObjectPositionStyle(homeMatterAndLight.mainImage)}
-                />
-              </div>
-            </Reveal>
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:gap-6">
+            {homeMatterAndLight.cards.map((card, index) => (
+              <Reveal key={card.label} delay={index * 80}>
+                <figure className="overflow-hidden rounded-[30px] border border-line bg-black/10">
+                  <div className="relative aspect-[6/5] min-h-[24rem] sm:min-h-[28rem] lg:min-h-[34rem]">
+                    <Image
+                      src={card.src}
+                      alt={card.alt}
+                      fill
+                      sizes="(min-width: 768px) 48vw, 100vw"
+                      className="object-cover"
+                      style={getObjectPositionStyle(card)}
+                    />
 
-            <Reveal delay={80}>
-              <div className="relative aspect-[4/5] min-h-[22rem] overflow-hidden rounded-[30px] border border-line sm:min-h-[26rem] lg:aspect-[3/4] lg:min-h-[36rem]">
-                <Image
-                  src={homeMatterAndLight.supportImage.src}
-                  alt={homeMatterAndLight.supportImage.alt}
-                  fill
-                  sizes="(min-width: 1024px) 26vw, (min-width: 768px) 36vw, 100vw"
-                  className="object-cover"
-                  style={getObjectPositionStyle(homeMatterAndLight.supportImage)}
-                />
-              </div>
-            </Reveal>
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/58 via-black/20 to-transparent px-5 pb-5 pt-14 sm:px-6 sm:pb-6">
+                      <figcaption className="text-[11px] font-medium uppercase tracking-[0.28em] text-[#d5ba77] sm:text-xs">
+                        {card.label}
+                      </figcaption>
+                    </div>
+                  </div>
+                </figure>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
