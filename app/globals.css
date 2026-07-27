@@ -44,6 +44,7 @@ main::before {
 
 @layer components {
   .site-ambient-background {
+    position: relative;
     background-color: #0f0e0c;
     background-image:
       linear-gradient(rgba(8, 7, 6, 0.16), rgba(8, 7, 6, 0.3)),
@@ -52,6 +53,10 @@ main::before {
     background-position: center top;
     background-repeat: no-repeat;
     background-attachment: fixed;
+  }
+
+  .site-ambient-background::before {
+    content: none;
   }
 
   .home-ambient-background {
@@ -233,14 +238,47 @@ main::before {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1100px) {
   .site-ambient-background {
+    background-image: none;
+    background-attachment: scroll;
+  }
+
+  .site-ambient-background::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
     background-image:
-      linear-gradient(rgba(8, 7, 6, 0.14), rgba(8, 7, 6, 0.26)),
-      url("/images/backgrounds/avm-dark-marmorino-mobile.webp");
+      linear-gradient(rgba(8, 7, 6, 0.18), rgba(8, 7, 6, 0.3)),
+      url("/images/backgrounds/avm-mobile-stone-bg.png");
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
     background-attachment: scroll;
+  }
+
+  .site-ambient-background > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  .site-ambient-background::before {
+    background-image:
+      linear-gradient(rgba(8, 7, 6, 0.16), rgba(8, 7, 6, 0.28)),
+      url("/images/backgrounds/avm-mobile-stone-bg.png");
+    background-position: center center;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-ambient-background::before {
+    background-image:
+      linear-gradient(rgba(8, 7, 6, 0.2), rgba(8, 7, 6, 0.32)),
+      url("/images/backgrounds/avm-mobile-stone-bg.png");
+    background-position: center top;
   }
 }
