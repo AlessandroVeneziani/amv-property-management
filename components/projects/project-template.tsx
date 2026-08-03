@@ -104,6 +104,7 @@ export function ProjectTemplate({
   return (
     <div className="pb-16">
       <ProjectImmersiveHero
+        stageBadge={project.stageBadge}
         hero={project.hero}
         facts={project.summaryCard?.items ?? []}
       />

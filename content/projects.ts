@@ -12,7 +12,9 @@ export type ProjectStatus =
   | "In portfolio"
   | "In valorizzazione"
   | "Gestione attiva"
-  | "Completato";
+  | "Completato"
+  | "Concept progettuale"
+  | "In cantiere";
 
 export type ProjectHomeMedia = {
   feature?: EditorialImageAsset;
@@ -399,8 +401,8 @@ export const listedProjects: ListedProject[] = [
         "public/images/projects/brunelleschi/brunelleschi-home-cover.webp"
     },
     city: "Milano",
-    status: "In valorizzazione",
-    href: null,
+    status: "Concept progettuale",
+    href: "/progetti/brunelleschi",
     summary:
       "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva."
   },
@@ -461,6 +463,11 @@ export type ProjectPageFact = {
   value: string;
 };
 
+export type ProjectPageStageBadge = {
+  label: string;
+  note?: string;
+};
+
 export type ProjectPageNarrative = {
   introduction?: string[];
   startingPoint?: string[];
@@ -491,6 +498,9 @@ export type ProjectPageFullWidthSection = {
   title?: string;
   paragraphs?: string[];
   image: ProjectPageImage;
+  displayMode?: "immersive" | "intrinsic";
+  imageWidth?: number;
+  imageHeight?: number;
 };
 
 export type ProjectPageFocusSection = {
@@ -581,6 +591,7 @@ export type ProjectPageTemplate = {
   status: string;
   visibility: ProjectPageVisibility;
   description: string;
+  stageBadge?: ProjectPageStageBadge;
   hero: {
     eyebrow: string;
     title: string;
@@ -756,6 +767,9 @@ const buildLaGalleriaProjectPage = (project: Project): ProjectPageTemplate => {
     status: project.status,
     visibility: "published",
     description: project.summary,
+    stageBadge: {
+      label: "Completato"
+    },
     hero: {
       eyebrow: `${project.city.toUpperCase()} · ${project.category.toUpperCase()}`,
       title: project.title,
@@ -845,37 +859,89 @@ const brunelleschi4RenderAssetsById = new Map(
 );
 
 const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
-  const appartamento1Chapter = brunelleschi4CaseStudy.renderChapters.find(
-    (chapter) => chapter.id === "appartamento-1"
-  );
-
-  if (!appartamento1Chapter) {
+  if (!brunelleschi4CaseStudy.renderChapters.length) {
     return [];
   }
 
-  const items = appartamento1Chapter.assetIds
-    .map((assetId) => brunelleschi4RenderAssetsById.get(assetId))
-    .filter(isDefined)
-    .map((asset) => ({
-      id: asset.id,
-      title: asset.label,
-      image: toCaseStudyProjectPageImage(asset),
-      width: asset.width,
-      height: asset.height
-    }));
+  const distributionSpaceSection = (() => {
+    const distributionSpace = brunelleschi4CaseStudy.distributionSpace;
+    const asset = brunelleschi4RenderAssetsById.get(distributionSpace.assetId);
 
-  if (!items.length) {
+    if (!asset) {
+      return null;
+    }
+
+    return {
+      type: "full-width-media",
+      id: "ingresso-bussola",
+      eyebrow: distributionSpace.eyebrow,
+      title: distributionSpace.title,
+      paragraphs: distributionSpace.paragraphs,
+      image: toCaseStudyProjectPageImage(asset),
+      displayMode: "intrinsic",
+      imageWidth: asset.width,
+      imageHeight: asset.height
+    } satisfies ProjectPageFullWidthSection;
+  })();
+
+  const renderSections = brunelleschi4CaseStudy.renderChapters
+    .map((chapter) => {
+      const items = chapter.assetIds
+        .map((assetId) => brunelleschi4RenderAssetsById.get(assetId))
+        .filter(isDefined)
+        .map((asset) => ({
+          id: asset.id,
+          title: asset.label,
+          image: toCaseStudyProjectPageImage(asset),
+          width: asset.width,
+          height: asset.height
+        }));
+
+      if (!items.length) {
+        return null;
+      }
+
+      return {
+        type: "render-sequence",
+        id: `${chapter.id}-render-sequence`,
+        eyebrow: "Visione progettuale",
+        title: chapter.title,
+        description: chapter.description,
+        items
+      } satisfies ProjectPageRenderSequenceSection;
+    })
+    .filter(isDefined);
+
+  if (!renderSections.length) {
     return [];
   }
 
   return [
     {
-      type: "render-sequence",
-      id: "appartamento-1-render-sequence",
-      eyebrow: "Render definitivi",
-      title: "Appartamento 1",
-      items
-    }
+      type: "focus",
+      id: "frazionamento-overview",
+      eyebrow: "Studio di fattibilità",
+      title: "Il potenziale si chiarisce prima della realizzazione.",
+      items: [
+        {
+          label: "Analisi",
+          text:
+            "Lo studio verifica come un unico appartamento possa essere riorganizzato in due unità autonome, complete e leggibili."
+        },
+        {
+          label: "Coerenza",
+          text:
+            "Le due residenze condividono la stessa direzione di luce, materiali e proporzioni, così da mantenere una continuità progettuale chiara."
+        },
+        {
+          label: "Visione",
+          text:
+            "I render fotorealistici traducono questa lettura in una proposta concreta, utile a valutare qualità spaziale, atmosfera e valore potenziale."
+        }
+      ]
+    },
+    ...(distributionSpaceSection ? [distributionSpaceSection] : []),
+    ...renderSections
   ];
 };
 
@@ -891,28 +957,37 @@ const projectPageDrafts: ProjectPageTemplate[] = [
     title: "Brunelleschi",
     place: "Milano",
     category: "Concept residenziale",
-    status: "Progetto in preparazione",
-    visibility: "draft",
+    status: "Concept progettuale",
+    visibility: "published",
     description:
-      "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva.",
+      "Uno studio di fattibilità sviluppato da AVM per valutare come un unico appartamento possa essere trasformato in due residenze indipendenti.",
+    stageBadge: {
+      label: "Concept",
+      note: "Studio di fattibilità 2026"
+    },
     hero: {
-      eyebrow: "MILANO · CONCEPT RESIDENZIALE",
+      eyebrow: "MILANO · FRAZIONAMENTO RESIDENZIALE",
       title: "Brunelleschi",
       description:
-        "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva."
+        "Studio di fattibilità sviluppato da AVM nel 2026 per valutare come un unico appartamento possa diventare due residenze indipendenti."
     },
     summaryCard: {
       eyebrow: "Scheda sintetica",
       title: "Brunelleschi",
       items: [
         { label: "Luogo", value: "Milano" },
-        { label: "Categoria", value: "Concept residenziale" },
-        { label: "Stato", value: "Progetto in preparazione" }
+        { label: "Categoria", value: "Studio di fattibilità" },
+        { label: "Stato", value: "Concept progettuale · 2026" },
+        { label: "Intervento", value: "Frazionamento in due unità" },
+        { label: "Fase", value: "Valutazione pre-acquisto" }
       ]
     },
     narrative: {
       introduction: [
-        "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva."
+        "Questo progetto rappresenta uno studio di fattibilità sviluppato da AVM nel 2026.",
+        "Attraverso l'analisi distributiva, lo studio della luce, dei materiali e della valorizzazione immobiliare, il progetto mostra come un unico appartamento possa essere trasformato in due residenze indipendenti.",
+        "Le immagini presenti sono render fotorealistici realizzati per rappresentare la visione progettuale.",
+        "L'eventuale realizzazione dell'intervento è prevista successivamente all'acquisizione dell'immobile."
       ]
     },
     sections: buildBrunelleschiDraftSections()

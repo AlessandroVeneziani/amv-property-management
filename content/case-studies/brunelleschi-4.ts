@@ -21,7 +21,16 @@ export type CaseStudyRenderChapter = {
   title: string;
   status: "definitivo" | "in-preparazione";
   layout: "immersive-sequence";
+  description?: string;
   assetIds: string[];
+};
+
+export type CaseStudyDistributionSpace = {
+  role: "ingresso-bussola";
+  eyebrow?: string;
+  title: string;
+  paragraphs: string[];
+  assetId: string;
 };
 
 export const brunelleschi4CaseStudy = {
@@ -39,18 +48,44 @@ export const brunelleschi4CaseStudy = {
     render: "05-render",
     fotoFinali: "06-foto-finali"
   },
+  distributionSpace: {
+    role: "ingresso-bussola",
+    eyebrow: "Ingresso bussola",
+    title: "Un nuovo spazio di distribuzione",
+    paragraphs: [
+      "Il frazionamento non si limita alla suddivisione di un appartamento in due unità indipendenti. Ogni progetto richiede anche la progettazione di uno spazio di distribuzione capace di mettere in relazione i nuovi ambienti con coerenza architettonica.",
+      "In questo intervento l'ingresso comune diventa una vera bussola distributiva: un ambiente essenziale, caratterizzato da luce architettonica, superfici continue e materiali che anticipano il linguaggio dei due appartamenti."
+    ],
+    assetId: "render-ingresso-bussola-01"
+  },
   renderChapters: [
     {
       id: "appartamento-1",
       title: "Appartamento 1",
       status: "definitivo",
       layout: "immersive-sequence",
+      description:
+        "Prima unità indipendente prevista dallo studio, definita attraverso luce integrata, superfici continue e una lettura essenziale degli ambienti.",
       assetIds: [
         "render-living-01",
         "render-cucina-02",
         "render-camera-03",
         "render-bagno-04",
         "render-bagno-dettaglio-05"
+      ]
+    },
+    {
+      id: "appartamento-2",
+      title: "Appartamento 2",
+      status: "definitivo",
+      layout: "immersive-sequence",
+      description:
+        "Seconda unità prevista dallo stesso intervento, con la stessa continuità progettuale applicata a living, cucina, camera e bagno.",
+      assetIds: [
+        "render-app2-living-01",
+        "render-app2-cucina-02",
+        "render-app2-camera-03",
+        "render-app2-bagno-04"
       ]
     }
   ],
@@ -128,6 +163,15 @@ export const brunelleschi4CaseStudy = {
     ],
     render: [
       {
+        id: "render-ingresso-bussola-01",
+        category: "render",
+        label: "Ingresso bussola",
+        src: "/images/projects/brunelleschi-4/05-render/ingresso-bussola/brunelleschi-4-milano-ingresso-bussola-01.webp",
+        format: "webp",
+        width: 1086,
+        height: 1448
+      },
+      {
         id: "render-living-01",
         category: "render",
         label: "Living",
@@ -171,6 +215,42 @@ export const brunelleschi4CaseStudy = {
         format: "webp",
         width: 1920,
         height: 1280
+      },
+      {
+        id: "render-app2-living-01",
+        category: "render",
+        label: "Living",
+        src: "/images/projects/brunelleschi-4/05-render/appartamento-2/brunelleschi-4-milano-appartamento-2-render-living-01.webp",
+        format: "webp",
+        width: 1672,
+        height: 941
+      },
+      {
+        id: "render-app2-cucina-02",
+        category: "render",
+        label: "Cucina",
+        src: "/images/projects/brunelleschi-4/05-render/appartamento-2/brunelleschi-4-milano-appartamento-2-render-cucina-02.webp",
+        format: "webp",
+        width: 1672,
+        height: 941
+      },
+      {
+        id: "render-app2-camera-03",
+        category: "render",
+        label: "Camera",
+        src: "/images/projects/brunelleschi-4/05-render/appartamento-2/brunelleschi-4-milano-appartamento-2-render-camera-03.webp",
+        format: "webp",
+        width: 1672,
+        height: 941
+      },
+      {
+        id: "render-app2-bagno-04",
+        category: "render",
+        label: "Bagno",
+        src: "/images/projects/brunelleschi-4/05-render/appartamento-2/brunelleschi-4-milano-appartamento-2-render-bagno-04.webp",
+        format: "webp",
+        width: 1672,
+        height: 941
       }
     ],
     fotoFinali: []
@@ -183,6 +263,7 @@ export const brunelleschi4CaseStudy = {
   readyForEditorialPage: boolean;
   basePath: string;
   folders: Record<string, string>;
+  distributionSpace: CaseStudyDistributionSpace;
   renderChapters: readonly CaseStudyRenderChapter[];
   assets: {
     esterno: readonly CaseStudyAsset[];

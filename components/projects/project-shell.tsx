@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { ProjectResponsiveImage } from "./project-responsive-image";
 
 type ProjectImmersiveHeroProps = {
+  stageBadge?: ProjectPageTemplate["stageBadge"];
   hero: ProjectPageTemplate["hero"];
   facts?: ProjectPageFact[];
 };
@@ -29,6 +30,7 @@ type ProjectNavigationProps = {
 };
 
 export function ProjectImmersiveHero({
+  stageBadge,
   hero,
   facts = []
 }: ProjectImmersiveHeroProps) {
@@ -52,6 +54,16 @@ export function ProjectImmersiveHero({
         <div className="relative mx-auto flex min-h-[66vh] max-w-7xl items-end px-6 py-12 sm:min-h-[72vh] sm:px-8 sm:py-14 lg:min-h-[82vh] lg:px-12 lg:py-18">
           <div className="grid w-full gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div className="max-w-[42rem] space-y-5 sm:space-y-6">
+              {stageBadge ? (
+                <div className="inline-flex w-fit items-center gap-2 rounded-full border border-accent/35 bg-[rgba(53,40,19,0.34)] px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-accent shadow-[0_12px_34px_rgba(0,0,0,0.24)] backdrop-blur-md sm:text-[11px]">
+                  <span>{stageBadge.label}</span>
+                  {stageBadge.note ? (
+                    <span className="tracking-[0.18em] text-sand/60">
+                      {stageBadge.note}
+                    </span>
+                  ) : null}
+                </div>
+              ) : null}
               <p className="eyebrow text-sand/88">{hero.eyebrow}</p>
               <h1 className="max-w-[16ch] font-serif text-[clamp(3rem,7vw,5.6rem)] leading-[0.96] text-balance text-sand">
                 {hero.title}

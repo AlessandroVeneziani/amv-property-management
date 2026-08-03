@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import type {
@@ -57,7 +58,10 @@ export function ProjectFullWidthMedia({
   eyebrow,
   title,
   paragraphs,
-  image
+  image,
+  displayMode = "immersive",
+  imageWidth,
+  imageHeight
 }: ProjectPageFullWidthSection) {
   return (
     <div className="space-y-5">
@@ -79,13 +83,27 @@ export function ProjectFullWidthMedia({
         </div>
       ) : null}
 
-      <figure className="relative aspect-[16/10] min-h-[26rem] overflow-hidden rounded-[34px] border border-line shadow-glow sm:min-h-[34rem]">
-        <ProjectResponsiveImage
-          image={image}
-          sizes="(min-width: 1024px) 82vw, 100vw"
-          className="object-cover"
-        />
-      </figure>
+      {displayMode === "intrinsic" && imageWidth && imageHeight ? (
+        <figure className="overflow-hidden rounded-[34px] border border-line shadow-glow">
+          <Image
+            src={image.src}
+            alt={image.alt}
+            width={imageWidth}
+            height={imageHeight}
+            sizes="(min-width: 1024px) 82vw, 100vw"
+            className="h-auto w-full"
+            priority={false}
+          />
+        </figure>
+      ) : (
+        <figure className="relative aspect-[16/10] min-h-[26rem] overflow-hidden rounded-[34px] border border-line shadow-glow sm:min-h-[34rem]">
+          <ProjectResponsiveImage
+            image={image}
+            sizes="(min-width: 1024px) 82vw, 100vw"
+            className="object-cover"
+          />
+        </figure>
+      )}
     </div>
   );
 }
