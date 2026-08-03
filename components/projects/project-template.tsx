@@ -8,6 +8,7 @@ import {
   ProjectFocusBlock,
   ProjectFullWidthMedia,
   ProjectGallery,
+  ProjectRenderSequence,
   ProjectOutcomeSection
 } from "./project-sections";
 import {
@@ -34,6 +35,8 @@ const renderableSections = (sections: ProjectPageSection[]) =>
         return section.items.length > 0;
       case "gallery":
         return section.images.length > 0;
+      case "render-sequence":
+        return section.items.length > 0;
       case "before-after":
         return Boolean(section.before?.src && section.after?.src);
       case "outcome":
@@ -79,6 +82,8 @@ function ProjectSectionRenderer({ section }: { section: ProjectPageSection }) {
       return <ProjectFocusBlock {...section} />;
     case "gallery":
       return <ProjectGallery {...section} />;
+    case "render-sequence":
+      return <ProjectRenderSequence {...section} />;
     case "before-after":
       return <ProjectBeforeAfter {...section} />;
     case "outcome":

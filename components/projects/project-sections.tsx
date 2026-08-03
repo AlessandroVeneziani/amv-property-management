@@ -7,6 +7,7 @@ import type {
   ProjectPageFocusSection,
   ProjectPageFullWidthSection,
   ProjectPageGallerySection,
+  ProjectPageRenderSequenceSection,
   ProjectPageOutcomeSection
 } from "@/content/projects";
 import { SectionHeading } from "@/components/section-heading";
@@ -174,6 +175,63 @@ export function ProjectGallery({
                 }
                 className="object-cover"
               />
+            </figure>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export function ProjectRenderSequence({
+  eyebrow,
+  title,
+  description,
+  items
+}: ProjectPageRenderSequenceSection) {
+  return (
+    <div className="space-y-8 sm:space-y-10">
+      {eyebrow || title || description ? (
+        <div className="max-w-3xl space-y-4">
+          {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+          {title ? (
+            <h2 className="font-serif text-3xl leading-tight text-sand sm:text-4xl lg:text-5xl">
+              {title}
+            </h2>
+          ) : null}
+          {description ? (
+            <p className="text-base leading-7 text-muted sm:text-lg">{description}</p>
+          ) : null}
+        </div>
+      ) : null}
+
+      <div className="space-y-8 sm:space-y-10 lg:space-y-14">
+        {items.map((item, index) => {
+          const isPortrait = item.height > item.width;
+
+          return (
+            <figure key={item.id} className="space-y-4">
+              <div className="flex items-baseline gap-4 border-t border-line/80 pt-4 sm:pt-5">
+                <p className="text-[11px] uppercase tracking-[0.24em] text-accent/78">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="font-serif text-2xl text-sand sm:text-[2rem]">
+                  {item.title}
+                </h3>
+              </div>
+
+              <div
+                className={`relative overflow-hidden rounded-[32px] border border-line shadow-glow ${
+                  isPortrait ? "min-h-[28rem] sm:min-h-[34rem]" : "min-h-[22rem] sm:min-h-[28rem]"
+                }`}
+                style={{ aspectRatio: `${item.width} / ${item.height}` }}
+              >
+                <ProjectResponsiveImage
+                  image={item.image}
+                  sizes="(min-width: 1024px) 82vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
             </figure>
           );
         })}

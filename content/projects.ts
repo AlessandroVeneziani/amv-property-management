@@ -3,6 +3,10 @@ import {
   inquiryLinks,
   type EditorialImageAsset
 } from "@/content/site";
+import {
+  brunelleschi4CaseStudy,
+  type CaseStudyAsset
+} from "@/content/case-studies/brunelleschi-4";
 
 export type ProjectStatus =
   | "In portfolio"
@@ -509,6 +513,21 @@ export type ProjectPageGallerySection = {
   images: ProjectPageImage[];
 };
 
+export type ProjectPageRenderSequenceSection = {
+  type: "render-sequence";
+  id: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  items: Array<{
+    id: string;
+    title: string;
+    image: ProjectPageImage;
+    width: number;
+    height: number;
+  }>;
+};
+
 export type ProjectPageBeforeAfterSection = {
   type: "before-after";
   id: string;
@@ -536,6 +555,7 @@ export type ProjectPageSection =
   | ProjectPageFullWidthSection
   | ProjectPageFocusSection
   | ProjectPageGallerySection
+  | ProjectPageRenderSequenceSection
   | ProjectPageBeforeAfterSection
   | ProjectPageOutcomeSection;
 
@@ -584,6 +604,9 @@ export type ProjectPageTemplate = {
 const hasText = (value: string | undefined | null): value is string =>
   Boolean(value && value.trim().length > 0);
 
+const isDefined = <T,>(value: T | null | undefined): value is T =>
+  value !== undefined && value !== null;
+
 const compactText = (values: Array<string | undefined | null>) =>
   values.filter(hasText);
 
@@ -593,6 +616,23 @@ const toProjectPageImage = (
 ): ProjectPageImage => ({
   ...image,
   mobileObjectPosition: mobileObjectPosition ?? image.objectPosition
+});
+
+const toCaseStudyProjectPageImage = (
+  asset: CaseStudyAsset,
+  options?: {
+    alt?: string;
+    objectPosition?: string;
+    mobileObjectPosition?: string;
+  }
+): ProjectPageImage => ({
+  src: asset.src,
+  alt:
+    options?.alt ??
+    `${brunelleschi4CaseStudy.title}, ${asset.label.toLowerCase()}`,
+  objectPosition: options?.objectPosition ?? "center center",
+  mobileObjectPosition: options?.mobileObjectPosition ?? "center center",
+  suggestedRealAssetName: `public${asset.src}`
 });
 
 const buildSummaryCard = (project: Project) => ({
@@ -800,6 +840,45 @@ const buildLaGalleriaProjectPage = (project: Project): ProjectPageTemplate => {
   };
 };
 
+const brunelleschi4RenderAssetsById = new Map(
+  brunelleschi4CaseStudy.assets.render.map((asset) => [asset.id, asset])
+);
+
+const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
+  const appartamento1Chapter = brunelleschi4CaseStudy.renderChapters.find(
+    (chapter) => chapter.id === "appartamento-1"
+  );
+
+  if (!appartamento1Chapter) {
+    return [];
+  }
+
+  const items = appartamento1Chapter.assetIds
+    .map((assetId) => brunelleschi4RenderAssetsById.get(assetId))
+    .filter(isDefined)
+    .map((asset) => ({
+      id: asset.id,
+      title: asset.label,
+      image: toCaseStudyProjectPageImage(asset),
+      width: asset.width,
+      height: asset.height
+    }));
+
+  if (!items.length) {
+    return [];
+  }
+
+  return [
+    {
+      type: "render-sequence",
+      id: "appartamento-1-render-sequence",
+      eyebrow: "Render definitivi",
+      title: "Appartamento 1",
+      items
+    }
+  ];
+};
+
 const publishedProjectPageTemplates = projects.map((project) =>
   project.slug === "la-galleria"
     ? buildLaGalleriaProjectPage(project)
@@ -836,7 +915,7 @@ const projectPageDrafts: ProjectPageTemplate[] = [
         "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva."
       ]
     },
-    sections: []
+    sections: buildBrunelleschiDraftSections()
   }
 ];
 
