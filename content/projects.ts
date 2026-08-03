@@ -456,6 +456,9 @@ export type ProjectPageVisibility = "published" | "draft";
 
 export type ProjectPageImage = EditorialImageAsset & {
   mobileObjectPosition?: string;
+  width?: number;
+  height?: number;
+  fit?: "cover" | "contain";
 };
 
 export type ProjectPageFact = {
@@ -520,6 +523,8 @@ export type ProjectPageGallerySection = {
   eyebrow?: string;
   title?: string;
   description?: string;
+  layout?: "default" | "origin-editorial" | "plan-pair";
+  captions?: string[];
   images: ProjectPageImage[];
 };
 
@@ -529,6 +534,7 @@ export type ProjectPageRenderSequenceSection = {
   eyebrow?: string;
   title?: string;
   description?: string;
+  layout?: "stack" | "editorial-chapter";
   items: Array<{
     id: string;
     title: string;
@@ -597,6 +603,9 @@ export type ProjectPageTemplate = {
     title: string;
     description: string;
     image?: ProjectPageImage;
+    variant?: "default" | "photographic";
+    titleClassName?: string;
+    descriptionClassName?: string;
   };
   summaryCard?: {
     eyebrow?: string;
@@ -643,7 +652,9 @@ const toCaseStudyProjectPageImage = (
     `${brunelleschi4CaseStudy.title}, ${asset.label.toLowerCase()}`,
   objectPosition: options?.objectPosition ?? "center center",
   mobileObjectPosition: options?.mobileObjectPosition ?? "center center",
-  suggestedRealAssetName: `public${asset.src}`
+  suggestedRealAssetName: `public${asset.src}`,
+  width: asset.width,
+  height: asset.height
 });
 
 const buildSummaryCard = (project: Project) => ({
@@ -858,6 +869,17 @@ const brunelleschi4RenderAssetsById = new Map(
   brunelleschi4CaseStudy.assets.render.map((asset) => [asset.id, asset])
 );
 
+const brunelleschi4BeforeAssetsById = new Map(
+  brunelleschi4CaseStudy.assets.prima.map((asset) => [asset.id, asset])
+);
+
+const brunelleschi4PlanAssetsById = new Map(
+  [
+    ...brunelleschi4CaseStudy.assets.planimetriaRilievo,
+    ...brunelleschi4CaseStudy.assets.planimetriaProgetto
+  ].map((asset) => [asset.id, asset])
+);
+
 const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
   if (!brunelleschi4CaseStudy.renderChapters.length) {
     return [];
@@ -906,11 +928,66 @@ const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
         id: `${chapter.id}-render-sequence`,
         eyebrow: "Visione progettuale",
         title: chapter.title,
-        description: chapter.description,
-        items
-      } satisfies ProjectPageRenderSequenceSection;
-    })
-    .filter(isDefined);
+      description: chapter.description,
+      layout: "editorial-chapter",
+      items
+    } satisfies ProjectPageRenderSequenceSection;
+  })
+  .filter(isDefined);
+
+  const originalStateSection = (() => {
+    const orderedAssets = [
+      brunelleschi4BeforeAssetsById.get("prima-camera-01"),
+      brunelleschi4BeforeAssetsById.get("prima-cucina-01"),
+      brunelleschi4BeforeAssetsById.get("prima-angolo-cottura-02"),
+      brunelleschi4BeforeAssetsById.get("prima-bagno-lavanderia-01")
+    ].filter(isDefined);
+
+    if (!orderedAssets.length) {
+      return null;
+    }
+
+    return {
+      type: "gallery",
+      id: "stato-originario",
+      eyebrow: "Stato originario",
+      title: "Un unico appartamento prima della trasformazione",
+      description:
+        "Prima del progetto, l’immobile presentava una distribuzione tradizionale, con ambienti separati e un potenziale non ancora espresso. Lo studio parte dalla lettura dello spazio esistente per verificare la possibilità concreta di ricavare due unità autonome, funzionali e coerenti.",
+      layout: "origin-editorial",
+      images: orderedAssets.map((asset) => toCaseStudyProjectPageImage(asset))
+    } satisfies ProjectPageGallerySection;
+  })();
+
+  const planComparisonSection = (() => {
+    const rilievo = brunelleschi4PlanAssetsById.get("planimetria-rilievo-01");
+    const progetto = brunelleschi4PlanAssetsById.get("planimetria-progetto-01");
+
+    if (!rilievo || !progetto) {
+      return null;
+    }
+
+    return {
+      type: "gallery",
+      id: "analisi-distributiva",
+      eyebrow: "Analisi distributiva",
+      title: "Dal rilievo alla nuova configurazione",
+      description:
+        "Il confronto tra stato di rilievo e stato di progetto rende leggibile l’intervento: da un’unica abitazione nascono due residenze indipendenti, collegate da un nuovo ingresso comune.",
+      layout: "plan-pair",
+      captions: ["Stato di rilievo", "Stato di progetto"],
+      images: [
+        {
+          ...toCaseStudyProjectPageImage(rilievo),
+          fit: "contain"
+        },
+        {
+          ...toCaseStudyProjectPageImage(progetto),
+          fit: "contain"
+        }
+      ]
+    } satisfies ProjectPageGallerySection;
+  })();
 
   if (!renderSections.length) {
     return [];
@@ -940,10 +1017,16 @@ const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
         }
       ]
     },
+    ...(originalStateSection ? [originalStateSection] : []),
+    ...(planComparisonSection ? [planComparisonSection] : []),
     ...(distributionSpaceSection ? [distributionSpaceSection] : []),
     ...renderSections
   ];
 };
+
+const brunelleschiHeroAsset = brunelleschi4RenderAssetsById.get(
+  "render-app2-living-01"
+);
 
 const publishedProjectPageTemplates = projects.map((project) =>
   project.slug === "la-galleria"
@@ -968,8 +1051,18 @@ const projectPageDrafts: ProjectPageTemplate[] = [
     hero: {
       eyebrow: "MILANO · FRAZIONAMENTO RESIDENZIALE",
       title: "Brunelleschi",
-      description:
-        "Studio di fattibilità sviluppato da AVM nel 2026 per valutare come un unico appartamento possa diventare due residenze indipendenti."
+      description: "Un unico appartamento, due nuove residenze indipendenti.",
+      image: brunelleschiHeroAsset
+        ? toCaseStudyProjectPageImage(brunelleschiHeroAsset, {
+            objectPosition: "center center",
+            mobileObjectPosition: "center center"
+          })
+        : undefined,
+      variant: "photographic",
+      titleClassName:
+        "text-[#fff8f0] [text-shadow:0_10px_28px_rgba(0,0,0,0.46)]",
+      descriptionClassName:
+        "text-[#f8efe2]/94 [text-shadow:0_8px_20px_rgba(0,0,0,0.38)]"
     },
     summaryCard: {
       eyebrow: "Scheda sintetica",

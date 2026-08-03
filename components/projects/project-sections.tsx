@@ -146,8 +146,119 @@ export function ProjectGallery({
   eyebrow,
   title,
   description,
-  images
+  images,
+  layout = "default",
+  captions
 }: ProjectPageGallerySection) {
+  if (layout === "origin-editorial") {
+    const [leadImage, ...supportImages] = images;
+
+    return (
+      <div className="space-y-6">
+        {eyebrow || title || description ? (
+          <div className="max-w-3xl space-y-4">
+            {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+            {title ? (
+              <h2 className="font-serif text-3xl leading-tight text-sand sm:text-4xl">
+                {title}
+              </h2>
+            ) : null}
+            {description ? (
+              <p className="text-base leading-7 text-muted sm:text-lg">{description}</p>
+            ) : null}
+          </div>
+        ) : null}
+
+        <div className="grid gap-5 lg:grid-cols-12 lg:items-start">
+          {leadImage ? (
+            <figure className="relative overflow-hidden rounded-[32px] border border-line shadow-glow lg:col-span-7">
+              <div className="relative aspect-[16/11] min-h-[23rem] sm:min-h-[27rem]">
+                <ProjectResponsiveImage
+                  image={leadImage}
+                  sizes="(min-width: 1024px) 52vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </figure>
+          ) : null}
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:col-span-5">
+            {supportImages.map((image, index) => (
+              <figure
+                key={`${image.src}-${index}`}
+                className={`relative overflow-hidden rounded-[28px] border border-line shadow-glow ${
+                  index === supportImages.length - 1 && supportImages.length % 2 === 1
+                    ? "sm:col-span-2"
+                    : ""
+                }`}
+              >
+                <div
+                  className={`relative ${
+                    index === supportImages.length - 1 && supportImages.length % 2 === 1
+                      ? "aspect-[16/10] min-h-[14rem]"
+                      : "aspect-[4/3] min-h-[14rem]"
+                  }`}
+                >
+                  <ProjectResponsiveImage
+                    image={image}
+                    sizes={
+                      index === supportImages.length - 1 && supportImages.length % 2 === 1
+                        ? "(min-width: 1024px) 30vw, 100vw"
+                        : "(min-width: 1024px) 24vw, 100vw"
+                    }
+                    className="object-cover"
+                  />
+                </div>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (layout === "plan-pair") {
+    return (
+      <div className="space-y-6">
+        {eyebrow || title || description ? (
+          <div className="max-w-3xl space-y-4">
+            {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+            {title ? (
+              <h2 className="font-serif text-3xl leading-tight text-sand sm:text-4xl">
+                {title}
+              </h2>
+            ) : null}
+            {description ? (
+              <p className="text-base leading-7 text-muted sm:text-lg">{description}</p>
+            ) : null}
+          </div>
+        ) : null}
+
+        <div className="grid gap-5 lg:grid-cols-2">
+          {images.map((image, index) => (
+            <figure
+              key={`${image.src}-${index}`}
+              className="editorial-light-surface flex flex-col gap-4 rounded-[30px] px-5 py-5 sm:px-6 sm:py-6"
+            >
+              {captions?.[index] ? (
+                <figcaption className="text-[11px] uppercase tracking-[0.24em] text-[#8f7430]">
+                  {captions[index]}
+                </figcaption>
+              ) : null}
+              <div className="relative aspect-[4/3] min-h-[18rem] overflow-hidden rounded-[24px] border border-black/8 bg-[#f2ede3]">
+                <ProjectResponsiveImage
+                  image={image}
+                  sizes="(min-width: 1024px) 39vw, 100vw"
+                  className={image.fit === "contain" ? "object-contain" : "object-cover"}
+                />
+              </div>
+            </figure>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       {eyebrow || title || description ? (
@@ -205,8 +316,87 @@ export function ProjectRenderSequence({
   eyebrow,
   title,
   description,
-  items
+  items,
+  layout = "stack"
 }: ProjectPageRenderSequenceSection) {
+  if (layout === "editorial-chapter") {
+    const [leadItem, ...supportItems] = items;
+
+    return (
+      <div className="space-y-6 sm:space-y-7">
+        {eyebrow || title || description ? (
+          <div className="max-w-3xl space-y-4">
+            {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+            {title ? (
+              <h2 className="font-serif text-3xl leading-tight text-sand sm:text-4xl lg:text-5xl">
+                {title}
+              </h2>
+            ) : null}
+            {description ? (
+              <p className="text-base leading-7 text-muted sm:text-lg">{description}</p>
+            ) : null}
+          </div>
+        ) : null}
+
+        {leadItem ? (
+          <figure className="space-y-4">
+            <div className="flex items-baseline gap-4 border-t border-line/80 pt-3.5 sm:pt-4">
+              <p className="text-[11px] uppercase tracking-[0.24em] text-accent/78">01</p>
+              <h3 className="font-serif text-2xl text-sand sm:text-[2rem]">
+                {leadItem.title}
+              </h3>
+            </div>
+
+            <div
+              className="relative overflow-hidden rounded-[32px] border border-line shadow-glow"
+              style={{ aspectRatio: `${leadItem.width} / ${leadItem.height}` }}
+            >
+              <ProjectResponsiveImage
+                image={leadItem.image}
+                sizes="(min-width: 1024px) 82vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </figure>
+        ) : null}
+
+        {supportItems.length ? (
+          <div className="grid gap-4 sm:gap-5 lg:grid-cols-2">
+            {supportItems.map((item, index) => (
+              <figure key={item.id} className="space-y-3">
+                <div className="flex items-baseline gap-3 border-t border-line/60 pt-3">
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-accent/72">
+                    {String(index + 2).padStart(2, "0")}
+                  </p>
+                  <h3 className="font-serif text-xl text-sand sm:text-2xl">
+                    {item.title}
+                  </h3>
+                </div>
+
+                <div
+                  className={`relative overflow-hidden rounded-[28px] border border-line shadow-glow ${
+                    supportItems.length === 3 && index === 2 ? "lg:col-span-2" : ""
+                  }`}
+                  style={{ aspectRatio: `${item.width} / ${item.height}` }}
+                >
+                  <ProjectResponsiveImage
+                    image={item.image}
+                    sizes={
+                      supportItems.length === 3 && index === 2
+                        ? "(min-width: 1024px) 82vw, 100vw"
+                        : "(min-width: 1024px) 39vw, 100vw"
+                    }
+                    className="object-cover"
+                  />
+                </div>
+              </figure>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-8 sm:space-y-10">
       {eyebrow || title || description ? (

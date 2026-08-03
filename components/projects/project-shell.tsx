@@ -34,9 +34,23 @@ export function ProjectImmersiveHero({
   hero,
   facts = []
 }: ProjectImmersiveHeroProps) {
+  const isPhotographicHero = hero.variant === "photographic";
+
   return (
-    <section className="overflow-hidden border-y border-line/70 pb-12 pt-2 sm:pb-14 sm:pt-3">
-      <div className="relative min-h-[66vh] overflow-hidden sm:min-h-[72vh] lg:min-h-[82vh]">
+    <section
+      className={`overflow-hidden ${
+        isPhotographicHero
+          ? "border-b border-line/70 pb-10 pt-3 sm:pb-12 sm:pt-4"
+          : "border-y border-line/70 pb-12 pt-2 sm:pb-14 sm:pt-3"
+      }`}
+    >
+      <div
+        className={`relative overflow-hidden ${
+          isPhotographicHero
+            ? "mx-auto min-h-[58vh] max-w-7xl rounded-[34px] border border-line/80 shadow-glow sm:min-h-[64vh] lg:min-h-[72vh]"
+            : "min-h-[66vh] sm:min-h-[72vh] lg:min-h-[82vh]"
+        }`}
+      >
         {hero.image ? (
           <ProjectResponsiveImage
             image={hero.image}
@@ -48,27 +62,56 @@ export function ProjectImmersiveHero({
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(198,167,94,0.18),transparent_28%),linear-gradient(180deg,rgba(15,14,12,0.98),rgba(15,14,12,0.92))]" />
         )}
 
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,10,10,0.82)_0%,rgba(10,10,10,0.72)_32%,rgba(10,10,10,0.34)_62%,rgba(10,10,10,0.14)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.12)_0%,rgba(10,10,10,0.22)_44%,rgba(10,10,10,0.64)_100%)]" />
+        <div
+          className={`absolute inset-0 ${
+            isPhotographicHero
+              ? "bg-[linear-gradient(90deg,rgba(10,10,10,0.48)_0%,rgba(10,10,10,0.36)_30%,rgba(10,10,10,0.18)_58%,rgba(10,10,10,0.08)_100%)]"
+              : "bg-[linear-gradient(90deg,rgba(10,10,10,0.82)_0%,rgba(10,10,10,0.72)_32%,rgba(10,10,10,0.34)_62%,rgba(10,10,10,0.14)_100%)]"
+          }`}
+        />
+        <div
+          className={`absolute inset-0 ${
+            isPhotographicHero
+              ? "bg-[linear-gradient(180deg,rgba(10,10,10,0.16)_0%,rgba(10,10,10,0.22)_52%,rgba(10,10,10,0.46)_100%)]"
+              : "bg-[linear-gradient(180deg,rgba(10,10,10,0.12)_0%,rgba(10,10,10,0.22)_44%,rgba(10,10,10,0.64)_100%)]"
+          }`}
+        />
 
-        <div className="relative mx-auto flex min-h-[66vh] max-w-7xl items-end px-6 py-12 sm:min-h-[72vh] sm:px-8 sm:py-14 lg:min-h-[82vh] lg:px-12 lg:py-18">
+        <div
+          className={`relative mx-auto flex items-end px-6 py-12 sm:px-8 sm:py-14 lg:px-12 lg:py-16 ${
+            isPhotographicHero
+              ? "min-h-[58vh] sm:min-h-[64vh] lg:min-h-[72vh]"
+              : "min-h-[66vh] sm:min-h-[72vh] lg:min-h-[82vh]"
+          }`}
+        >
           <div className="grid w-full gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div className="max-w-[42rem] space-y-5 sm:space-y-6">
               {stageBadge ? (
                 <div className="inline-flex w-fit items-center gap-2 rounded-full border border-accent/35 bg-[rgba(53,40,19,0.34)] px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-accent shadow-[0_12px_34px_rgba(0,0,0,0.24)] backdrop-blur-md sm:text-[11px]">
                   <span>{stageBadge.label}</span>
                   {stageBadge.note ? (
-                    <span className="tracking-[0.18em] text-sand/60">
-                      {stageBadge.note}
-                    </span>
+                    <>
+                      <span className="text-sand/48">·</span>
+                      <span className="tracking-[0.18em] text-sand/60">
+                        {stageBadge.note}
+                      </span>
+                    </>
                   ) : null}
                 </div>
               ) : null}
               <p className="eyebrow text-sand/88">{hero.eyebrow}</p>
-              <h1 className="max-w-[16ch] font-serif text-[clamp(3rem,7vw,5.6rem)] leading-[0.96] text-balance text-sand">
+              <h1
+                className={`max-w-[16ch] font-serif text-[clamp(3rem,7vw,5.6rem)] leading-[0.96] text-balance text-sand ${
+                  hero.titleClassName ?? ""
+                }`}
+              >
                 {hero.title}
               </h1>
-              <p className="max-w-2xl text-base leading-7 text-sand/82 sm:text-lg">
+              <p
+                className={`max-w-2xl text-base leading-7 text-sand/82 sm:text-lg ${
+                  hero.descriptionClassName ?? ""
+                }`}
+              >
                 {hero.description}
               </p>
             </div>
