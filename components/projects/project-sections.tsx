@@ -266,19 +266,26 @@ export function ProjectGallery({
                     {captions[index].title}
                   </p>
                   {captions[index].subtitle ? (
-                    <p className="text-sm tracking-[0.04em] text-ink/56">
+                    <p className="text-[15px] leading-6 tracking-[0.03em] text-[#756858]">
                       {captions[index].subtitle}
                     </p>
                   ) : null}
                 </figcaption>
               ) : null}
-              <div className="architectural-paper relative aspect-[4/3] min-h-[18rem] overflow-hidden rounded-[24px] border border-black/8">
+              <div
+                className="architectural-paper relative aspect-[4/3] min-h-[18rem] overflow-hidden rounded-[24px] border border-black/8"
+                data-plan-variant={index === 0 ? "survey" : "project"}
+              >
                 <ProjectResponsiveImage
                   image={image}
                   sizes="(min-width: 1024px) 39vw, 100vw"
                   className={
                     image.fit === "contain"
-                      ? "object-contain p-4 sm:p-5"
+                      ? `object-contain ${
+                          index === 0
+                            ? "p-3 sm:p-4"
+                            : "p-4 sm:p-5"
+                        }`
                       : "object-cover"
                   }
                 />

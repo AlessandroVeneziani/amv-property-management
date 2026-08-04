@@ -1020,7 +1020,7 @@ const projectPageDrafts: ProjectPageTemplate[] = [
     summaryCard: {
       eyebrow: "Scheda sintetica",
       title: "Brunelleschi",
-      titleClassName: "text-[#B8924F]",
+      titleClassName: "text-[#A97845]",
       items: [
         { label: "Luogo", value: "Milano" },
         { label: "Categoria", value: "Studio di fattibilità" },
