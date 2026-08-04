@@ -3,20 +3,26 @@ type SectionHeadingProps = {
   title: string;
   description?: string;
   align?: "left" | "center";
+  titleClassName?: string;
 };
 
 export function SectionHeading({
   eyebrow,
   title,
   description,
-  align = "left"
+  align = "left",
+  titleClassName
 }: SectionHeadingProps) {
   const alignment = align === "center" ? "mx-auto text-center" : "";
 
   return (
     <div className={`max-w-3xl space-y-4 ${alignment}`}>
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-      <h2 className="font-serif text-3xl leading-tight text-sand sm:text-4xl lg:text-5xl">
+      <h2
+        className={`font-serif text-3xl leading-tight text-sand sm:text-4xl lg:text-5xl ${
+          titleClassName ?? ""
+        }`}
+      >
         {title}
       </h2>
       {description ? (

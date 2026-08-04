@@ -97,6 +97,6 @@ pnpm build
 
 ## Note finali
 
-- Nessun asset placeholder o AI è rimasto negli slot `Prima` e `Dopo` della Home per La Galleria.
+- Nessun asset provvisorio o AI è rimasto negli slot `Prima` e `Dopo` della Home per La Galleria.
 - I testi richiesti sono stati aggiornati con il copy approvato.
 - Nessun push, merge o deploy eseguito in questa fase.

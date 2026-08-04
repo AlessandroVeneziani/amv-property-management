@@ -111,8 +111,11 @@ export function ProjectFullWidthMedia({
 export function ProjectFocusBlock({
   eyebrow,
   title,
-  items
+  items,
+  layout = "default"
 }: ProjectPageFocusSection) {
+  const isEmphasized = layout === "emphasized";
+
   return (
     <div className="space-y-6">
       {eyebrow || title ? (
@@ -128,11 +131,28 @@ export function ProjectFocusBlock({
 
       <div className="grid divide-y divide-line border-y border-line md:grid-cols-3 md:divide-x md:divide-y-0">
         {items.map((item) => (
-          <div key={item.label} className="space-y-4 px-0 py-6 md:px-6 md:first:pl-0 md:last:pr-0">
-            <p className="text-[11px] uppercase tracking-[0.24em] text-accent/92">
+          <div
+            key={item.label}
+            className={`px-0 md:px-6 md:first:pl-0 md:last:pr-0 ${
+              isEmphasized ? "space-y-5 py-7" : "space-y-4 py-6"
+            }`}
+          >
+            <p
+              className={`uppercase text-accent/92 ${
+                isEmphasized
+                  ? "text-[12px] tracking-[0.26em]"
+                  : "text-[11px] tracking-[0.24em]"
+              }`}
+            >
               {item.label}
             </p>
-            <p className="max-w-sm text-base leading-7 text-muted sm:text-lg">
+            <p
+              className={`max-w-sm text-muted ${
+                isEmphasized
+                  ? "text-[1.04rem] leading-7 sm:text-[1.12rem] sm:leading-8"
+                  : "text-base leading-7 sm:text-lg"
+              }`}
+            >
               {item.text}
             </p>
           </div>
@@ -238,18 +258,29 @@ export function ProjectGallery({
           {images.map((image, index) => (
             <figure
               key={`${image.src}-${index}`}
-              className="editorial-light-surface flex flex-col gap-4 rounded-[30px] px-5 py-5 sm:px-6 sm:py-6"
+              className="architectural-board flex flex-col gap-4 rounded-[30px] px-5 py-5 sm:px-6 sm:py-6"
             >
               {captions?.[index] ? (
-                <figcaption className="text-[11px] uppercase tracking-[0.24em] text-[#8f7430]">
-                  {captions[index]}
+                <figcaption className="space-y-1">
+                  <p className="text-[11px] uppercase tracking-[0.24em] text-[#8f7430]">
+                    {captions[index].title}
+                  </p>
+                  {captions[index].subtitle ? (
+                    <p className="text-sm tracking-[0.04em] text-ink/56">
+                      {captions[index].subtitle}
+                    </p>
+                  ) : null}
                 </figcaption>
               ) : null}
-              <div className="relative aspect-[4/3] min-h-[18rem] overflow-hidden rounded-[24px] border border-black/8 bg-[#f2ede3]">
+              <div className="architectural-paper relative aspect-[4/3] min-h-[18rem] overflow-hidden rounded-[24px] border border-black/8">
                 <ProjectResponsiveImage
                   image={image}
                   sizes="(min-width: 1024px) 39vw, 100vw"
-                  className={image.fit === "contain" ? "object-contain" : "object-cover"}
+                  className={
+                    image.fit === "contain"
+                      ? "object-contain p-4 sm:p-5"
+                      : "object-cover"
+                  }
                 />
               </div>
             </figure>

@@ -56,7 +56,7 @@ export function ProjectImmersiveHero({
             image={hero.image}
             priority
             sizes="100vw"
-            className="object-cover"
+            className={isPhotographicHero ? "object-cover brightness-[1.06]" : "object-cover"}
           />
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(198,167,94,0.18),transparent_28%),linear-gradient(180deg,rgba(15,14,12,0.98),rgba(15,14,12,0.92))]" />
@@ -147,6 +147,7 @@ export function ProjectSummaryCard({ summaryCard }: ProjectSummaryCardProps) {
         <SectionHeading
           eyebrow={summaryCard.eyebrow}
           title={summaryCard.title ?? "Scheda sintetica"}
+          titleClassName={summaryCard.titleClassName}
         />
 
         <div className="grid gap-5 text-sm text-ink/78 sm:grid-cols-2">

@@ -316,64 +316,6 @@ export const projects: Project[] = [
       after: "continuità visiva, maggiore cura dell’esperienza.",
       value: "asset più leggibile, più gestibile, più forte."
     }
-  },
-  {
-    slug: "brera-corte",
-    title: "Brera Corte",
-    city: "Milano",
-    status: "Completato",
-    category: "Pied-a-terre",
-    year: "2025",
-    coverImage: {
-      src: "/images/hero-milano.png",
-      alt: "Brera Corte, interno serale con luce controllata",
-      objectPosition: "center center",
-      recommendedRatio: "16:10",
-      suggestedRealAssetName:
-        "public/images/projects/brera-corte/avm-brera-corte-cover-16x10.jpg"
-    },
-    galleryImages: [
-      {
-        src: "/images/hero-milano.png",
-        alt: "Brera Corte, veduta principale dell'interno",
-        objectPosition: "center center",
-        recommendedRatio: "16:10",
-        suggestedRealAssetName:
-          "public/images/projects/brera-corte/avm-brera-corte-gallery-01-16x10.jpg"
-      },
-      {
-        src: "/images/projects/la-galleria.png",
-        alt: "Brera Corte, dettaglio di atmosfera",
-        objectPosition: "center center",
-        recommendedRatio: "4:5",
-        suggestedRealAssetName:
-          "public/images/projects/brera-corte/avm-brera-corte-gallery-02-4x5.jpg"
-      },
-      {
-        src: "/images/projects/method-detail.png",
-        alt: "Brera Corte, dettaglio materico",
-        objectPosition: "center center",
-        recommendedRatio: "4:5",
-        suggestedRealAssetName:
-          "public/images/projects/brera-corte/avm-brera-corte-gallery-03-4x5.jpg"
-      }
-    ],
-    summary:
-      "Un taglio più essenziale e più preciso per un immobile che aveva bisogno di densità, non di eccesso.",
-    description:
-      "Il progetto ha consolidato linguaggio materico, tono luminoso e leggibilità dell’insieme con un intervento misurato.",
-    challenge:
-      "Trasformare un appartamento corretto ma anonimo in uno spazio con presenza e memoria.",
-    approach:
-      "Selezione degli elementi, revisione delle relazioni visive e allineamento delle scelte operative alla nuova identità.",
-    outcome:
-      "Un risultato più netto, più credibile e più coerente con la fascia a cui l’immobile si rivolge.",
-    focus: ["Direzione artistica", "Coerenza visiva", "Asset refinement"],
-    metrics: [
-      { label: "Focus", value: "Identità spaziale" },
-      { label: "Asset", value: "Residenza urbana" },
-      { label: "Processo", value: "Intervento selettivo" }
-    ]
   }
 ];
 
@@ -511,10 +453,16 @@ export type ProjectPageFocusSection = {
   id: string;
   eyebrow?: string;
   title?: string;
+  layout?: "default" | "emphasized";
   items: Array<{
     label: string;
     text: string;
   }>;
+};
+
+export type ProjectPageGalleryCaption = {
+  title: string;
+  subtitle?: string;
 };
 
 export type ProjectPageGallerySection = {
@@ -524,7 +472,7 @@ export type ProjectPageGallerySection = {
   title?: string;
   description?: string;
   layout?: "default" | "origin-editorial" | "plan-pair";
-  captions?: string[];
+  captions?: ProjectPageGalleryCaption[];
   images: ProjectPageImage[];
 };
 
@@ -610,6 +558,7 @@ export type ProjectPageTemplate = {
   summaryCard?: {
     eyebrow?: string;
     title?: string;
+    titleClassName?: string;
     items: ProjectPageFact[];
   };
   narrative?: ProjectPageNarrative;
@@ -975,7 +924,10 @@ const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
       description:
         "Il confronto tra stato di rilievo e stato di progetto rende leggibile l’intervento: da un’unica abitazione nascono due residenze indipendenti, collegate da un nuovo ingresso comune.",
       layout: "plan-pair",
-      captions: ["Stato di rilievo", "Stato di progetto"],
+      captions: [
+        { title: "Stato di rilievo", subtitle: "Pianta esistente" },
+        { title: "Stato di progetto", subtitle: "Nuova distribuzione" }
+      ],
       images: [
         {
           ...toCaseStudyProjectPageImage(rilievo),
@@ -999,6 +951,7 @@ const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
       id: "frazionamento-overview",
       eyebrow: "Studio di fattibilità",
       title: "Il potenziale si chiarisce prima della realizzazione.",
+      layout: "emphasized",
       items: [
         {
           label: "Analisi",
@@ -1067,6 +1020,7 @@ const projectPageDrafts: ProjectPageTemplate[] = [
     summaryCard: {
       eyebrow: "Scheda sintetica",
       title: "Brunelleschi",
+      titleClassName: "text-[#B8924F]",
       items: [
         { label: "Luogo", value: "Milano" },
         { label: "Categoria", value: "Studio di fattibilità" },
@@ -1083,7 +1037,10 @@ const projectPageDrafts: ProjectPageTemplate[] = [
         "L'eventuale realizzazione dell'intervento è prevista successivamente all'acquisizione dell'immobile."
       ]
     },
-    sections: buildBrunelleschiDraftSections()
+    sections: buildBrunelleschiDraftSections(),
+    navigation: {
+      previousSlug: "la-galleria"
+    }
   }
 ];
 
