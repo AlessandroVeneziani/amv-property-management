@@ -184,7 +184,9 @@ export function ProjectGallery({
               </h2>
             ) : null}
             {description ? (
-              <p className="text-base leading-7 text-muted sm:text-lg">{description}</p>
+              <p className="whitespace-pre-line text-base leading-7 text-muted sm:text-lg">
+                {description}
+              </p>
             ) : null}
           </div>
         ) : null}
@@ -261,7 +263,7 @@ export function ProjectGallery({
               className="architectural-board architectural-board-plan flex flex-col gap-4 rounded-[30px] px-5 py-5 sm:px-6 sm:py-6"
             >
               {captions?.[index] ? (
-                <figcaption className="space-y-1.5">
+                <figcaption className="space-y-1">
                   <p className="text-[11px] uppercase tracking-[0.24em] text-[#8f7430]">
                     {captions[index].title}
                   </p>
@@ -273,7 +275,7 @@ export function ProjectGallery({
                 </figcaption>
               ) : null}
               <div
-                className="architectural-paper architectural-paper-plan relative aspect-[16/10] min-h-[18rem] overflow-hidden rounded-[24px] border border-black/8 sm:min-h-[20rem]"
+                className="architectural-paper architectural-paper-plan relative aspect-[16/10] min-h-[19rem] overflow-hidden rounded-[24px] border border-black/8 sm:min-h-[21rem] lg:min-h-[23rem]"
                 data-plan-variant={index === 0 ? "survey" : "project"}
               >
                 <ProjectResponsiveImage
@@ -281,7 +283,7 @@ export function ProjectGallery({
                   sizes="(min-width: 1024px) 39vw, 100vw"
                   className={
                     image.fit === "contain"
-                      ? "object-contain p-4 sm:p-5"
+                      ? "object-contain p-2.5 sm:p-3 lg:p-3.5"
                       : "object-cover"
                   }
                 />
@@ -561,21 +563,36 @@ export function ProjectFinalCta({
   eyebrow,
   title,
   paragraphs,
+  variant = "light",
   primary,
   secondary
 }: ProjectPageCta) {
+  const isSmokyBronze = variant === "smoky-bronze";
+
   return (
-    <div className="editorial-light-panel px-6 py-8 text-ink sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+    <div
+      className={`px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12 ${
+        isSmokyBronze ? "editorial-dark-panel text-sand" : "editorial-light-panel text-ink"
+      }`}
+    >
       <div className="space-y-6">
         {eyebrow ? (
-          <p className="text-[11px] uppercase tracking-[0.24em] text-[#8f7430]">
+          <p
+            className={`text-[11px] uppercase tracking-[0.24em] ${
+              isSmokyBronze ? "text-[#c8a160]" : "text-[#8f7430]"
+            }`}
+          >
             {eyebrow}
           </p>
         ) : null}
         <h2 className="max-w-4xl font-serif text-3xl leading-tight sm:text-4xl lg:text-5xl">
           {title}
         </h2>
-        <div className="max-w-3xl space-y-4 text-base leading-7 text-ink/78 sm:text-lg">
+        <div
+          className={`max-w-3xl space-y-4 text-base leading-7 sm:text-lg ${
+            isSmokyBronze ? "text-sand/80" : "text-ink/78"
+          }`}
+        >
           {paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
@@ -587,7 +604,11 @@ export function ProjectFinalCta({
           {secondary ? (
             <Link
               href={secondary.href}
-              className="gold-outline-btn justify-center border-black/15 text-ink hover:bg-black/[0.03] sm:justify-start"
+              className={`gold-outline-btn justify-center sm:justify-start ${
+                isSmokyBronze
+                  ? "border-accent/45 text-sand hover:bg-accent/[0.08]"
+                  : "border-black/15 text-ink hover:bg-black/[0.03]"
+              }`}
             >
               {secondary.label}
             </Link>

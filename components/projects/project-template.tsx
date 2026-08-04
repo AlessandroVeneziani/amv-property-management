@@ -100,6 +100,12 @@ export function ProjectTemplate({
 }: ProjectTemplateProps) {
   const sections = renderableSections(project.sections);
   const narrativeEntries = buildNarrativeEntries(project);
+  const overviewSectionClass = project.compactOverview
+    ? "section-space pt-8 sm:pt-10"
+    : "section-space pt-10";
+  const overviewGridClass = project.compactOverview
+    ? "mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-[0.82fr_1.18fr]"
+    : "mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.82fr_1.18fr]";
 
   return (
     <div className="pb-16">
@@ -110,8 +116,8 @@ export function ProjectTemplate({
       />
 
       {project.summaryCard || narrativeEntries.length ? (
-        <section className="section-space pt-10">
-          <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.82fr_1.18fr]">
+        <section className={overviewSectionClass}>
+          <div className={overviewGridClass}>
             {project.summaryCard ? (
               <Reveal>
                 <ProjectSummaryCard summaryCard={project.summaryCard} />

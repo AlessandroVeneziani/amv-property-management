@@ -14,7 +14,8 @@ export type ProjectStatus =
   | "Gestione attiva"
   | "Completato"
   | "Concept progettuale"
-  | "In cantiere";
+  | "In cantiere"
+  | "Progetto in sviluppo";
 
 export type ProjectHomeMedia = {
   feature?: EditorialImageAsset;
@@ -330,20 +331,20 @@ const laGalleriaProject =
 export const listedProjects: ListedProject[] = [
   {
     slug: "brunelleschi",
-    title: "Brunelleschi",
-    eyebrow: "MILANO · CONCEPT RESIDENZIALE",
+    title: "Brunelleschi 4",
+    eyebrow: "MILANO · FRAZIONAMENTO RESIDENZIALE",
     description:
       "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva.",
     image: {
       src: "/images/projects/brunelleschi/brunelleschi-home-cover.webp",
-      alt: "Brunelleschi, living con divano curvo, lampadario ad anelli, tavolo davanti alla finestra e cucina sul fondo",
+      alt: "Brunelleschi 4, living con divano curvo, lampadario ad anelli, tavolo davanti alla finestra e cucina sul fondo",
       objectPosition: "center center",
       recommendedRatio: "16:9",
       suggestedRealAssetName:
         "public/images/projects/brunelleschi/brunelleschi-home-cover.webp"
     },
     city: "Milano",
-    status: "Concept progettuale",
+    status: "Progetto in sviluppo",
     href: "/progetti/brunelleschi",
     summary:
       "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva."
@@ -527,6 +528,7 @@ export type ProjectPageCta = {
   eyebrow?: string;
   title: string;
   paragraphs: string[];
+  variant?: "light" | "smoky-bronze";
   primary: {
     label: string;
     href: string;
@@ -545,6 +547,9 @@ export type ProjectPageTemplate = {
   status: string;
   visibility: ProjectPageVisibility;
   description: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  compactOverview?: boolean;
   stageBadge?: ProjectPageStageBadge;
   hero: {
     eyebrow: string;
@@ -599,9 +604,14 @@ const toCaseStudyProjectPageImage = (
   src: asset.src,
   alt:
     options?.alt ??
+    asset.alt ??
     `${brunelleschi4CaseStudy.title}, ${asset.label.toLowerCase()}`,
-  objectPosition: options?.objectPosition ?? "center center",
-  mobileObjectPosition: options?.mobileObjectPosition ?? "center center",
+  objectPosition: options?.objectPosition ?? asset.objectPosition ?? "center center",
+  mobileObjectPosition:
+    options?.mobileObjectPosition ??
+    asset.mobileObjectPosition ??
+    asset.objectPosition ??
+    "center center",
   suggestedRealAssetName: `public${asset.src}`,
   width: asset.width,
   height: asset.height
@@ -903,7 +913,7 @@ const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
       eyebrow: "Stato originario",
       title: "Un unico appartamento prima della trasformazione",
       description:
-        "Prima del progetto, l’immobile presentava una distribuzione tradizionale, con ambienti separati e un potenziale non ancora espresso. Lo studio parte dalla lettura dello spazio esistente per verificare la possibilità concreta di ricavare due unità autonome, funzionali e coerenti.",
+        "Prima del progetto, l’immobile presentava una distribuzione tradizionale, con ambienti separati e un potenziale non ancora espresso.\n\nLa lettura dello stato esistente è servita a verificare la possibilità concreta di ricavare due unità autonome, funzionali e coerenti.",
       layout: "origin-editorial",
       images: orderedAssets.map((asset) => toCaseStudyProjectPageImage(asset))
     } satisfies ProjectPageGallerySection;
@@ -955,19 +965,19 @@ const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
       layout: "emphasized",
       items: [
         {
-          label: "Analisi",
+          label: "Verifica distributiva",
           text:
-            "Lo studio verifica come un unico appartamento possa essere riorganizzato in due unità autonome, complete e leggibili."
+            "Lo studio verifica se il frazionamento può generare due unità realmente autonome, leggibili e funzionali."
         },
         {
-          label: "Coerenza",
+          label: "Autonomia funzionale",
           text:
-            "Le due residenze condividono la stessa direzione di luce, materiali e proporzioni, così da mantenere una continuità progettuale chiara."
+            "Accessi, servizi e percorsi vengono organizzati affinché entrambe le residenze mantengano identità e qualità proprie."
         },
         {
-          label: "Visione",
+          label: "Valore potenziale",
           text:
-            "I render fotorealistici traducono questa lettura in una proposta concreta, utile a valutare qualità spaziale, atmosfera e valore potenziale."
+            "I render traducono la strategia in una visione concreta, utile a valutare in anticipo spazio, atmosfera e desiderabilità."
         }
       ]
     },
@@ -991,21 +1001,26 @@ const publishedProjectPageTemplates = projects.map((project) =>
 const projectPageDrafts: ProjectPageTemplate[] = [
   {
     slug: "brunelleschi",
-    title: "Brunelleschi",
+    title: "Brunelleschi 4",
     place: "Milano",
-    category: "Concept residenziale",
-    status: "Concept progettuale",
+    category: "Studio di fattibilità",
+    status: "Progetto in sviluppo",
     visibility: "published",
     description:
-      "Uno studio di fattibilità sviluppato da AVM per valutare come un unico appartamento possa essere trasformato in due residenze indipendenti.",
+      "Studio pre-acquisto AVM per il frazionamento di un appartamento a Milano in due unità indipendenti, attraverso analisi distributiva, luce e visione progettuale.",
+    seoTitle: "Brunelleschi 4 | Studio di fattibilità e frazionamento | AVM",
+    seoDescription:
+      "Studio pre-acquisto AVM per il frazionamento di un appartamento a Milano in due unità indipendenti, attraverso analisi distributiva, luce e visione progettuale.",
+    compactOverview: true,
     stageBadge: {
       label: "Concept",
-      note: "Studio di fattibilità 2026"
+      note: "Studio di fattibilità"
     },
     hero: {
       eyebrow: "MILANO · FRAZIONAMENTO RESIDENZIALE",
-      title: "Brunelleschi",
-      description: "Un unico appartamento, due nuove residenze indipendenti.",
+      title: "Brunelleschi 4",
+      description:
+        "Uno studio pre-acquisto per verificare il reale potenziale distributivo dell’immobile.",
       image: brunelleschiHeroAsset
         ? toCaseStudyProjectPageImage(brunelleschiHeroAsset, {
             objectPosition: "center center",
@@ -1014,32 +1029,44 @@ const projectPageDrafts: ProjectPageTemplate[] = [
         : undefined,
       variant: "photographic",
       titleClassName:
-        "text-[#fff8f0] [text-shadow:0_10px_28px_rgba(0,0,0,0.46)]",
+        "text-[#fffaf2] [text-shadow:0_10px_28px_rgba(0,0,0,0.52)]",
       descriptionClassName:
-        "text-[#f8efe2]/94 [text-shadow:0_8px_20px_rgba(0,0,0,0.38)]"
+        "text-[#fbf1e4]/96 [text-shadow:0_8px_20px_rgba(0,0,0,0.42)]"
     },
     summaryCard: {
       eyebrow: "Scheda sintetica",
-      title: "Brunelleschi",
+      title: "Brunelleschi 4",
       titleClassName: "text-[#A97845]",
       variant: "smoky-bronze",
       items: [
         { label: "Luogo", value: "Milano" },
         { label: "Categoria", value: "Studio di fattibilità" },
-        { label: "Stato", value: "Concept progettuale · 2026" },
+        { label: "Stato", value: "Progetto in sviluppo" },
         { label: "Intervento", value: "Frazionamento in due unità" },
         { label: "Fase", value: "Valutazione pre-acquisto" }
       ]
     },
     narrative: {
       introduction: [
-        "Questo progetto rappresenta uno studio di fattibilità sviluppato da AVM nel 2026.",
-        "Attraverso l'analisi distributiva, lo studio della luce, dei materiali e della valorizzazione immobiliare, il progetto mostra come un unico appartamento possa essere trasformato in due residenze indipendenti.",
-        "Le immagini presenti sono render fotorealistici realizzati per rappresentare la visione progettuale.",
-        "L'eventuale realizzazione dell'intervento è prevista successivamente all'acquisizione dell'immobile."
+        "L’analisi è nata prima dell’acquisto, con l’obiettivo di verificare se la distribuzione esistente potesse essere trasformata in due unità autonome senza perdere qualità spaziale.",
+        "Lo studio ha messo in relazione configurazione degli ambienti, accessi, servizi, percorsi e potenziale immobiliare, traducendo questa lettura in una proposta concreta.",
+        "I render rappresentano la visione progettuale elaborata per valutare in anticipo qualità, atmosfera e valore potenziale dell’intervento."
       ]
     },
     sections: buildBrunelleschiDraftSections(),
+    finalCta: {
+      eyebrow: "Valore progettuale",
+      title: "Il valore nasce prima della realizzazione.",
+      paragraphs: [
+        "Brunelleschi 4 mostra come una decisione di acquisto possa essere supportata da una lettura progettuale concreta.",
+        "Prima di intervenire, AVM verifica distribuzione, qualità spaziale e possibilità reali di trasformazione."
+      ],
+      variant: "smoky-bronze",
+      primary: {
+        label: "Parliamo del potenziale del tuo immobile",
+        href: "/contatti"
+      }
+    },
     navigation: {
       previousSlug: "la-galleria"
     }

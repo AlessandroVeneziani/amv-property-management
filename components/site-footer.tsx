@@ -110,6 +110,12 @@ export function SiteFooter() {
               <div className="grid gap-2 text-sm leading-7 text-sand/72 sm:text-base">
                 <div className="space-y-1 pb-4">
                   <p className="text-[11px] uppercase tracking-[0.24em] text-accent/78">
+                    Brand
+                  </p>
+                  <p className="text-sand/88">{siteConfig.name}</p>
+                </div>
+                <div className="space-y-1 pb-4">
+                  <p className="text-[11px] uppercase tracking-[0.24em] text-accent/78">
                     Denominazione operativa
                   </p>
                   <p className="text-sand/88">{legalInfo.companyName}</p>
