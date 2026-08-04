@@ -397,8 +397,8 @@ export function ProjectRenderSequence({
         {supportItems.length ? (
           <div className="grid gap-4 sm:gap-5 lg:grid-cols-2">
             {supportItems.map((item, index) => (
-              <figure key={item.id} className="space-y-3">
-                <div className="flex items-baseline gap-3 border-t border-line/60 pt-3">
+              <figure key={item.id} className="project-render-support-card">
+                <div className="project-render-support-header">
                   <p className="text-[10px] uppercase tracking-[0.22em] text-accent/72">
                     {String(index + 2).padStart(2, "0")}
                   </p>
@@ -411,7 +411,7 @@ export function ProjectRenderSequence({
                   <ProjectResponsiveImage
                     image={item.image}
                     sizes="(min-width: 1024px) 39vw, 100vw"
-                    className="block h-full w-full object-cover"
+                    className="block h-full w-full object-cover object-center"
                   />
                 </div>
               </figure>
