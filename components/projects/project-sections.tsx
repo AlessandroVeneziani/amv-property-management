@@ -407,20 +407,11 @@ export function ProjectRenderSequence({
                   </h3>
                 </div>
 
-                <div
-                  className={`relative overflow-hidden rounded-[28px] border border-line shadow-glow ${
-                    supportItems.length === 3 && index === 2 ? "lg:col-span-2" : ""
-                  }`}
-                  style={{ aspectRatio: `${item.width} / ${item.height}` }}
-                >
+                <div className="project-render-support-media">
                   <ProjectResponsiveImage
                     image={item.image}
-                    sizes={
-                      supportItems.length === 3 && index === 2
-                        ? "(min-width: 1024px) 82vw, 100vw"
-                        : "(min-width: 1024px) 39vw, 100vw"
-                    }
-                    className="object-cover"
+                    sizes="(min-width: 1024px) 39vw, 100vw"
+                    className="block h-full w-full object-cover"
                   />
                 </div>
               </figure>

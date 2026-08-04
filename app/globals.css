@@ -356,6 +356,17 @@ main::before {
   .text-balance {
     text-wrap: balance;
   }
+
+  .project-render-support-media {
+    @apply relative w-full overflow-hidden rounded-[28px] border border-line shadow-glow;
+    aspect-ratio: 4 / 3;
+  }
+
+  @media (min-width: 1024px) {
+    .project-render-support-media {
+      aspect-ratio: 16 / 10;
+    }
+  }
 }
 
 .reveal {
