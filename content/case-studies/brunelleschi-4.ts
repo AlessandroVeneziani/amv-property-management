@@ -85,6 +85,7 @@ export const brunelleschi4CaseStudy = {
         "render-app2-living-01",
         "render-app2-cucina-02",
         "render-app2-camera-03",
+        "render-app2-ingresso-05",
         "render-app2-bagno-04"
       ]
     }
@@ -251,6 +252,15 @@ export const brunelleschi4CaseStudy = {
         format: "webp",
         width: 1672,
         height: 941
+      },
+      {
+        id: "render-app2-ingresso-05",
+        category: "render",
+        label: "Ingresso",
+        src: "/images/projects/brunelleschi-4/05-render/appartamento-2/brunelleschi-4-milano-appartamento-2-render-ingresso-05.webp",
+        format: "webp",
+        width: 1448,
+        height: 1086
       }
     ],
     fotoFinali: []
