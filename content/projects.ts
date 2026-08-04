@@ -559,6 +559,7 @@ export type ProjectPageTemplate = {
     eyebrow?: string;
     title?: string;
     titleClassName?: string;
+    variant?: "light" | "smoky-bronze";
     items: ProjectPageFact[];
   };
   narrative?: ProjectPageNarrative;
@@ -1021,6 +1022,7 @@ const projectPageDrafts: ProjectPageTemplate[] = [
       eyebrow: "Scheda sintetica",
       title: "Brunelleschi",
       titleClassName: "text-[#A97845]",
+      variant: "smoky-bronze",
       items: [
         { label: "Luogo", value: "Milano" },
         { label: "Categoria", value: "Studio di fattibilità" },

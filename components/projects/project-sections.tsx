@@ -258,22 +258,22 @@ export function ProjectGallery({
           {images.map((image, index) => (
             <figure
               key={`${image.src}-${index}`}
-              className="architectural-board flex flex-col gap-4 rounded-[30px] px-5 py-5 sm:px-6 sm:py-6"
+              className="architectural-board architectural-board-plan flex flex-col gap-4 rounded-[30px] px-5 py-5 sm:px-6 sm:py-6"
             >
               {captions?.[index] ? (
-                <figcaption className="space-y-1">
+                <figcaption className="space-y-1.5">
                   <p className="text-[11px] uppercase tracking-[0.24em] text-[#8f7430]">
                     {captions[index].title}
                   </p>
                   {captions[index].subtitle ? (
-                    <p className="text-[15px] leading-6 tracking-[0.03em] text-[#756858]">
+                    <p className="text-[15px] leading-6 tracking-[0.02em] text-[#756858] sm:text-[16px]">
                       {captions[index].subtitle}
                     </p>
                   ) : null}
                 </figcaption>
               ) : null}
               <div
-                className="architectural-paper relative aspect-[4/3] min-h-[18rem] overflow-hidden rounded-[24px] border border-black/8"
+                className="architectural-paper architectural-paper-plan relative aspect-[16/10] min-h-[18rem] overflow-hidden rounded-[24px] border border-black/8 sm:min-h-[20rem]"
                 data-plan-variant={index === 0 ? "survey" : "project"}
               >
                 <ProjectResponsiveImage
@@ -281,11 +281,7 @@ export function ProjectGallery({
                   sizes="(min-width: 1024px) 39vw, 100vw"
                   className={
                     image.fit === "contain"
-                      ? `object-contain ${
-                          index === 0
-                            ? "p-3 sm:p-4"
-                            : "p-4 sm:p-5"
-                        }`
+                      ? "object-contain p-4 sm:p-5"
                       : "object-cover"
                   }
                 />

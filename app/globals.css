@@ -176,6 +176,41 @@ main::before {
     z-index: 1;
   }
 
+  .editorial-dark-panel {
+    @apply relative overflow-hidden rounded-[38px] text-sand;
+    border: 1px solid rgba(192, 155, 95, 0.28);
+    background:
+      linear-gradient(
+        155deg,
+        rgba(69, 52, 32, 0.58) 0%,
+        rgba(51, 39, 26, 0.76) 44%,
+        rgba(33, 26, 19, 0.9) 100%
+      ),
+      radial-gradient(circle at top left, rgba(198, 167, 94, 0.08), transparent 34%),
+      linear-gradient(180deg, rgba(17, 13, 10, 0.72), rgba(17, 13, 10, 0.88));
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 0 0 1px rgba(233, 215, 188, 0.03);
+  }
+
+  .editorial-dark-panel::before {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 16%),
+      radial-gradient(circle at top left, rgba(212, 174, 107, 0.06), transparent 28%),
+      linear-gradient(120deg, rgba(255, 255, 255, 0.022), transparent 20%, rgba(255, 255, 255, 0.01) 48%, transparent 72%);
+    content: "";
+    opacity: 0.92;
+    pointer-events: none;
+  }
+
+  .editorial-dark-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
   .editorial-light-surface {
     @apply relative overflow-hidden rounded-[32px] border border-black/10;
     background:
@@ -237,6 +272,14 @@ main::before {
     z-index: 1;
   }
 
+  .architectural-board-plan {
+    border: 1px solid rgba(149, 121, 76, 0.14);
+    box-shadow:
+      0 24px 58px rgba(23, 18, 13, 0.09),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 0 0 1px rgba(117, 104, 88, 0.04);
+  }
+
   .architectural-paper {
     background:
       linear-gradient(
@@ -273,6 +316,39 @@ main::before {
   .architectural-paper > * {
     position: relative;
     z-index: 1;
+  }
+
+  .architectural-paper-plan {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(252, 249, 243, 0.98) 0%,
+        rgba(250, 247, 240, 0.99) 100%
+      ),
+      #faf7f0;
+  }
+
+  .architectural-paper-plan::before {
+    background:
+      radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.16), transparent 24%),
+      linear-gradient(180deg, rgba(117, 104, 88, 0.012), transparent 34%, rgba(117, 104, 88, 0.008) 72%, transparent 100%),
+      linear-gradient(90deg, rgba(117, 104, 88, 0.01), transparent 18%, rgba(117, 104, 88, 0.006) 52%, transparent 100%);
+    opacity: 0.48;
+  }
+
+  .architectural-paper-plan[data-plan-variant="survey"] > .md\\:hidden,
+  .architectural-paper-plan[data-plan-variant="survey"] > .hidden.md\\:block {
+    transform: scale(1.03);
+    transform-origin: center;
+  }
+
+  .architectural-paper-plan[data-plan-variant="project"] > .md\\:hidden,
+  .architectural-paper-plan[data-plan-variant="project"] > .hidden.md\\:block {
+    transform: scale(1.065);
+    transform-origin: center;
   }
 }
 

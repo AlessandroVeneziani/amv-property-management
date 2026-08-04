@@ -141,8 +141,14 @@ export function ProjectImmersiveHero({
 }
 
 export function ProjectSummaryCard({ summaryCard }: ProjectSummaryCardProps) {
+  const isSmokyBronze = summaryCard.variant === "smoky-bronze";
+
   return (
-    <div className="editorial-light-panel px-6 py-7 sm:px-8 sm:py-9">
+    <div
+      className={`px-6 py-7 sm:px-8 sm:py-9 ${
+        isSmokyBronze ? "editorial-dark-panel" : "editorial-light-panel"
+      }`}
+    >
       <div className="space-y-6">
         <SectionHeading
           eyebrow={summaryCard.eyebrow}
@@ -150,13 +156,32 @@ export function ProjectSummaryCard({ summaryCard }: ProjectSummaryCardProps) {
           titleClassName={summaryCard.titleClassName}
         />
 
-        <div className="grid gap-5 text-sm text-ink/78 sm:grid-cols-2">
+        <div
+          className={`grid gap-5 text-sm sm:grid-cols-2 ${
+            isSmokyBronze ? "text-sand/82" : "text-ink/78"
+          }`}
+        >
           {summaryCard.items.map((item) => (
-            <div key={item.label} className="space-y-2 border-t border-black/10 pt-4">
-              <p className="text-[11px] uppercase tracking-[0.22em] text-[#8f7430]">
+            <div
+              key={item.label}
+              className={`space-y-2 pt-4 ${
+                isSmokyBronze ? "border-t border-white/10" : "border-t border-black/10"
+              }`}
+            >
+              <p
+                className={`text-[11px] uppercase tracking-[0.22em] ${
+                  isSmokyBronze ? "text-[#c8a160]" : "text-[#8f7430]"
+                }`}
+              >
                 {item.label}
               </p>
-              <p className="font-serif text-xl leading-snug text-ink">{item.value}</p>
+              <p
+                className={`font-serif text-xl leading-snug ${
+                  isSmokyBronze ? "text-[#f3e7d4]" : "text-ink"
+                }`}
+              >
+                {item.value}
+              </p>
             </div>
           ))}
         </div>
