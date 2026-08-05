@@ -128,42 +128,36 @@ export function ProjectTemplate({
         <section className={overviewSectionClass}>
           {usesAnchoredIntroductionPanel ? (
             <div className="mx-auto max-w-7xl px-6">
-              <div className="grid gap-5 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:gap-x-8">
+              <div className="grid gap-5 lg:grid-cols-12 lg:items-stretch lg:gap-x-0">
                 {project.summaryCard ? (
-                  <Reveal>
-                    <div className="relative z-10 max-w-[37rem]">
-                      <ProjectSummaryCard summaryCard={project.summaryCard} />
-                    </div>
+                  <Reveal className="relative z-20 max-w-[37rem] lg:col-span-5 lg:col-start-1 lg:row-start-1">
+                    <ProjectSummaryCard summaryCard={project.summaryCard} />
                   </Reveal>
                 ) : null}
 
-                <div className="hidden lg:block" />
-
                 {introductionEntry ? (
-                  <Reveal delay={70}>
-                    <div
-                      className={`${
-                        project.summaryCard
-                          ? "lg:col-span-2 lg:-mt-10 lg:pl-[14%]"
-                          : "lg:col-span-2"
-                      }`}
-                    >
-                      <ProjectIntroductionPanel entry={introductionEntry} />
-                    </div>
+                  <Reveal
+                    delay={70}
+                    className={
+                      project.summaryCard
+                        ? "relative z-10 lg:col-span-8 lg:col-start-5 lg:row-start-1 lg:self-end lg:pl-0"
+                        : "lg:col-span-12"
+                    }
+                  >
+                    <ProjectIntroductionPanel entry={introductionEntry} />
                   </Reveal>
                 ) : null}
 
                 {narrativeEntries.length ? (
-                  <Reveal delay={110}>
-                    <div
-                      className={`${
-                        project.summaryCard || introductionEntry
-                          ? "lg:col-span-2 lg:pl-[14%]"
-                          : "lg:col-span-2"
-                      }`}
-                    >
-                      <ProjectNarrativeOverview entries={narrativeEntries} />
-                    </div>
+                  <Reveal
+                    delay={110}
+                    className={
+                      project.summaryCard || introductionEntry
+                        ? "lg:col-span-12 lg:pl-[14%]"
+                        : "lg:col-span-12"
+                    }
+                  >
+                    <ProjectNarrativeOverview entries={narrativeEntries} />
                   </Reveal>
                 ) : null}
               </div>
