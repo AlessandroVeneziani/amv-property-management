@@ -328,6 +328,26 @@ const laGalleriaProject =
 
 export const listedProjects: ListedProject[] = [
   {
+    slug: "imbonati-15",
+    title: "Imbonati 15",
+    eyebrow: "MILANO · FRAZIONAMENTO E VALORIZZAZIONE",
+    description:
+      "Un appartamento originario trasformato in due residenze indipendenti, attraverso distribuzione, luce e materia.",
+    image: {
+      src: "/images/projects/imbonati-15/imbonati-home-cover.webp",
+      alt: "Imbonati 15, cucina lineare color tortora con penisola, quattro sgabelli, lampadario scultoreo e zona TV sul fondo",
+      objectPosition: "center center",
+      recommendedRatio: "16:9",
+      suggestedRealAssetName:
+        "public/images/projects/imbonati-15/imbonati-home-cover.webp"
+    },
+    city: "Milano",
+    status: "In valorizzazione",
+    href: "/progetti/imbonati-15",
+    summary:
+      "Un appartamento originario trasformato in due residenze indipendenti, attraverso distribuzione, luce e materia."
+  },
+  {
     slug: "brunelleschi",
     title: "Brunelleschi 4",
     eyebrow: "MILANO · FRAZIONAMENTO RESIDENZIALE",
@@ -346,26 +366,6 @@ export const listedProjects: ListedProject[] = [
     href: "/progetti/brunelleschi",
     summary:
       "Una nuova lettura dello spazio costruita attraverso luce, arredi su misura e continuità visiva."
-  },
-  {
-    slug: "imbonati-15",
-    title: "Imbonati 15",
-    eyebrow: "MILANO · FRAZIONAMENTO E VALORIZZAZIONE",
-    description:
-      "Un appartamento originario trasformato in due residenze indipendenti, attraverso distribuzione, luce e materia.",
-    image: {
-      src: "/images/projects/imbonati-15/imbonati-home-cover.webp",
-      alt: "Imbonati 15, cucina lineare color tortora con penisola, quattro sgabelli, lampadario scultoreo e zona TV sul fondo",
-      objectPosition: "center center",
-      recommendedRatio: "16:9",
-      suggestedRealAssetName:
-        "public/images/projects/imbonati-15/imbonati-home-cover.webp"
-    },
-    city: "Milano",
-    status: "In valorizzazione",
-    href: null,
-    summary:
-      "Un appartamento originario trasformato in due residenze indipendenti, attraverso distribuzione, luce e materia."
   },
   ...(laGalleriaProject
     ? [
@@ -1228,7 +1228,7 @@ const projectPageDrafts: ProjectPageTemplate[] = [
     place: "Milano",
     category: "Frazionamento e valorizzazione immobiliare",
     status: "Realizzato",
-    visibility: "draft",
+    visibility: "published",
     description:
       "Template tecnico AVM per il case history Imbonati 15, ancora in preparazione editoriale.",
     seoTitle: "Imbonati 15 | Draft interno | AVM",
