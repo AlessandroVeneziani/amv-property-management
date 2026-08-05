@@ -550,6 +550,7 @@ export type ProjectPageTemplate = {
   seoTitle?: string;
   seoDescription?: string;
   compactOverview?: boolean;
+  overviewLayout?: "default" | "anchored-introduction-panel";
   stageBadge?: ProjectPageStageBadge;
   hero: {
     eyebrow: string;
@@ -1012,6 +1013,7 @@ const projectPageDrafts: ProjectPageTemplate[] = [
     seoDescription:
       "Studio pre-acquisto AVM per il frazionamento di un appartamento a Milano in due unità indipendenti, attraverso analisi distributiva, luce e visione progettuale.",
     compactOverview: true,
+    overviewLayout: "anchored-introduction-panel",
     stageBadge: {
       label: "Concept",
       note: "Studio di fattibilità"
@@ -1049,8 +1051,8 @@ const projectPageDrafts: ProjectPageTemplate[] = [
     narrative: {
       introduction: [
         "L’analisi è nata prima dell’acquisto, per verificare se la distribuzione esistente potesse sostenere una trasformazione reale e coerente.",
-        "Lo studio ha messo in relazione spazi, accessi, servizi e percorsi, traducendo questa lettura in una proposta progettuale concreta.",
-        "I render mostrano la qualità potenziale dell’intervento prima della sua realizzazione."
+        "Lo studio mette in relazione spazi, accessi, servizi e percorsi, traducendo questa lettura in una proposta progettuale concreta.",
+        "I render anticipano la qualità potenziale dell’intervento e ne restituiscono atmosfera, coerenza e valore."
       ]
     },
     sections: buildBrunelleschiDraftSections(),

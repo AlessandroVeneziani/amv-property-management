@@ -24,6 +24,10 @@ type ProjectNarrativeOverviewProps = {
   entries: NarrativeEntry[];
 };
 
+type ProjectIntroductionPanelProps = {
+  entry: NarrativeEntry;
+};
+
 type ProjectNavigationProps = {
   previousProject: ProjectPageTemplate | null;
   nextProject: ProjectPageTemplate | null;
@@ -210,6 +214,25 @@ export function ProjectNarrativeOverview({
           </div>
         </div>
       ))}
+    </div>
+  );
+}
+
+export function ProjectIntroductionPanel({
+  entry
+}: ProjectIntroductionPanelProps) {
+  return (
+    <div className="editorial-bronze-glass-panel px-6 py-6 sm:px-8 sm:py-7 lg:px-10 lg:py-8">
+      <div className="max-w-[52rem] space-y-4">
+        <p className="text-[11px] uppercase tracking-[0.26em] text-accent/88">
+          {entry.label}
+        </p>
+        <div className="max-w-[44rem] space-y-3 text-base leading-[1.78] text-sand/80 sm:text-lg">
+          {entry.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

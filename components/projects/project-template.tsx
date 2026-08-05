@@ -13,6 +13,7 @@ import {
 } from "./project-sections";
 import {
   ProjectImmersiveHero,
+  ProjectIntroductionPanel,
   ProjectNarrativeOverview,
   ProjectNavigation,
   ProjectSummaryCard
@@ -99,7 +100,15 @@ export function ProjectTemplate({
   nextProject
 }: ProjectTemplateProps) {
   const sections = renderableSections(project.sections);
-  const narrativeEntries = buildNarrativeEntries(project);
+  const allNarrativeEntries = buildNarrativeEntries(project);
+  const usesAnchoredIntroductionPanel =
+    project.overviewLayout === "anchored-introduction-panel";
+  const introductionEntry = usesAnchoredIntroductionPanel
+    ? allNarrativeEntries.find((entry) => entry.label === "Introduzione") ?? null
+    : null;
+  const narrativeEntries = usesAnchoredIntroductionPanel
+    ? allNarrativeEntries.filter((entry) => entry.label !== "Introduzione")
+    : allNarrativeEntries;
   const overviewSectionClass = project.compactOverview
     ? "section-space pt-8 sm:pt-10"
     : "section-space pt-10";
@@ -115,21 +124,65 @@ export function ProjectTemplate({
         facts={project.summaryCard?.items ?? []}
       />
 
-      {project.summaryCard || narrativeEntries.length ? (
+      {project.summaryCard || introductionEntry || narrativeEntries.length ? (
         <section className={overviewSectionClass}>
-          <div className={overviewGridClass}>
-            {project.summaryCard ? (
-              <Reveal>
-                <ProjectSummaryCard summaryCard={project.summaryCard} />
-              </Reveal>
-            ) : null}
+          {usesAnchoredIntroductionPanel ? (
+            <div className="mx-auto max-w-7xl px-6">
+              <div className="grid gap-5 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:gap-x-8">
+                {project.summaryCard ? (
+                  <Reveal>
+                    <div className="relative z-10 max-w-[37rem]">
+                      <ProjectSummaryCard summaryCard={project.summaryCard} />
+                    </div>
+                  </Reveal>
+                ) : null}
 
-            {narrativeEntries.length ? (
-              <Reveal delay={70}>
-                <ProjectNarrativeOverview entries={narrativeEntries} />
-              </Reveal>
-            ) : null}
-          </div>
+                <div className="hidden lg:block" />
+
+                {introductionEntry ? (
+                  <Reveal delay={70}>
+                    <div
+                      className={`${
+                        project.summaryCard
+                          ? "lg:col-span-2 lg:-mt-10 lg:pl-[14%]"
+                          : "lg:col-span-2"
+                      }`}
+                    >
+                      <ProjectIntroductionPanel entry={introductionEntry} />
+                    </div>
+                  </Reveal>
+                ) : null}
+
+                {narrativeEntries.length ? (
+                  <Reveal delay={110}>
+                    <div
+                      className={`${
+                        project.summaryCard || introductionEntry
+                          ? "lg:col-span-2 lg:pl-[14%]"
+                          : "lg:col-span-2"
+                      }`}
+                    >
+                      <ProjectNarrativeOverview entries={narrativeEntries} />
+                    </div>
+                  </Reveal>
+                ) : null}
+              </div>
+            </div>
+          ) : (
+            <div className={overviewGridClass}>
+              {project.summaryCard ? (
+                <Reveal>
+                  <ProjectSummaryCard summaryCard={project.summaryCard} />
+                </Reveal>
+              ) : null}
+
+              {narrativeEntries.length ? (
+                <Reveal delay={70}>
+                  <ProjectNarrativeOverview entries={narrativeEntries} />
+                </Reveal>
+              ) : null}
+            </div>
+          )}
         </section>
       ) : null}
 
