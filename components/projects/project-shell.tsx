@@ -149,7 +149,7 @@ export function ProjectSummaryCard({ summaryCard }: ProjectSummaryCardProps) {
 
   return (
     <div
-      className={`px-6 py-7 sm:px-8 sm:py-9 ${
+      className={`h-full px-6 py-7 sm:px-8 sm:py-9 ${
         isSmokyBronze ? "editorial-dark-panel" : "editorial-light-panel"
       }`}
     >
@@ -222,12 +222,12 @@ export function ProjectIntroductionPanel({
   entry
 }: ProjectIntroductionPanelProps) {
   return (
-    <div className="editorial-bronze-glass-panel px-6 py-6 sm:px-8 sm:py-7 lg:px-10 lg:py-8">
-      <div className="max-w-none space-y-4">
+    <div className="editorial-bronze-glass-panel h-full px-5 py-6 sm:px-7 sm:py-7 md:px-8 md:py-7 lg:px-9 lg:py-8">
+      <div className="max-w-[50rem] space-y-4 md:pl-[3.75rem] lg:pl-[4.75rem]">
         <p className="text-[11px] uppercase tracking-[0.26em] text-accent/88">
           {entry.label}
         </p>
-        <div className="max-w-[68rem] space-y-3 text-base leading-[1.78] text-sand/80 sm:text-lg">
+        <div className="max-w-none space-y-3 text-base leading-[1.78] text-sand/80 sm:text-lg">
           {entry.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}

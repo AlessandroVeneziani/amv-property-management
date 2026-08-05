@@ -128,9 +128,9 @@ export function ProjectTemplate({
         <section className={overviewSectionClass}>
           {usesAnchoredIntroductionPanel ? (
             <div className="mx-auto max-w-7xl px-6">
-              <div className="grid gap-5 lg:grid-cols-12 lg:items-stretch lg:gap-x-0">
+              <div className="grid gap-5 md:grid-cols-10 md:grid-rows-[clamp(6.5rem,14vw,8.5rem)_minmax(0,1fr)] md:items-stretch md:gap-x-0 lg:grid-cols-12 lg:grid-rows-[clamp(7.75rem,13vw,10.25rem)_minmax(0,1fr)]">
                 {project.summaryCard ? (
-                  <Reveal className="relative z-20 max-w-[37rem] lg:col-span-5 lg:col-start-1 lg:row-start-1">
+                  <Reveal className="relative z-20 max-w-[37rem] md:col-[1/5] md:row-[1/3] md:h-full lg:col-[1/6] lg:row-[1/3]">
                     <ProjectSummaryCard summaryCard={project.summaryCard} />
                   </Reveal>
                 ) : null}
@@ -140,8 +140,8 @@ export function ProjectTemplate({
                     delay={70}
                     className={
                       project.summaryCard
-                        ? "relative z-10 lg:col-span-8 lg:col-start-5 lg:row-start-1 lg:self-end lg:pl-0"
-                        : "lg:col-span-12"
+                        ? "relative z-10 md:col-[5/11] md:row-[2/3] md:-ml-8 md:h-full md:self-stretch lg:col-[6/13] lg:-ml-10 lg:row-[2/3]"
+                        : "md:col-span-10 lg:col-span-12"
                     }
                   >
                     <ProjectIntroductionPanel entry={introductionEntry} />
@@ -153,8 +153,8 @@ export function ProjectTemplate({
                     delay={110}
                     className={
                       project.summaryCard || introductionEntry
-                        ? "lg:col-span-12 lg:pl-[14%]"
-                        : "lg:col-span-12"
+                        ? "md:col-span-10 md:pt-5 lg:col-span-12 lg:pl-[14%]"
+                        : "md:col-span-10 lg:col-span-12"
                     }
                   >
                     <ProjectNarrativeOverview entries={narrativeEntries} />
