@@ -3,10 +3,8 @@ import {
   inquiryLinks,
   type EditorialImageAsset
 } from "@/content/site";
-import {
-  brunelleschi4CaseStudy,
-  type CaseStudyAsset
-} from "@/content/case-studies/brunelleschi-4";
+import { brunelleschi4CaseStudy } from "@/content/case-studies/brunelleschi-4";
+import { imbonati15CaseStudy } from "@/content/case-studies/imbonati-15";
 
 export type ProjectStatus =
   | "In portfolio"
@@ -577,6 +575,16 @@ export type ProjectPageTemplate = {
   };
 };
 
+type ProjectCaseStudyAsset = {
+  label: string;
+  src: string;
+  width: number;
+  height: number;
+  alt?: string;
+  objectPosition?: string;
+  mobileObjectPosition?: string;
+};
+
 const hasText = (value: string | undefined | null): value is string =>
   Boolean(value && value.trim().length > 0);
 
@@ -595,7 +603,7 @@ const toProjectPageImage = (
 });
 
 const toCaseStudyProjectPageImage = (
-  asset: CaseStudyAsset,
+  asset: ProjectCaseStudyAsset,
   options?: {
     alt?: string;
     objectPosition?: string;
@@ -993,6 +1001,147 @@ const brunelleschiHeroAsset = brunelleschi4RenderAssetsById.get(
   "render-app2-living-01"
 );
 
+const buildImbonati15DraftSections = (): ProjectPageSection[] => {
+  const originalStateImages = imbonati15CaseStudy.assets.prima.map((asset) =>
+    toCaseStudyProjectPageImage(asset)
+  );
+  const authorizedImages = imbonati15CaseStudy.assets.statoAutorizzato.map((asset) => ({
+    ...toCaseStudyProjectPageImage(asset),
+    fit: "contain" as const
+  }));
+  const comparisonImages = imbonati15CaseStudy.assets.statoComparazione.map((asset) => ({
+    ...toCaseStudyProjectPageImage(asset),
+    fit: "contain" as const
+  }));
+  const designStateImages = imbonati15CaseStudy.assets.statoProgetto.map((asset) => ({
+    ...toCaseStudyProjectPageImage(asset),
+    fit: "contain" as const
+  }));
+  const apartment1Items = imbonati15CaseStudy.assets.appartamento1.map((asset) => ({
+    id: asset.id,
+    title: asset.label,
+    image: toCaseStudyProjectPageImage(asset),
+    width: asset.width,
+    height: asset.height
+  }));
+  const apartment2Items = imbonati15CaseStudy.assets.appartamento2.map((asset) => ({
+    id: asset.id,
+    title: asset.label,
+    image: toCaseStudyProjectPageImage(asset),
+    width: asset.width,
+    height: asset.height
+  }));
+  const detailImages = imbonati15CaseStudy.assets.dettagli.map((asset) =>
+    toCaseStudyProjectPageImage(asset)
+  );
+
+  return [
+    {
+      type: "focus",
+      id: "imbonati-strategic-frame",
+      eyebrow: "Strategia",
+      title: "[TODO] Definire il titolo strategico del case history Imbonati 15.",
+      layout: "emphasized",
+      items: [
+        {
+          label: "Potenziale",
+          text: "[TODO] Inserire la sintesi della valorizzazione immobiliare."
+        },
+        {
+          label: "Due unità",
+          text: "[TODO] Inserire la logica del frazionamento in due residenze autonome."
+        },
+        {
+          label: "Linguaggio",
+          text: "[TODO] Inserire il raccordo tra luce, materia e atmosfera."
+        }
+      ]
+    },
+    {
+      type: "gallery",
+      id: "imbonati-stato-originario",
+      eyebrow: "Stato originario",
+      title: "[TODO] Inserire il titolo della sezione stato originario.",
+      description: "[TODO] Inserire una lettura editoriale dello stato di fatto.",
+      layout: "origin-editorial",
+      images: originalStateImages
+    },
+    {
+      type: "gallery",
+      id: "imbonati-stato-autorizzato",
+      eyebrow: "Stato autorizzato",
+      title: "[TODO] Inserire il titolo della tavola autorizzata.",
+      description: "[TODO] Inserire il commento sintetico allo stato autorizzato.",
+      images: authorizedImages
+    },
+    {
+      type: "gallery",
+      id: "imbonati-stato-comparazione",
+      eyebrow: "Stato di comparazione",
+      title: "[TODO] Inserire il titolo della comparazione distributiva.",
+      description: "[TODO] Inserire il commento sintetico allo stato di comparazione.",
+      images: comparisonImages
+    },
+    {
+      type: "gallery",
+      id: "imbonati-stato-progetto",
+      eyebrow: "Stato di progetto",
+      title: "[TODO] Inserire il titolo della nuova configurazione.",
+      description: "[TODO] Inserire il commento sintetico allo stato di progetto.",
+      images: designStateImages
+    },
+    {
+      type: "outcome",
+      id: "imbonati-visione-progettuale",
+      eyebrow: "Visione progettuale",
+      title: "[TODO] Definire il titolo della visione progettuale.",
+      paragraphs: [
+        "[TODO] Inserire il testo che descrive la visione progettuale di Imbonati 15."
+      ],
+      mode: "expected"
+    },
+    {
+      type: "render-sequence",
+      id: "imbonati-appartamento-1",
+      eyebrow: "Appartamento 1",
+      title: "Appartamento 1",
+      description:
+        "Unità destra dello stato di progetto, con soggiorno/cucina, grande penisola centrale e superfici in calce decorativa.",
+      layout: "editorial-chapter",
+      items: apartment1Items
+    },
+    {
+      type: "render-sequence",
+      id: "imbonati-appartamento-2",
+      eyebrow: "Appartamento 2",
+      title: "Appartamento 2",
+      description:
+        "Unità sinistra dello stato di progetto, con soggiorno indipendente, cucina in due blocchi e testata letto in calce decorativa.",
+      layout: "editorial-chapter",
+      items: apartment2Items
+    },
+    {
+      type: "gallery",
+      id: "imbonati-materia-luce-dettagli",
+      eyebrow: "Materia, luce e dettagli",
+      title: "[TODO] Inserire il titolo della sezione dettagli.",
+      description:
+        "[TODO] Inserire il raccordo tra superfici, luce e dettagli esecutivi.",
+      images: detailImages
+    },
+    {
+      type: "outcome",
+      id: "imbonati-risultato",
+      eyebrow: "Risultato",
+      title: "[TODO] Definire il titolo del risultato atteso.",
+      paragraphs: [
+        "[TODO] Inserire la sintesi finale del valore prodotto da Imbonati 15."
+      ],
+      mode: "expected"
+    }
+  ];
+};
+
 const publishedProjectPageTemplates = projects.map((project) =>
   project.slug === "la-galleria"
     ? buildLaGalleriaProjectPage(project)
@@ -1071,6 +1220,82 @@ const projectPageDrafts: ProjectPageTemplate[] = [
     },
     navigation: {
       previousSlug: "la-galleria"
+    }
+  },
+  {
+    slug: "imbonati-15",
+    title: "Imbonati 15",
+    place: "Milano",
+    category: "Frazionamento e valorizzazione immobiliare",
+    status: "Realizzato",
+    visibility: "draft",
+    description:
+      "Template tecnico AVM per il case history Imbonati 15, ancora in preparazione editoriale.",
+    seoTitle: "Imbonati 15 | Draft interno | AVM",
+    seoDescription:
+      "Struttura tecnica interna del case history Imbonati 15, non pubblicata e in attesa di contenuti definitivi.",
+    compactOverview: true,
+    overviewLayout: "anchored-introduction-panel",
+    stageBadge: {
+      label: "Completato",
+      note: "In vendita"
+    },
+    hero: {
+      eyebrow: "MILANO · FRAZIONAMENTO E VALORIZZAZIONE",
+      title: "Imbonati 15",
+      description:
+        "[TODO] Inserire la sintesi hero del case history Imbonati 15."
+    },
+    summaryCard: {
+      eyebrow: "Scheda sintetica",
+      title: "Imbonati 15",
+      titleClassName: "text-[#A97845]",
+      variant: "smoky-bronze",
+      items: [
+        { label: "Luogo", value: "Milano" },
+        { label: "Categoria", value: "Frazionamento e valorizzazione immobiliare" },
+        { label: "Stato", value: "Realizzato" },
+        {
+          label: "Intervento",
+          value: "Trasformazione di un appartamento in due residenze indipendenti"
+        },
+        { label: "Fase", value: "Completato · In vendita" }
+      ]
+    },
+    narrative: {
+      introduction: [
+        "[TODO] Inserire l’introduzione editoriale del case history Imbonati 15.",
+        "[TODO] Sintetizzare il potenziale dell’edificio e la logica del frazionamento."
+      ],
+      startingPoint: [
+        "[TODO] Descrivere il punto di partenza e le criticità della distribuzione originaria."
+      ],
+      objective: [
+        "[TODO] Definire l’obiettivo strategico e immobiliare del progetto."
+      ],
+      designDirection: [
+        "[TODO] Descrivere la direzione progettuale, la palette e l’ispirazione."
+      ]
+    },
+    sections: buildImbonati15DraftSections(),
+    finalCta: {
+      eyebrow: "Case history",
+      title: "[TODO] Definire la chiusura editoriale di Imbonati 15.",
+      paragraphs: [
+        "[TODO] Inserire la CTA finale una volta confermati testi e asset definitivi."
+      ],
+      variant: "smoky-bronze",
+      primary: {
+        label: "Parliamo del tuo immobile",
+        href: "/contatti"
+      },
+      secondary: {
+        label: "Torna ai progetti",
+        href: "/progetti"
+      }
+    },
+    navigation: {
+      nextSlug: "brunelleschi"
     }
   }
 ];
