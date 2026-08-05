@@ -913,7 +913,7 @@ const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
       eyebrow: "Stato originario",
       title: "Un unico appartamento prima della trasformazione",
       description:
-        "Prima del progetto, l’immobile presentava una distribuzione tradizionale, con ambienti separati e un potenziale non ancora espresso.\n\nLa lettura dello stato esistente è servita a verificare la possibilità concreta di ricavare due unità autonome, funzionali e coerenti.",
+        "L’immobile presentava una distribuzione tradizionale, con ambienti separati e relazioni interne poco adatte al nuovo obiettivo. La lettura dello stato esistente ha permesso di individuare margini, limiti e reali possibilità di intervento.",
       layout: "origin-editorial",
       images: orderedAssets.map((asset) => toCaseStudyProjectPageImage(asset))
     } satisfies ProjectPageGallerySection;
@@ -933,7 +933,7 @@ const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
       eyebrow: "Analisi distributiva",
       title: "Dal rilievo alla nuova configurazione",
       description:
-        "Il confronto tra stato di rilievo e stato di progetto rende leggibile l’intervento: da un’unica abitazione nascono due residenze indipendenti, collegate da un nuovo ingresso comune.",
+        "Il confronto tra stato di rilievo e stato di progetto rende visibile la trasformazione distributiva: nuovi accessi, nuovi servizi e una diversa organizzazione degli ambienti.",
       layout: "plan-pair",
       captions: [
         { title: "Stato di rilievo", subtitle: "Pianta esistente" },
@@ -967,17 +967,17 @@ const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
         {
           label: "Verifica distributiva",
           text:
-            "Lo studio verifica se il frazionamento può generare due unità realmente autonome, leggibili e funzionali."
+            "Valutare la possibilità concreta di ricavare due unità autonome senza compromettere proporzioni e funzionalità."
         },
         {
           label: "Autonomia funzionale",
           text:
-            "Accessi, servizi e percorsi vengono organizzati affinché entrambe le residenze mantengano identità e qualità proprie."
+            "Organizzare accessi, servizi e percorsi affinché ogni residenza abbia una propria identità."
         },
         {
-          label: "Valore potenziale",
+          label: "Visione progettuale",
           text:
-            "I render traducono la strategia in una visione concreta, utile a valutare in anticipo spazio, atmosfera e desiderabilità."
+            "Tradurre la strategia in immagini capaci di anticipare atmosfera, qualità e valore percepito."
         }
       ]
     },
@@ -1048,9 +1048,9 @@ const projectPageDrafts: ProjectPageTemplate[] = [
     },
     narrative: {
       introduction: [
-        "L’analisi è nata prima dell’acquisto, con l’obiettivo di verificare se la distribuzione esistente potesse essere trasformata in due unità autonome senza perdere qualità spaziale.",
-        "Lo studio ha messo in relazione configurazione degli ambienti, accessi, servizi, percorsi e potenziale immobiliare, traducendo questa lettura in una proposta concreta.",
-        "I render rappresentano la visione progettuale elaborata per valutare in anticipo qualità, atmosfera e valore potenziale dell’intervento."
+        "L’analisi è nata prima dell’acquisto, per verificare se la distribuzione esistente potesse sostenere una trasformazione reale e coerente.",
+        "Lo studio ha messo in relazione spazi, accessi, servizi e percorsi, traducendo questa lettura in una proposta progettuale concreta.",
+        "I render mostrano la qualità potenziale dell’intervento prima della sua realizzazione."
       ]
     },
     sections: buildBrunelleschiDraftSections(),

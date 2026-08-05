@@ -245,9 +245,9 @@ main::before {
     background:
       linear-gradient(
         162deg,
-        rgba(248, 243, 236, 0.98) 0%,
-        rgba(244, 237, 227, 0.97) 48%,
-        rgba(238, 230, 217, 0.95) 100%
+        rgba(244, 239, 230, 0.985) 0%,
+        rgba(243, 237, 226, 0.975) 48%,
+        rgba(239, 232, 220, 0.965) 100%
       );
     box-shadow:
       0 26px 62px rgba(23, 18, 13, 0.1),
@@ -284,10 +284,10 @@ main::before {
     background:
       linear-gradient(
         180deg,
-        rgba(253, 251, 246, 0.96) 0%,
-        rgba(250, 247, 240, 0.98) 100%
+        rgba(252, 249, 243, 0.98) 0%,
+        rgba(251, 248, 241, 0.99) 100%
       ),
-      #faf7f0;
+      #fbf8f1;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.52),
       inset 0 0 0 1px rgba(117, 104, 88, 0.08),
@@ -325,10 +325,10 @@ main::before {
     background:
       linear-gradient(
         180deg,
-        rgba(252, 249, 243, 0.98) 0%,
-        rgba(250, 247, 240, 0.99) 100%
+        rgba(252, 249, 243, 0.985) 0%,
+        rgba(251, 248, 241, 0.995) 100%
       ),
-      #faf7f0;
+      #fbf8f1;
   }
 
   .architectural-paper-plan::before {
@@ -341,13 +341,13 @@ main::before {
 
   .architectural-paper-plan[data-plan-variant="survey"] > .md\\:hidden,
   .architectural-paper-plan[data-plan-variant="survey"] > .hidden.md\\:block {
-    transform: scale(1.03);
+    transform: scale(1.08);
     transform-origin: center;
   }
 
   .architectural-paper-plan[data-plan-variant="project"] > .md\\:hidden,
   .architectural-paper-plan[data-plan-variant="project"] > .hidden.md\\:block {
-    transform: scale(1.065);
+    transform: scale(1.095);
     transform-origin: center;
   }
 }

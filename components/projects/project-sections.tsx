@@ -256,14 +256,14 @@ export function ProjectGallery({
           </div>
         ) : null}
 
-        <div className="grid gap-5 lg:grid-cols-2">
+        <div className="grid gap-10 sm:gap-12 lg:gap-14">
           {images.map((image, index) => (
             <figure
               key={`${image.src}-${index}`}
-              className="architectural-board architectural-board-plan flex flex-col gap-4 rounded-[30px] px-5 py-5 sm:px-6 sm:py-6"
+              className="architectural-board architectural-board-plan flex flex-col gap-3 rounded-[30px] px-5 py-5 sm:px-6 sm:py-6"
             >
               {captions?.[index] ? (
-                <figcaption className="space-y-1">
+                <figcaption className="space-y-0.5">
                   <p className="text-[11px] uppercase tracking-[0.24em] text-[#8f7430]">
                     {captions[index].title}
                   </p>
@@ -275,15 +275,15 @@ export function ProjectGallery({
                 </figcaption>
               ) : null}
               <div
-                className="architectural-paper architectural-paper-plan relative aspect-[16/10] min-h-[19rem] overflow-hidden rounded-[24px] border border-black/8 sm:min-h-[21rem] lg:min-h-[23rem]"
+                className="architectural-paper architectural-paper-plan relative aspect-[16/9] min-h-[16rem] overflow-hidden rounded-[24px] border border-black/8 sm:min-h-[20rem] lg:min-h-[24rem]"
                 data-plan-variant={index === 0 ? "survey" : "project"}
               >
                 <ProjectResponsiveImage
                   image={image}
-                  sizes="(min-width: 1024px) 39vw, 100vw"
+                  sizes="(min-width: 1024px) 82vw, 100vw"
                   className={
                     image.fit === "contain"
-                      ? "object-contain p-2.5 sm:p-3 lg:p-3.5"
+                      ? "object-contain p-2 sm:p-2.5 lg:p-3"
                       : "object-cover"
                   }
                 />

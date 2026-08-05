@@ -34,8 +34,8 @@ export async function generateMetadata({
   }
 
   return createMetadata({
-    title: `${project.title} | AVM Asset Direction`,
-    description: project.description,
+    title: project.seoTitle ?? `${project.title} | AVM Asset Direction`,
+    description: project.seoDescription ?? project.description,
     path: `/progetti/${project.slug}`
   });
 }
