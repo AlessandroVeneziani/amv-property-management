@@ -234,8 +234,8 @@ export const imbonati15CaseStudy = {
         label: "Camera",
         src: "/images/projects/imbonati-15/07-appartamento-1/camera-matrimoniale.jpg",
         format: "jpg",
-        width: 5796,
-        height: 3864,
+        width: 1536,
+        height: 1024,
         alt: "Imbonati 15, Appartamento 1, camera matrimoniale",
         objectPosition: "center center",
         mobileObjectPosition: "center center"
