@@ -1002,6 +1002,9 @@ const brunelleschiHeroAsset = brunelleschi4RenderAssetsById.get(
 );
 
 const buildImbonati15DraftSections = (): ProjectPageSection[] => {
+  const buildingContextImages = imbonati15CaseStudy.assets.edificioEContesto.map((asset) =>
+    toCaseStudyProjectPageImage(asset)
+  );
   const originalStateImages = imbonati15CaseStudy.assets.prima.map((asset) =>
     toCaseStudyProjectPageImage(asset)
   );
@@ -1040,29 +1043,40 @@ const buildImbonati15DraftSections = (): ProjectPageSection[] => {
       type: "focus",
       id: "imbonati-strategic-frame",
       eyebrow: "Strategia",
-      title: "[TODO] Definire il titolo strategico del case history Imbonati 15.",
+      title: "Trasformare la superficie in valore",
       layout: "emphasized",
       items: [
         {
           label: "Potenziale",
-          text: "[TODO] Inserire la sintesi della valorizzazione immobiliare."
+          text: "La lettura degli accessi, degli affacci e degli impianti ha permesso di individuare un frazionamento equilibrato, capace di generare maggiore autonomia e valore percepito."
         },
         {
           label: "Due unità",
-          text: "[TODO] Inserire la logica del frazionamento in due residenze autonome."
+          text: "Due ingressi indipendenti e due residenze complete, differenti nella distribuzione ma costruite attraverso lo stesso linguaggio progettuale."
         },
         {
           label: "Linguaggio",
-          text: "[TODO] Inserire il raccordo tra luce, materia e atmosfera."
+          text: "Travi originali alleggerite, gres avorio effetto resina, calce decorativa e luce dimmerabile CCT definiscono un’atmosfera calda e contemporanea."
         }
       ]
     },
     {
       type: "gallery",
+      id: "imbonati-edificio-contesto",
+      eyebrow: "Edificio e contesto",
+      title: "Lo scenario urbano e gli accessi",
+      description:
+        "Facciata, corte interna e pianerottolo rendono leggibile il contesto reale in cui si inserisce la trasformazione.",
+      layout: "origin-editorial",
+      images: buildingContextImages
+    },
+    {
+      type: "gallery",
       id: "imbonati-stato-originario",
       eyebrow: "Stato originario",
-      title: "[TODO] Inserire il titolo della sezione stato originario.",
-      description: "[TODO] Inserire una lettura editoriale dello stato di fatto.",
+      title: "Punto di partenza",
+      description:
+        "L’impianto originario era organizzato attraverso un corridoio centrale, una cucina separata, più camere e un solo bagno. La metratura era significativa, ma la distribuzione non ne esprimeva pienamente il valore.",
       layout: "origin-editorial",
       images: originalStateImages
     },
@@ -1094,9 +1108,11 @@ const buildImbonati15DraftSections = (): ProjectPageSection[] => {
       type: "outcome",
       id: "imbonati-visione-progettuale",
       eyebrow: "Visione progettuale",
-      title: "[TODO] Definire il titolo della visione progettuale.",
+      title: "Due identità, un unico linguaggio",
       paragraphs: [
-        "[TODO] Inserire il testo che descrive la visione progettuale di Imbonati 15."
+        "La visione progettuale si ispira a un’idea di ospitalità domestica, materica e contemporanea.",
+        "I massetti originari sono stati mantenuti, consolidati e rinforzati, per poi essere rivestiti con un gres avorio effetto resina. Le travi storiche sono state conservate e alleggerite attraverso una finitura più morbida, capace di dialogare con la nuova palette.",
+        "L’illuminazione integrata, dimmerabile e regolabile nella temperatura colore, disegna i soffitti e valorizza le superfici in calce decorativa."
       ],
       mode: "expected"
     },
@@ -1106,7 +1122,7 @@ const buildImbonati15DraftSections = (): ProjectPageSection[] => {
       eyebrow: "Appartamento 1",
       title: "Appartamento 1",
       description:
-        "Unità destra dello stato di progetto, con soggiorno/cucina, grande penisola centrale e superfici in calce decorativa.",
+        "Il primo appartamento che si incontra salendo le scale sviluppa la zona giorno intorno a una cucina lineare e a una grande penisola centrale. La camera più raccolta è completata da un letto in ciniglia con contenitore e da un’armadiatura capiente. Le pareti in calce decorativa dietro la cucina e nella zona TV introducono profondità e carattere.",
       layout: "editorial-chapter",
       items: apartment1Items
     },
@@ -1116,7 +1132,7 @@ const buildImbonati15DraftSections = (): ProjectPageSection[] => {
       eyebrow: "Appartamento 2",
       title: "Appartamento 2",
       description:
-        "Unità sinistra dello stato di progetto, con soggiorno indipendente, cucina in due blocchi e testata letto in calce decorativa.",
+        "Il secondo appartamento presenta una zona giorno longitudinale, con la cucina organizzata in due blocchi funzionali distinti. La camera più ampia è collegata a una cabina armadio sviluppata parallelamente allo spazio notte. La parete della testata, rifinita in calce decorativa, costruisce il principale fondale materico dell’ambiente.",
       layout: "editorial-chapter",
       items: apartment2Items
     },
@@ -1133,9 +1149,11 @@ const buildImbonati15DraftSections = (): ProjectPageSection[] => {
       type: "outcome",
       id: "imbonati-risultato",
       eyebrow: "Risultato",
-      title: "[TODO] Definire il titolo del risultato atteso.",
+      title: "Due nuove residenze, un valore moltiplicato",
       paragraphs: [
-        "[TODO] Inserire la sintesi finale del valore prodotto da Imbonati 15."
+        "Il risultato è una trasformazione immobiliare completa: due abitazioni autonome di circa 50 mq commerciali ciascuna, dotate di soggiorno con cucina, camera matrimoniale, bagno e ingresso indipendente.",
+        "L’Appartamento 1 privilegia la convivialità della penisola centrale.",
+        "L’Appartamento 2 amplia il comfort attraverso una cucina articolata in due blocchi e una cabina armadio dedicata."
       ],
       mode: "expected"
     }
@@ -1230,10 +1248,10 @@ const projectPageDrafts: ProjectPageTemplate[] = [
     status: "Realizzato",
     visibility: "published",
     description:
-      "Template tecnico AVM per il case history Imbonati 15, ancora in preparazione editoriale.",
-    seoTitle: "Imbonati 15 | Draft interno | AVM",
+      "Un appartamento originario di circa 100 mq trasformato in due residenze indipendenti, attraverso distribuzione, luce e materia.",
+    seoTitle: "Imbonati 15 | Frazionamento e valorizzazione immobiliare | AVM",
     seoDescription:
-      "Struttura tecnica interna del case history Imbonati 15, non pubblicata e in attesa di contenuti definitivi.",
+      "Imbonati 15 racconta la trasformazione di un appartamento milanese in due residenze indipendenti, attraverso distribuzione, materia e luce.",
     compactOverview: true,
     overviewLayout: "anchored-introduction-panel",
     stageBadge: {
@@ -1244,7 +1262,12 @@ const projectPageDrafts: ProjectPageTemplate[] = [
       eyebrow: "MILANO · FRAZIONAMENTO E VALORIZZAZIONE",
       title: "Imbonati 15",
       description:
-        "[TODO] Inserire la sintesi hero del case history Imbonati 15."
+        "Un appartamento originario di circa 100 mq trasformato in due residenze indipendenti, attraverso un progetto che unisce strategia distributiva, materia e luce.",
+      image: toCaseStudyProjectPageImage(imbonati15CaseStudy.assets.appartamento1[0], {
+        objectPosition: "center center",
+        mobileObjectPosition: "center center"
+      }),
+      variant: "photographic"
     },
     summaryCard: {
       eyebrow: "Scheda sintetica",
@@ -1264,25 +1287,27 @@ const projectPageDrafts: ProjectPageTemplate[] = [
     },
     narrative: {
       introduction: [
-        "[TODO] Inserire l’introduzione editoriale del case history Imbonati 15.",
-        "[TODO] Sintetizzare il potenziale dell’edificio e la logica del frazionamento."
+        "Imbonati 15 nasce dalla lettura di un potenziale ancora inespresso: un appartamento ampio, ma frammentato in una successione di stanze, poteva diventare due abitazioni autonome, funzionali e riconoscibili.",
+        "Il progetto parte dalla distribuzione, conserva i segni dell’edificio storico e li traduce in un linguaggio contemporaneo fatto di superfici calde, travi recuperate e luce architettonica."
       ],
       startingPoint: [
-        "[TODO] Descrivere il punto di partenza e le criticità della distribuzione originaria."
+        "L’impianto originario era organizzato attraverso un corridoio centrale, una cucina separata, più camere e un solo bagno. La metratura era significativa, ma la distribuzione non ne esprimeva pienamente il valore."
       ],
       objective: [
-        "[TODO] Definire l’obiettivo strategico e immobiliare del progetto."
+        "Creare due bilocali indipendenti e completi, capaci di rispondere alle esigenze del mercato senza perdere il carattere materico dell’immobile."
       ],
       designDirection: [
-        "[TODO] Descrivere la direzione progettuale, la palette e l’ispirazione."
+        "La visione progettuale si ispira a un’idea di ospitalità domestica, materica e contemporanea.",
+        "I massetti originari sono stati mantenuti, consolidati e rinforzati, per poi essere rivestiti con un gres avorio effetto resina. Le travi storiche sono state conservate e alleggerite attraverso una finitura più morbida, capace di dialogare con la nuova palette.",
+        "L’illuminazione integrata, dimmerabile e regolabile nella temperatura colore, disegna i soffitti e valorizza le superfici in calce decorativa."
       ]
     },
     sections: buildImbonati15DraftSections(),
     finalCta: {
       eyebrow: "Case history",
-      title: "[TODO] Definire la chiusura editoriale di Imbonati 15.",
+      title: "Il potenziale, reso visibile",
       paragraphs: [
-        "[TODO] Inserire la CTA finale una volta confermati testi e asset definitivi."
+        "Imbonati 15 dimostra come distribuzione, materia e luce possano cambiare non soltanto lo spazio, ma anche la percezione e il valore di un immobile."
       ],
       variant: "smoky-bronze",
       primary: {
@@ -1295,6 +1320,7 @@ const projectPageDrafts: ProjectPageTemplate[] = [
       }
     },
     navigation: {
+      previousSlug: "la-galleria",
       nextSlug: "brunelleschi"
     }
   }
