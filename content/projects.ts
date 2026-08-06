@@ -1082,27 +1082,23 @@ const buildImbonati15DraftSections = (): ProjectPageSection[] => {
     },
     {
       type: "gallery",
-      id: "imbonati-stato-autorizzato",
-      eyebrow: "Stato autorizzato",
-      title: "[TODO] Inserire il titolo della tavola autorizzata.",
-      description: "[TODO] Inserire il commento sintetico allo stato autorizzato.",
-      images: authorizedImages
-    },
-    {
-      type: "gallery",
-      id: "imbonati-stato-comparazione",
-      eyebrow: "Stato di comparazione",
-      title: "[TODO] Inserire il titolo della comparazione distributiva.",
-      description: "[TODO] Inserire il commento sintetico allo stato di comparazione.",
-      images: comparisonImages
-    },
-    {
-      type: "gallery",
-      id: "imbonati-stato-progetto",
-      eyebrow: "Stato di progetto",
-      title: "[TODO] Inserire il titolo della nuova configurazione.",
-      description: "[TODO] Inserire il commento sintetico allo stato di progetto.",
-      images: designStateImages
+      id: "imbonati-planimetrie",
+      eyebrow: "Planimetrie",
+      title: "Planimetrie",
+      layout: "plan-pair",
+      images: [
+        {
+          src: "/images/projects/imbonati-15/03-planimetrie/stato-di-rilievo.jpg",
+          alt: "Stato di rilievo del progetto Imbonati 15",
+          fit: "contain"
+        },
+        {
+          src: "/images/projects/imbonati-15/03-planimetrie/stato-di-progetto.jpg",
+          alt: "Stato di progetto del progetto Imbonati 15",
+          fit: "contain"
+        }
+      ],
+      captions: [{ title: "01 — Stato di rilievo" }, { title: "02 — Stato di progetto" }]
     },
     {
       type: "outcome",
