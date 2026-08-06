@@ -170,8 +170,9 @@ export function ProjectGallery({
   layout = "default",
   captions
 }: ProjectPageGallerySection) {
-  if (layout === "origin-editorial") {
+  if (layout === "origin-editorial" || layout === "context-editorial") {
     const [leadImage, ...supportImages] = images;
+    const isContextEditorial = layout === "context-editorial";
 
     return (
       <div className="space-y-6">
@@ -204,19 +205,26 @@ export function ProjectGallery({
             </figure>
           ) : null}
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:col-span-5">
+          <div
+            className={`grid gap-5 lg:col-span-5 ${
+              isContextEditorial ? "" : "sm:grid-cols-2"
+            }`}
+          >
             {supportImages.map((image, index) => (
               <figure
                 key={`${image.src}-${index}`}
                 className={`relative overflow-hidden rounded-[28px] border border-line shadow-glow ${
-                  index === supportImages.length - 1 && supportImages.length % 2 === 1
+                  !isContextEditorial &&
+                  index === supportImages.length - 1 &&
+                  supportImages.length % 2 === 1
                     ? "sm:col-span-2"
                     : ""
                 }`}
               >
                 <div
                   className={`relative ${
-                    index === supportImages.length - 1 && supportImages.length % 2 === 1
+                    isContextEditorial ||
+                    (index === supportImages.length - 1 && supportImages.length % 2 === 1)
                       ? "aspect-[16/10] min-h-[14rem]"
                       : "aspect-[4/3] min-h-[14rem]"
                   }`}
@@ -224,7 +232,8 @@ export function ProjectGallery({
                   <ProjectResponsiveImage
                     image={image}
                     sizes={
-                      index === supportImages.length - 1 && supportImages.length % 2 === 1
+                      isContextEditorial ||
+                      (index === supportImages.length - 1 && supportImages.length % 2 === 1)
                         ? "(min-width: 1024px) 30vw, 100vw"
                         : "(min-width: 1024px) 24vw, 100vw"
                     }
@@ -598,12 +607,21 @@ export function ProjectFinalCta({
           ))}
         </div>
         <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:flex-wrap">
-          <Link href={primary.href} className="gold-fill-btn justify-center sm:justify-start">
+          <Link
+            href={primary.href}
+            target={primary.target}
+            rel={primary.rel}
+            download={primary.download}
+            className="gold-fill-btn justify-center sm:justify-start"
+          >
             {primary.label}
           </Link>
           {secondary ? (
             <Link
               href={secondary.href}
+              target={secondary.target}
+              rel={secondary.rel}
+              download={secondary.download}
               className={`gold-outline-btn justify-center sm:justify-start ${
                 isSmokyBronze
                   ? "border-accent/45 text-sand hover:bg-accent/[0.08]"

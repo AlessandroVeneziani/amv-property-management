@@ -470,7 +470,7 @@ export type ProjectPageGallerySection = {
   eyebrow?: string;
   title?: string;
   description?: string;
-  layout?: "default" | "origin-editorial" | "plan-pair";
+  layout?: "default" | "origin-editorial" | "context-editorial" | "plan-pair";
   captions?: ProjectPageGalleryCaption[];
   images: ProjectPageImage[];
 };
@@ -520,7 +520,8 @@ export type ProjectPageSection =
   | ProjectPageGallerySection
   | ProjectPageRenderSequenceSection
   | ProjectPageBeforeAfterSection
-  | ProjectPageOutcomeSection;
+  | ProjectPageOutcomeSection
+  | (ProjectPageCta & { type: "document-cta"; id: string });
 
 export type ProjectPageCta = {
   eyebrow?: string;
@@ -530,10 +531,16 @@ export type ProjectPageCta = {
   primary: {
     label: string;
     href: string;
+    target?: "_blank";
+    rel?: "noopener noreferrer";
+    download?: boolean;
   };
   secondary?: {
     label: string;
     href: string;
+    target?: "_blank";
+    rel?: "noopener noreferrer";
+    download?: boolean;
   };
 };
 
@@ -923,7 +930,7 @@ const buildBrunelleschiDraftSections = (): ProjectPageSection[] => {
       title: "Un unico appartamento prima della trasformazione",
       description:
         "L’immobile presentava una distribuzione tradizionale, con ambienti separati e relazioni interne poco adatte al nuovo obiettivo. La lettura dello stato esistente ha permesso di individuare margini, limiti e reali possibilità di intervento.",
-      layout: "origin-editorial",
+      layout: "context-editorial",
       images: orderedAssets.map((asset) => toCaseStudyProjectPageImage(asset))
     } satisfies ProjectPageGallerySection;
   })();
@@ -1120,7 +1127,12 @@ const buildImbonati15DraftSections = (): ProjectPageSection[] => {
       type: "gallery",
       id: "imbonati-render-appartamento-1",
       title: "01 — Appartamento 1",
-      images: renderApartment1Images
+      images: renderApartment1Images.slice(0, 2)
+    },
+    {
+      type: "gallery",
+      id: "imbonati-render-appartamento-1-seconda-parte",
+      images: renderApartment1Images.slice(2)
     },
     {
       type: "gallery",
@@ -1134,16 +1146,25 @@ const buildImbonati15DraftSections = (): ProjectPageSection[] => {
       images: renderApartment2Images.slice(2)
     },
     {
-      type: "outcome",
-      id: "imbonati-visione-progettuale",
-      eyebrow: "Visione progettuale",
-      title: "Due identità, un unico linguaggio",
+      type: "document-cta",
+      id: "imbonati-storytelling-pdf",
+      eyebrow: "Approfondimento",
+      title: "Esplora il progetto completo",
       paragraphs: [
-        "La visione progettuale si ispira a un’idea di ospitalità domestica, materica e contemporanea.",
-        "I massetti originari sono stati mantenuti, consolidati e rinforzati, per poi essere rivestiti con un gres avorio effetto resina. Le travi storiche sono state conservate e alleggerite attraverso una finitura più morbida, capace di dialogare con la nuova palette.",
-        "L’illuminazione integrata, dimmerabile e regolabile nella temperatura colore, disegna i soffitti e valorizza le superfici in calce decorativa."
+        "Una narrazione completa della trasformazione, dalle scelte distributive alla definizione di materia, luce e atmosfera."
       ],
-      mode: "expected"
+      variant: "smoky-bronze",
+      primary: {
+        label: "Sfoglia il progetto",
+        href: "/documents/projects/imbonati-15/imbonati-15-storytelling-progetto.pdf",
+        target: "_blank",
+        rel: "noopener noreferrer"
+      },
+      secondary: {
+        label: "Scarica il PDF",
+        href: "/documents/projects/imbonati-15/imbonati-15-storytelling-progetto.pdf",
+        download: true
+      }
     },
     {
       type: "render-sequence",
@@ -1327,7 +1348,7 @@ const projectPageDrafts: ProjectPageTemplate[] = [
       ],
       designDirection: [
         "La visione progettuale si ispira a un’idea di ospitalità domestica, materica e contemporanea.",
-        "I massetti originari sono stati mantenuti, consolidati e rinforzati, per poi essere rivestiti con un gres avorio effetto resina. Le travi storiche sono state conservate e alleggerite attraverso una finitura più morbida, capace di dialogare con la nuova palette.",
+        "I massetti originari sono stati mantenuti e consolidati, per poi essere rivestiti con un gres avorio effetto resina. Le travi storiche sono state conservate e alleggerite attraverso una finitura più morbida, capace di dialogare con la nuova palette.",
         "L’illuminazione integrata, dimmerabile e regolabile nella temperatura colore, disegna i soffitti e valorizza le superfici in calce decorativa."
       ]
     },

@@ -228,6 +228,30 @@ export const imbonati15CaseStudy = {
         mobileObjectPosition: "center center"
       },
       {
+        id: "imbonati-render-app1-camera",
+        category: "render",
+        label: "Camera",
+        src: "/images/projects/imbonati-15/04-render/appartamento-1/appartamento-1-render-camera.png",
+        format: "png",
+        width: 1215,
+        height: 1295,
+        alt: "Render di progetto della camera dell’Appartamento 1",
+        objectPosition: "center center",
+        mobileObjectPosition: "center center"
+      },
+      {
+        id: "imbonati-render-app1-bagno",
+        category: "render",
+        label: "Bagno",
+        src: "/images/projects/imbonati-15/04-render/appartamento-1/appartamento-1-render-bagno.png",
+        format: "png",
+        width: 1086,
+        height: 1448,
+        alt: "Render di progetto del bagno dell’Appartamento 1",
+        objectPosition: "center center",
+        mobileObjectPosition: "center center"
+      },
+      {
         id: "imbonati-render-app2-soggiorno",
         category: "render",
         label: "Soggiorno",

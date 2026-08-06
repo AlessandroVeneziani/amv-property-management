@@ -42,6 +42,8 @@ const renderableSections = (sections: ProjectPageSection[]) =>
         return Boolean(section.before?.src && section.after?.src);
       case "outcome":
         return section.paragraphs.length > 0;
+      case "document-cta":
+        return Boolean(section.primary.href && section.paragraphs.length > 0);
       default:
         return false;
     }
@@ -89,6 +91,8 @@ function ProjectSectionRenderer({ section }: { section: ProjectPageSection }) {
       return <ProjectBeforeAfter {...section} />;
     case "outcome":
       return <ProjectOutcomeSection {...section} />;
+    case "document-cta":
+      return <ProjectFinalCta {...section} />;
     default:
       return null;
   }
