@@ -326,6 +326,18 @@ export const imbonati15CaseStudy = {
         mobileObjectPosition: "center center"
       },
       {
+        id: "imbonati-app1-kitchen-second-view",
+        category: "appartamento-1",
+        label: "Dettaglio cucina",
+        src: "/images/projects/imbonati-15/07-appartamento-1/cucina-penisola-seconda-vista.jpg",
+        format: "jpg",
+        width: 6000,
+        height: 4000,
+        alt: "Imbonati 15, Appartamento 1, seconda vista della cucina con penisola",
+        objectPosition: "center center",
+        mobileObjectPosition: "center center"
+      },
+      {
         id: "imbonati-app1-bedroom",
         category: "appartamento-1",
         label: "Camera",
@@ -360,6 +372,18 @@ export const imbonati15CaseStudy = {
         width: 5912,
         height: 3941,
         alt: "Imbonati 15, Appartamento 2, soggiorno e cucina",
+        objectPosition: "center center",
+        mobileObjectPosition: "center center"
+      },
+      {
+        id: "imbonati-app2-living-second-view",
+        category: "appartamento-2",
+        label: "Soggiorno",
+        src: "/images/projects/imbonati-15/08-appartamento-2/soggiorno-seconda-vista.jpg",
+        format: "jpg",
+        width: 6000,
+        height: 4000,
+        alt: "Imbonati 15, Appartamento 2, seconda vista del soggiorno",
         objectPosition: "center center",
         mobileObjectPosition: "center center"
       },
