@@ -202,7 +202,80 @@ export const imbonati15CaseStudy = {
     statoAutorizzato: [] as Imbonati15Asset[],
     statoComparazione: [] as Imbonati15Asset[],
     statoProgetto: [] as Imbonati15Asset[],
-    render: [] as Imbonati15Asset[],
+    render: [
+      {
+        id: "imbonati-render-app1-soggiorno-tv",
+        category: "render",
+        label: "Soggiorno e parete TV",
+        src: "/images/projects/imbonati-15/04-render/appartamento-1/appartamento-1-render-soggiorno-tv.jpg",
+        format: "jpg",
+        width: 1672,
+        height: 941,
+        alt: "Render di progetto del soggiorno e della parete TV dell’Appartamento 1",
+        objectPosition: "center center",
+        mobileObjectPosition: "center center"
+      },
+      {
+        id: "imbonati-render-app1-cucina-penisola",
+        category: "render",
+        label: "Cucina e penisola",
+        src: "/images/projects/imbonati-15/04-render/appartamento-1/appartamento-1-render-cucina-penisola.jpg",
+        format: "jpg",
+        width: 1535,
+        height: 1024,
+        alt: "Render di progetto della cucina con penisola dell’Appartamento 1",
+        objectPosition: "center center",
+        mobileObjectPosition: "center center"
+      },
+      {
+        id: "imbonati-render-app2-soggiorno",
+        category: "render",
+        label: "Soggiorno",
+        src: "/images/projects/imbonati-15/04-render/appartamento-2/appartamento-2-render-soggiorno.jpg",
+        format: "jpg",
+        width: 1121,
+        height: 1403,
+        alt: "Render di progetto del soggiorno dell’Appartamento 2",
+        objectPosition: "center center",
+        mobileObjectPosition: "center center"
+      },
+      {
+        id: "imbonati-render-app2-cucina",
+        category: "render",
+        label: "Cucina in due blocchi",
+        src: "/images/projects/imbonati-15/04-render/appartamento-2/appartamento-2-render-cucina-due-blocchi.jpg",
+        format: "jpg",
+        width: 1086,
+        height: 1449,
+        alt: "Render di progetto della cucina in due blocchi dell’Appartamento 2",
+        objectPosition: "center center",
+        mobileObjectPosition: "center center"
+      },
+      {
+        id: "imbonati-render-app2-camera",
+        category: "render",
+        label: "Camera",
+        src: "/images/projects/imbonati-15/04-render/appartamento-2/appartamento-2-render-camera.jpg",
+        format: "jpg",
+        width: 1086,
+        height: 1448,
+        alt: "Render di progetto della camera dell’Appartamento 2",
+        objectPosition: "center center",
+        mobileObjectPosition: "center center"
+      },
+      {
+        id: "imbonati-render-app2-bagno",
+        category: "render",
+        label: "Bagno",
+        src: "/images/projects/imbonati-15/04-render/appartamento-2/appartamento-2-render-bagno.jpg",
+        format: "jpg",
+        width: 1086,
+        height: 1448,
+        alt: "Render di progetto del bagno dell’Appartamento 2",
+        objectPosition: "center center",
+        mobileObjectPosition: "center center"
+      }
+    ] as Imbonati15Asset[],
     appartamento1: [
       {
         id: "imbonati-app1-living",

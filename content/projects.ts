@@ -1020,6 +1020,12 @@ const buildImbonati15DraftSections = (): ProjectPageSection[] => {
     ...toCaseStudyProjectPageImage(asset),
     fit: "contain" as const
   }));
+  const renderApartment1Images = imbonati15CaseStudy.assets.render
+    .filter((asset) => asset.src.includes("/appartamento-1/"))
+    .map((asset) => toCaseStudyProjectPageImage(asset));
+  const renderApartment2Images = imbonati15CaseStudy.assets.render
+    .filter((asset) => asset.src.includes("/appartamento-2/"))
+    .map((asset) => toCaseStudyProjectPageImage(asset));
   const apartment1Items = imbonati15CaseStudy.assets.appartamento1.map((asset) => ({
     id: asset.id,
     title: asset.label,
@@ -1099,6 +1105,33 @@ const buildImbonati15DraftSections = (): ProjectPageSection[] => {
         }
       ],
       captions: [{ title: "01 — Stato di rilievo" }, { title: "02 — Stato di progetto" }]
+    },
+    {
+      type: "outcome",
+      id: "imbonati-render-introduzione",
+      eyebrow: "Visione progettuale",
+      title: "Il progetto prima della realizzazione",
+      paragraphs: [
+        "I render hanno anticipato la distribuzione, la materia e l’atmosfera delle due nuove residenze, trasformando la strategia progettuale in una visione concreta prima dell’avvio dei lavori."
+      ],
+      mode: "expected"
+    },
+    {
+      type: "gallery",
+      id: "imbonati-render-appartamento-1",
+      title: "01 — Appartamento 1",
+      images: renderApartment1Images
+    },
+    {
+      type: "gallery",
+      id: "imbonati-render-appartamento-2-prima-parte",
+      title: "02 — Appartamento 2",
+      images: renderApartment2Images.slice(0, 2)
+    },
+    {
+      type: "gallery",
+      id: "imbonati-render-appartamento-2-seconda-parte",
+      images: renderApartment2Images.slice(2)
     },
     {
       type: "outcome",
