@@ -7,10 +7,15 @@ import { createMetadata } from "@/content/site";
 import styles from "./asset-direction.module.css";
 
 export const metadata = createMetadata({
-  title: "Asset Direction | AVM",
+  title: "Asset Direction | Valorizzazione Immobiliare Milano | AVM",
   description:
-    "Asset Direction AVM: strategia immobiliare, valorizzazione e distribuzione degli spazi a Milano prima di progetto, ristrutturazione o investimento.",
-  path: "/asset-direction"
+    "AVM Asset Direction analizza spazio, distribuzione, luce, materiali e obiettivi dell’immobile per definire una strategia prima di progettare o investire.",
+  path: "/asset-direction",
+  openGraphTitle: "Asset Direction | AVM",
+  openGraphDescription:
+    "Prima di progettare, capire dove si trova davvero il valore dell’immobile.",
+  openGraphImage: "/images/projects/imbonati-15/imbonati-home-cover.webp",
+  openGraphImageAlt: "Imbonati 15, interno ristrutturato con cucina e penisola"
 });
 
 const spaceAnalysis = [

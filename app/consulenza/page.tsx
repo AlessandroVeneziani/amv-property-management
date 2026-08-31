@@ -7,10 +7,16 @@ import { createMetadata } from "@/content/site";
 import styles from "./consulenza.module.css";
 
 export const metadata = createMetadata({
-  title: "Consulenza Strategica Immobiliare | AVM",
+  title: "Consulenza Strategica Immobiliare Milano | AVM",
   description:
-    "Consulenza immobiliare strategica AVM a Milano: una lettura concreta per valorizzazione, ristrutturazione, investimento e distribuzione degli spazi.",
-  path: "/consulenza"
+    "Consulenza strategica immobiliare AVM per proprietari e investitori: analisi di planimetrie, distribuzione, budget, valorizzazione e decisioni prima del progetto.",
+  path: "/consulenza",
+  openGraphTitle: "Consulenza Strategica Immobiliare | AVM",
+  openGraphDescription:
+    "Un confronto strategico prima di prendere decisioni costose.",
+  openGraphImage:
+    "/images/projects/imbonati-15/07-appartamento-1/soggiorno-cucina-hero.jpg",
+  openGraphImageAlt: "Soggiorno e cucina di Imbonati 15 dopo l’intervento"
 });
 
 const situations = [

@@ -127,6 +127,11 @@
 @media (max-width: 639px) {
   .container { width: min(100% - 2.5rem, 80rem); }
   .hero { min-height: 46rem; padding-top: 7rem; padding-bottom: 3.5rem; }
+  .hero h1 { font-size: 3.25rem; }
+  .heroStatement { margin-top: 1.5rem; font-size: 1.5rem; }
+  .heroCopy { margin-top: 1.4rem; font-size: .96rem; line-height: 1.62; }
+  .heroCopy p + p { margin-top: .6rem; }
+  .heroActions { margin-top: 1.5rem; }
   .heroImage :global(img) { object-position: 58% center; }
   .heroShade { background: linear-gradient(90deg, rgba(11, 10, 8, .87), rgba(11, 10, 8, .56)), linear-gradient(180deg, rgba(11, 10, 8, .3), rgba(11, 10, 8, .78)); }
   .section { padding: 4.5rem 0; }

@@ -432,6 +432,10 @@ type MetadataInput = {
   title: string;
   description: string;
   path?: string;
+  openGraphTitle?: string;
+  openGraphDescription?: string;
+  openGraphImage?: string;
+  openGraphImageAlt?: string;
 };
 
 export const getSiteUrl = () => {
@@ -447,10 +451,24 @@ export const getSiteUrl = () => {
 export const createMetadata = ({
   title,
   description,
-  path = "/"
+  path = "/",
+  openGraphTitle,
+  openGraphDescription,
+  openGraphImage,
+  openGraphImageAlt
 }: MetadataInput): Metadata => {
   const siteUrl = getSiteUrl();
   const pageUrl = new URL(path, siteUrl);
+  const ogTitle = openGraphTitle ?? title;
+  const ogDescription = openGraphDescription ?? description;
+  const ogImages = openGraphImage
+    ? [
+        {
+          url: openGraphImage,
+          alt: openGraphImageAlt
+        }
+      ]
+    : undefined;
 
   return {
     metadataBase: siteUrl,
@@ -488,17 +506,19 @@ export const createMetadata = ({
       canonical: pageUrl
     },
     openGraph: {
-      title,
-      description,
+      title: ogTitle,
+      description: ogDescription,
       url: pageUrl,
       siteName: siteConfig.name,
       locale: "it_IT",
-      type: "website"
+      type: "website",
+      images: ogImages
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description
+      title: ogTitle,
+      description: ogDescription,
+      images: ogImages
     }
   };
 };
