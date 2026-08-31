@@ -9,6 +9,7 @@ import type {
   ProjectPageFullWidthSection,
   ProjectPageGallerySection,
   ProjectPageRenderSequenceSection,
+  ProjectPageVideoSection,
   ProjectPageOutcomeSection
 } from "@/content/projects";
 import { SectionHeading } from "@/components/section-heading";
@@ -479,6 +480,44 @@ export function ProjectRenderSequence({
             </figure>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+export function ProjectVideoSection({
+  eyebrow,
+  title,
+  description,
+  src
+}: ProjectPageVideoSection) {
+  return (
+    <div className="space-y-6">
+      {eyebrow || title || description ? (
+        <div className="max-w-3xl space-y-4">
+          {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+          {title ? (
+            <h2 className="font-serif text-3xl leading-tight text-sand sm:text-4xl lg:text-5xl">
+              {title}
+            </h2>
+          ) : null}
+          {description ? (
+            <p className="text-base leading-7 text-muted sm:text-lg">{description}</p>
+          ) : null}
+        </div>
+      ) : null}
+
+      <div className="w-full overflow-hidden rounded-[32px] border border-line bg-black shadow-glow">
+        <video
+          controls
+          playsInline
+          preload="metadata"
+          className="block h-auto max-w-full w-full"
+          aria-label={title ?? "Video render di progetto"}
+        >
+          <source src={src} type="video/mp4" />
+          Il browser non supporta la riproduzione di questo video.
+        </video>
       </div>
     </div>
   );

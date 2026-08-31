@@ -9,6 +9,7 @@ import {
   ProjectFullWidthMedia,
   ProjectGallery,
   ProjectRenderSequence,
+  ProjectVideoSection,
   ProjectOutcomeSection
 } from "./project-sections";
 import {
@@ -38,6 +39,8 @@ const renderableSections = (sections: ProjectPageSection[]) =>
         return section.images.length > 0;
       case "render-sequence":
         return section.items.length > 0;
+      case "video":
+        return Boolean(section.src);
       case "before-after":
         return Boolean(section.before?.src && section.after?.src);
       case "outcome":
@@ -87,6 +90,8 @@ function ProjectSectionRenderer({ section }: { section: ProjectPageSection }) {
       return <ProjectGallery {...section} />;
     case "render-sequence":
       return <ProjectRenderSequence {...section} />;
+    case "video":
+      return <ProjectVideoSection {...section} />;
     case "before-after":
       return <ProjectBeforeAfter {...section} />;
     case "outcome":

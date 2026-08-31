@@ -491,6 +491,15 @@ export type ProjectPageRenderSequenceSection = {
   }>;
 };
 
+export type ProjectPageVideoSection = {
+  type: "video";
+  id: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  src: string;
+};
+
 export type ProjectPageBeforeAfterSection = {
   type: "before-after";
   id: string;
@@ -519,6 +528,7 @@ export type ProjectPageSection =
   | ProjectPageFocusSection
   | ProjectPageGallerySection
   | ProjectPageRenderSequenceSection
+  | ProjectPageVideoSection
   | ProjectPageBeforeAfterSection
   | ProjectPageOutcomeSection
   | (ProjectPageCta & { type: "document-cta"; id: string });
@@ -1144,6 +1154,15 @@ const buildImbonati15DraftSections = (): ProjectPageSection[] => {
       type: "gallery",
       id: "imbonati-render-appartamento-2-seconda-parte",
       images: renderApartment2Images.slice(2)
+    },
+    {
+      type: "video",
+      id: "imbonati-video-render",
+      eyebrow: "Video di progetto",
+      title: "La visione prende forma",
+      description:
+        "Un percorso negli ambienti progettati, per leggere in sequenza distribuzione, luce, materia e atmosfera prima della realizzazione.",
+      src: "/images/projects/imbonati-15/04-render/video/imbonati-15-render-walkthrough.mp4"
     },
     {
       type: "document-cta",
