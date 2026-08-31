@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/reveal";
-import { createMetadata, inquiryLinks } from "@/content/site";
+import { createMetadata } from "@/content/site";
 
 import styles from "./asset-direction.module.css";
 
@@ -78,7 +78,7 @@ export default function AssetDirectionPage() {
               <p>Analizziamo distribuzione, proporzioni, luce, potenziale commerciale e obiettivo dell’asset per definire una direzione chiara prima che inizino progetto, lavori o investimento.</p>
               <p>Non partiamo dallo stile. Partiamo da ciò che l’immobile può diventare.</p>
             </div>
-            <div className={styles.heroActions}><a href={inquiryLinks.consultation} className="gold-fill-btn">Richiedi una prima analisi</a></div>
+            <div className={styles.heroActions}><Link href="/contatti" className="gold-fill-btn">Richiedi una prima analisi</Link></div>
             <p className={styles.microcopy}>Per immobili da valorizzare, ristrutturare, vendere, locare o riposizionare.</p>
           </Reveal>
         </div>
@@ -168,7 +168,7 @@ export default function AssetDirectionPage() {
       <section className={styles.finalSection}>
         <div className={styles.finalImage}><Image src="/images/projects/imbonati-15/07-appartamento-1/soggiorno-cucina-hero.jpg" alt="Imbonati 15, soggiorno e cucina dopo la ristrutturazione" fill sizes="100vw" className="object-cover" /></div>
         <div className={styles.finalShade} />
-        <div className={styles.container}><Reveal className={styles.finalContent}><p className="eyebrow">Prima di intervenire</p><h2>Capiamo cosa merita davvero di essere fatto.</h2><p>Puoi partire da una planimetria, alcune fotografie e una breve descrizione dell’obiettivo.</p><p>Da lì possiamo capire se è utile approfondire e quale livello di intervento ha senso.</p><a href={inquiryLinks.consultation} className="gold-fill-btn">Richiedi una prima analisi</a><p className={styles.microcopy}>Planimetria, fotografie e obiettivo dell’immobile sono sufficienti per iniziare.</p></Reveal></div>
+        <div className={styles.container}><Reveal className={styles.finalContent}><p className="eyebrow">Prima di intervenire</p><h2>Capiamo cosa merita davvero di essere fatto.</h2><p>Puoi partire da una planimetria, alcune fotografie e una breve descrizione dell’obiettivo.</p><p>Da lì possiamo capire se è utile approfondire e quale livello di intervento ha senso.</p><Link href="/contatti" className="gold-fill-btn">Richiedi una prima analisi</Link><p className={styles.microcopy}>Planimetria, fotografie e obiettivo dell’immobile sono sufficienti per iniziare.</p></Reveal></div>
       </section>
     </div>
   );

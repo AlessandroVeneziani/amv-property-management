@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/reveal";
-import { createMetadata, inquiryLinks } from "@/content/site";
+import { createMetadata } from "@/content/site";
 
 import styles from "./consulenza.module.css";
 
@@ -68,7 +68,7 @@ export default function ConsultationPage() {
               <p>Puoi arrivare con una planimetria, alcune fotografie, un preventivo, un’idea ancora confusa o una decisione da prendere.</p>
               <p>L’obiettivo è capire cosa ha senso fare, cosa evitare e quale direzione seguire.</p>
             </div>
-            <a href={inquiryLinks.consultation} className="gold-fill-btn">Richiedi una consulenza</a>
+            <Link href="/contatti" className="gold-fill-btn">Richiedi una consulenza</Link>
             <p className={styles.microcopy}>Per proprietari, investitori e professionisti.</p>
           </Reveal>
         </div>
@@ -137,7 +137,7 @@ export default function ConsultationPage() {
       </section>
 
       <section className={styles.finalSection}>
-        <div className={styles.container}><Reveal className={styles.finalContent}><p className="eyebrow">Prima di decidere</p><h2>Se hai un immobile e una decisione aperta, partiamo da quella.</h2><p>Non serve arrivare con tutte le risposte.</p><p>Porta la planimetria, le informazioni che hai e il problema che vuoi risolvere.</p><a href={inquiryLinks.consultation} className="gold-fill-btn">Richiedi una consulenza</a><p className={styles.microcopy}>Prima dell’incontro potrai inviare planimetrie, fotografie e materiali utili alla lettura del progetto.</p></Reveal></div>
+        <div className={styles.container}><Reveal className={styles.finalContent}><p className="eyebrow">Prima di decidere</p><h2>Se hai un immobile e una decisione aperta, partiamo da quella.</h2><p>Non serve arrivare con tutte le risposte.</p><p>Porta la planimetria, le informazioni che hai e il problema che vuoi risolvere.</p><Link href="/contatti" className="gold-fill-btn">Richiedi una consulenza</Link><p className={styles.microcopy}>Prima dell’incontro potrai inviare planimetrie, fotografie e materiali utili alla lettura del progetto.</p></Reveal></div>
       </section>
     </div>
   );

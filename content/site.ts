@@ -12,7 +12,7 @@ export const siteConfig = {
     "AVM Asset Direction guida la trasformazione e la valorizzazione degli immobili attraverso distribuzione, luce, materia, funzione e strategia.",
   url: "https://alessandroveneziani.it",
   email: "info@alessandroveneziani.it",
-  pec: "a.veneziani@pec.it",
+  pec: "a.veneziani@pecaruba.it",
   location: "Piazza Napoli 11, 20146 Milano"
 } as const;
 
@@ -30,7 +30,7 @@ export const legalInfo = {
   vatNumber: "IT13770340969",
   taxCode: "VNZLSN74S17F205A",
   address: "Piazza Napoli 11, 20146 Milano",
-  pec: "a.veneziani@pec.it",
+  pec: "a.veneziani@pecaruba.it",
   email: "info@alessandroveneziani.it"
 } as const;
 
@@ -114,7 +114,7 @@ export const homeHero = {
   description:
     "AVM Asset Direction osserva, interpreta e guida la trasformazione dell’immobile, coordinando spazio, luce, materia e investimento all’interno di una visione unica.",
   primaryCta: {
-    label: "Scopri l’Asset Direction",
+    label: "Scopri Asset Direction",
     href: "/asset-direction"
   },
   secondaryCta: {

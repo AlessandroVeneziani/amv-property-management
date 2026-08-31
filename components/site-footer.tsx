@@ -120,7 +120,7 @@ export function SiteFooter() {
 
                 <div className="space-y-1.5">
                   <p className="text-[11px] uppercase tracking-[0.24em] text-accent/78">
-                    Denominazione operativa
+                    Denominazione amministrativa
                   </p>
                   <p className="text-sand/88">{legalInfo.companyName}</p>
                 </div>
