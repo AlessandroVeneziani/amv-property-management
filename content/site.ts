@@ -24,6 +24,11 @@ export const brandAssets = {
   appleTouchIcon: "/apple-touch-icon.svg"
 } as const;
 
+export const socialFallbackImage = {
+  src: "/images/home/avm-home-hero-bedroom.png",
+  alt: "Interno residenziale AVM Asset Direction con luce architettonica e materiali caldi"
+} as const;
+
 export const legalInfo = {
   companyName: "AVM Property Management",
   directors: ["Alessandro Veneziani", "Andrea Mirone"],
@@ -461,14 +466,16 @@ export const createMetadata = ({
   const pageUrl = new URL(path, siteUrl);
   const ogTitle = openGraphTitle ?? title;
   const ogDescription = openGraphDescription ?? description;
-  const ogImages = openGraphImage
-    ? [
-        {
-          url: openGraphImage,
-          alt: openGraphImageAlt
-        }
-      ]
-    : undefined;
+  const supportsSocialImage = (image: string | undefined) =>
+    Boolean(image && /\.(?:jpe?g|png)(?:[?#].*)?$/i.test(image));
+  const socialImageSource = supportsSocialImage(openGraphImage)
+    ? openGraphImage!
+    : socialFallbackImage.src;
+  const socialImageUrl = new URL(socialImageSource, siteConfig.url).toString();
+  const socialImageAlt = supportsSocialImage(openGraphImage)
+    ? openGraphImageAlt
+    : socialFallbackImage.alt;
+  const ogImages = [{ url: socialImageUrl, alt: socialImageAlt }];
 
   return {
     metadataBase: siteUrl,

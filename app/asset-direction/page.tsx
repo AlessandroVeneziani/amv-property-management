@@ -14,8 +14,9 @@ export const metadata = createMetadata({
   openGraphTitle: "Asset Direction | AVM",
   openGraphDescription:
     "Prima di progettare, capire dove si trova davvero il valore dell’immobile.",
-  openGraphImage: "/images/projects/imbonati-15/imbonati-home-cover.webp",
-  openGraphImageAlt: "Imbonati 15, interno ristrutturato con cucina e penisola"
+  openGraphImage:
+    "/images/projects/imbonati-15/04-render/appartamento-1/appartamento-1-render-soggiorno-tv.jpg",
+  openGraphImageAlt: "Imbonati 15, soggiorno e parete TV"
 });
 
 const spaceAnalysis = [

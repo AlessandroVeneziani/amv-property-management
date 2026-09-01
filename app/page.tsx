@@ -20,7 +20,9 @@ import {
 export const metadata = createMetadata({
   title: homeMetadata.seoTitle,
   description: homeMetadata.seoDescription,
-  path: "/"
+  path: "/",
+  openGraphImage: homeHero.image.src,
+  openGraphImageAlt: homeHero.image.alt
 });
 
 type HomeProjectPreview = {
