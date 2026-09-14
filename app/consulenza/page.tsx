@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/reveal";
-import { createMetadata } from "@/content/site";
+import { consultationProducts, createMetadata } from "@/content/site";
 
 import styles from "./consulenza.module.css";
 
@@ -56,6 +56,16 @@ const audience = [
   "proprietario di un immobile", "investitore", "acquirente prima di una decisione", "proprietario che vuole vendere o locare", "operatore hospitality", "professionista che desidera un confronto esterno", "cliente che ha già un progetto ma vuole verificarne la direzione"
 ];
 
+const product = consultationProducts.hospitality;
+
+const includes = [
+  "una sessione individuale di 60 minuti con Alessandro Veneziani",
+  "lettura del potenziale dell’immobile rispetto all’obiettivo",
+  "analisi di distribuzione, priorità, criticità e opportunità",
+  "orientamento su scelte di valorizzazione, hospitality o locazione",
+  "indicazione dei passaggi successivi più sensati"
+];
+
 export default function ConsultationPage() {
   return (
     <div className={styles.page}>
@@ -74,7 +84,7 @@ export default function ConsultationPage() {
               <p>Puoi arrivare con una planimetria, alcune fotografie, un preventivo, un’idea ancora confusa o una decisione da prendere.</p>
               <p>L’obiettivo è capire cosa ha senso fare, cosa evitare e quale direzione seguire.</p>
             </div>
-            <Link href="/contatti" className="gold-fill-btn">Richiedi una consulenza</Link>
+            <Link href="#acquisto" className="gold-fill-btn">Scopri modalità e prezzo</Link>
             <p className={styles.microcopy}>Per proprietari, investitori e professionisti.</p>
           </Reveal>
         </div>
@@ -120,7 +130,39 @@ export default function ConsultationPage() {
         <div className={styles.container}>
           <Reveal className={styles.modeGrid}>
             <div><p className="eyebrow">05 — Modalità</p><h2>Una consulenza costruita sul tema da affrontare.</h2></div>
-            <div className={styles.prose}><p>La consulenza viene definita in funzione del tema da affrontare e del materiale disponibile.</p><p>Può svolgersi online oppure in presenza, quando concordato.</p><p>Prima dell’incontro riceverai le indicazioni per inviare planimetrie, fotografie, preventivi o altri materiali utili alla lettura del caso.</p><p>La proposta viene definita prima della sessione, in base al tipo di consulenza richiesta.</p></div>
+            <div className={styles.prose}><p>La consulenza dura {product.duration} e viene definita in funzione del tema da affrontare e del materiale disponibile.</p><p>Può svolgersi online oppure in presenza, quando concordato.</p><p>Dopo l’acquisto riceverai le indicazioni operative per fissare l’incontro e inviare planimetrie, fotografie, preventivi o altri materiali utili alla lettura del caso.</p><p>Il costo della sessione è {product.price}.</p></div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section id="acquisto" className={`${styles.section} ${styles.offerSection}`}>
+        <div className={styles.container}>
+          <Reveal className={styles.offerPanel}>
+            <div className={styles.offerIntro}>
+              <p className="eyebrow">{product.name}</p>
+              <h2>{product.shortName}</h2>
+              <p>{product.summary}</p>
+            </div>
+            <div className={styles.offerMeta}>
+              <div>
+                <p>Durata</p>
+                <strong>{product.duration}</strong>
+              </div>
+              <div>
+                <p>Prezzo</p>
+                <strong>{product.price}</strong>
+              </div>
+            </div>
+            <div className={styles.offerIncludes}>
+              <p className={styles.listLabel}>Cosa comprende</p>
+              <ul>{includes.map((item) => <li key={item}>{item};</li>)}</ul>
+            </div>
+            <div className={styles.offerAction}>
+              <a href={product.stripeUrl} className="gold-fill-btn">
+                {product.ctaLabel}
+              </a>
+              <p>Dopo il pagamento riceverai le istruzioni per completare la prenotazione e preparare il materiale utile alla sessione.</p>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -138,12 +180,12 @@ export default function ConsultationPage() {
 
       <section className={styles.section}>
         <div className={styles.container}>
-          <Reveal className={styles.audience}><div><p className="eyebrow">08 — Per chi</p><h2>Può essere utile se sei…</h2></div><ul>{audience.map((item) => <li key={item}>{item};</li>)}</ul></Reveal>
+          <Reveal className={styles.audience}><div><p className="eyebrow">08 — Per chi</p><h2>Può essere utile se sei…</h2><p>{product.idealFor}</p></div><ul>{audience.map((item) => <li key={item}>{item};</li>)}</ul></Reveal>
         </div>
       </section>
 
       <section className={styles.finalSection}>
-        <div className={styles.container}><Reveal className={styles.finalContent}><p className="eyebrow">Prima di decidere</p><h2>Se hai un immobile e una decisione aperta, partiamo da quella.</h2><p>Non serve arrivare con tutte le risposte.</p><p>Porta la planimetria, le informazioni che hai e il problema che vuoi risolvere.</p><Link href="/contatti" className="gold-fill-btn">Richiedi una consulenza</Link><p className={styles.microcopy}>Prima dell’incontro potrai inviare planimetrie, fotografie e materiali utili alla lettura del progetto.</p></Reveal></div>
+        <div className={styles.container}><Reveal className={styles.finalContent}><p className="eyebrow">Prima di decidere</p><h2>Se hai un immobile e una decisione aperta, partiamo da quella.</h2><p>Non serve arrivare con tutte le risposte.</p><p>Porta la planimetria, le informazioni che hai e il problema che vuoi risolvere.</p><a href={product.stripeUrl} className="gold-fill-btn">{product.ctaLabel}</a><p className={styles.microcopy}>Prima dell’incontro potrai inviare planimetrie, fotografie e materiali utili alla lettura del progetto.</p></Reveal></div>
       </section>
     </div>
   );

@@ -6,6 +6,7 @@ import type { ListedProject, Project } from "@/content/projects";
 import { listedProjects, projects } from "@/content/projects";
 import {
   createMetadata,
+  homeConsultations,
   homeFinalContact,
   homeFounder,
   homeHero,
@@ -179,6 +180,72 @@ export default function HomePage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
                   </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section id="consulenze-avm" className="section-space pt-4">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <div className="editorial-dark-panel px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+              <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-12">
+                <div className="space-y-5">
+                  <p className="eyebrow">{homeConsultations.eyebrow}</p>
+                  <h2 className="max-w-3xl font-serif text-3xl leading-tight text-balance text-sand sm:text-4xl lg:text-5xl">
+                    {homeConsultations.title}
+                  </h2>
+                  <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg">
+                    {homeConsultations.description}
+                  </p>
+                  <p className="border-t border-accent/25 pt-5 font-serif text-2xl leading-snug text-sand/88 sm:text-3xl">
+                    {homeConsultations.bespokeNote}
+                  </p>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  {homeConsultations.items.map((item, index) => (
+                    <Reveal key={item.product.href} delay={index * 90}>
+                      <article className="flex h-full flex-col justify-between rounded-[30px] border border-line bg-black/18 p-6 sm:p-7">
+                        <div className="space-y-5">
+                          <div className="flex items-start justify-between gap-4 border-b border-line pb-5">
+                            <p className="text-xs uppercase tracking-[0.24em] text-accent">
+                              {item.eyebrow}
+                            </p>
+                            <p className="shrink-0 font-serif text-2xl text-sand">
+                              {item.product.price}
+                            </p>
+                          </div>
+                          <div className="space-y-3">
+                            <h3 className="font-serif text-3xl leading-tight text-sand">
+                              {item.product.shortName}
+                            </h3>
+                            {"duration" in item.product ? (
+                              <p className="text-xs uppercase tracking-[0.22em] text-sand/62">
+                                {item.product.duration}
+                              </p>
+                            ) : null}
+                            <p className="text-sm leading-7 text-muted sm:text-base">
+                              {item.product.summary}
+                            </p>
+                            <p className="text-sm leading-7 text-sand/72">
+                              {item.note}
+                            </p>
+                          </div>
+                        </div>
+
+                        <Link
+                          href={item.product.href}
+                          className="mt-8 inline-flex items-center gap-3 text-sm uppercase tracking-[0.18em] text-accent transition hover:gap-4"
+                        >
+                          Approfondisci
+                          <span aria-hidden="true">+</span>
+                        </Link>
+                      </article>
+                    </Reveal>
+                  ))}
                 </div>
               </div>
             </div>
@@ -532,15 +599,17 @@ export default function HomePage() {
               </div>
 
               <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <Link href={homeFinalContact.primaryCta.href} className="gold-fill-btn">
-                  {homeFinalContact.primaryCta.label}
-                </Link>
-                <Link
-                  href={homeFinalContact.secondaryCta.href}
-                  className="gold-outline-btn"
-                >
-                  {homeFinalContact.secondaryCta.label}
-                </Link>
+                {homeFinalContact.ctas.map((cta) => (
+                  <Link
+                    key={cta.href}
+                    href={cta.href}
+                    className={
+                      cta.variant === "fill" ? "gold-fill-btn" : "gold-outline-btn"
+                    }
+                  >
+                    {cta.label}
+                  </Link>
+                ))}
               </div>
             </div>
           </Reveal>

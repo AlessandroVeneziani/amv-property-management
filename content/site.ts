@@ -160,6 +160,63 @@ export const homePositioning = {
   }
 } as const;
 
+export const consultationProducts = {
+  hospitality: {
+    name: "AVM | Consulenza Immobiliare & Hospitality",
+    shortName: "Consulenza Immobiliare & Hospitality",
+    duration: "60 minuti",
+    price: "€100",
+    href: "/consulenza",
+    stripeUrl: "https://buy.stripe.com/eVqeVc9r1f7p8Rp5qxgw001",
+    ctaLabel: "Acquista la consulenza",
+    summary:
+      "Un confronto individuale per leggere potenziale, distribuzione, posizionamento e scelte prioritarie di un immobile.",
+    idealFor:
+      "Per proprietari, investitori e operatori hospitality che devono prendere una decisione prima di progettare, ristrutturare, vendere o locare."
+  },
+  decisionReview: {
+    name: "AVM | Property Decision Review",
+    shortName: "Property Decision Review",
+    price: "€350",
+    href: "/property-decision-review",
+    stripeUrl: "https://buy.stripe.com/9B68wOfPp6AT1oX4mtgw000",
+    ctaLabel: "Acquista la review",
+    summary:
+      "Una revisione strategica più approfondita per valutare un immobile prima dell’acquisto o di una trasformazione importante.",
+    idealFor:
+      "Per chi vuole verificare potenziale, criticità, coerenza dell’operazione e priorità prima di impegnare capitale."
+  },
+  bespoke: {
+    name: "Asset Direction / progetto su misura",
+    shortName: "Progetto su misura",
+    href: "/contatti",
+    ctaLabel: "Richiedi progetto su misura",
+    summary:
+      "Un percorso dedicato quando l’immobile richiede una direzione completa, dalla strategia alla trasformazione."
+  }
+} as const;
+
+export const homeConsultations = {
+  eyebrow: "Consulenze AVM",
+  title: "Due livelli di lettura prima di decidere come procedere.",
+  description:
+    "La consulenza non sostituisce il progetto. Serve a orientare le decisioni, capire dove si trova il valore e scegliere il livello di approfondimento più adatto.",
+  items: [
+    {
+      product: consultationProducts.hospitality,
+      eyebrow: "Primo orientamento",
+      note: "Per una decisione puntuale, una planimetria da leggere o un dubbio prima di procedere."
+    },
+    {
+      product: consultationProducts.decisionReview,
+      eyebrow: "Review strategica",
+      note: "Per operazioni più delicate, acquisti, trasformazioni importanti o scelte con impatto economico maggiore."
+    }
+  ],
+  bespokeNote:
+    "Quando emerge un potenziale da sviluppare, il percorso può evolvere in Asset Direction o in un progetto su misura, senza prezzo fisso predefinito."
+} as const;
+
 export const homeSelectedProjects = {
   eyebrow: "Progetti selezionati",
   title: "Progetti in cui la direzione diventa spazio.",
@@ -303,17 +360,26 @@ export const homeFounder = {
 
 export const homeFinalContact = {
   eyebrow: "Contatto finale",
-  title: "Parliamo del tuo immobile.",
+  title: "Da quale decisione vuoi partire?",
   description:
-    "Raccontaci brevemente il progetto oppure prenota una consulenza con Alessandro Veneziani.",
-  primaryCta: {
-    label: "Richiedi una prima valutazione",
-    href: "/contatti"
-  },
-  secondaryCta: {
-    label: "Prenota una consulenza",
-    href: "/consulenza"
-  }
+    "Puoi partire da un confronto individuale, approfondire un’operazione prima di decidere o costruire un percorso di Asset Direction sul tuo immobile.",
+  ctas: [
+    {
+      label: "Consulenza €100",
+      href: consultationProducts.hospitality.href,
+      variant: "fill"
+    },
+    {
+      label: "Review €350",
+      href: consultationProducts.decisionReview.href,
+      variant: "outline"
+    },
+    {
+      label: "Progetto su misura",
+      href: consultationProducts.bespoke.href,
+      variant: "outline"
+    }
+  ]
 } as const;
 
 export const homePillars = [

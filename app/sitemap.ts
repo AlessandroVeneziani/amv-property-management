@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/chi-e-avm",
     "/contatti",
     "/consulenza",
+    "/property-decision-review",
     "/privacy-policy",
     "/cookie-policy"
   ];
