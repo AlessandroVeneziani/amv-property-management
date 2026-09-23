@@ -91,7 +91,7 @@ export default function PropertyDecisionReviewPage() {
         <div className="mx-auto w-full max-w-7xl px-6">
           <Reveal className="max-w-[49rem]">
             <p className="eyebrow">AVM Review</p>
-            <h1 className="mt-4 font-serif text-[clamp(3.1rem,7vw,6.2rem)] leading-[0.96] text-balance text-sand">
+            <h1 className="mt-4 max-w-[7.2em] font-serif text-[clamp(2.45rem,10.8vw,2.85rem)] leading-[0.98] text-sand [overflow-wrap:anywhere] [text-wrap:wrap] sm:max-w-[49rem] sm:text-[clamp(3.1rem,7vw,6.2rem)] sm:leading-[0.96] sm:[text-wrap:balance]">
               Property Decision Review
             </h1>
             <p className="mt-7 max-w-2xl font-serif text-[clamp(1.5rem,3vw,2.45rem)] leading-[1.08] text-sand">
