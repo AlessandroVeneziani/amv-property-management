@@ -26,7 +26,7 @@ const situations = [
   "vuoi capire se un preventivo è coerente con il risultato atteso",
   "stai valutando un frazionamento",
   "devi scegliere dove investire il budget",
-  "vuoi riposizionare un immobile per locazione o hospitality",
+  "vuoi riposizionare un immobile per locazione, affitti brevi o hospitality, anche su Airbnb e Booking quando pertinenti",
   "hai già un progetto e desideri una seconda lettura strategica",
   "senti che qualcosa non funziona, ma non hai ancora identificato il problema"
 ];
@@ -62,7 +62,7 @@ const includes = [
   "una sessione individuale di 60 minuti con Alessandro Veneziani",
   "lettura del potenziale dell’immobile rispetto all’obiettivo",
   "analisi di distribuzione, priorità, criticità e opportunità",
-  "orientamento su scelte di valorizzazione, hospitality o locazione",
+  "orientamento su scelte di valorizzazione, hospitality, locazione o affitti brevi",
   "indicazione dei passaggi successivi più sensati"
 ];
 
