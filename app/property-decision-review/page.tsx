@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 import { consultationProducts, createMetadata } from "@/content/site";
 
+import { PropertyDecisionReviewCheckoutLink } from "./property-decision-review-checkout-link";
+
 const product = consultationProducts.decisionReview;
 const consultation = consultationProducts.hospitality;
 const bespoke = consultationProducts.bespoke;
@@ -260,9 +262,12 @@ export default function PropertyDecisionReviewPage() {
               </div>
 
               <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <a href={product.stripeUrl} className="gold-fill-btn">
+                <PropertyDecisionReviewCheckoutLink
+                  href={product.stripeUrl}
+                  className="gold-fill-btn"
+                >
                   {product.ctaLabel}
-                </a>
+                </PropertyDecisionReviewCheckoutLink>
                 <Link href={consultation.href} className="gold-outline-btn">
                   Consulenza {consultation.price}
                 </Link>
