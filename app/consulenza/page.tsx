@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 import { consultationProducts, createMetadata } from "@/content/site";
 
+import { ConsultationCheckoutLink } from "./consultation-checkout-link";
 import styles from "./consulenza.module.css";
 
 export const metadata = createMetadata({
@@ -158,9 +159,9 @@ export default function ConsultationPage() {
               <ul>{includes.map((item) => <li key={item}>{item};</li>)}</ul>
             </div>
             <div className={styles.offerAction}>
-              <a href={product.stripeUrl} className="gold-fill-btn">
+              <ConsultationCheckoutLink href={product.stripeUrl} className="gold-fill-btn">
                 {product.ctaLabel}
-              </a>
+              </ConsultationCheckoutLink>
               <p>Dopo il pagamento riceverai le istruzioni per completare la prenotazione e preparare il materiale utile alla sessione.</p>
             </div>
           </Reveal>
@@ -185,7 +186,7 @@ export default function ConsultationPage() {
       </section>
 
       <section className={styles.finalSection}>
-        <div className={styles.container}><Reveal className={styles.finalContent}><p className="eyebrow">Prima di decidere</p><h2>Se hai un immobile e una decisione aperta, partiamo da quella.</h2><p>Non serve arrivare con tutte le risposte.</p><p>Porta la planimetria, le informazioni che hai e il problema che vuoi risolvere.</p><a href={product.stripeUrl} className="gold-fill-btn">{product.ctaLabel}</a><p className={styles.microcopy}>Prima dell’incontro potrai inviare planimetrie, fotografie e materiali utili alla lettura del progetto.</p></Reveal></div>
+        <div className={styles.container}><Reveal className={styles.finalContent}><p className="eyebrow">Prima di decidere</p><h2>Se hai un immobile e una decisione aperta, partiamo da quella.</h2><p>Non serve arrivare con tutte le risposte.</p><p>Porta la planimetria, le informazioni che hai e il problema che vuoi risolvere.</p><ConsultationCheckoutLink href={product.stripeUrl} className="gold-fill-btn">{product.ctaLabel}</ConsultationCheckoutLink><p className={styles.microcopy}>Prima dell’incontro potrai inviare planimetrie, fotografie e materiali utili alla lettura del progetto.</p></Reveal></div>
       </section>
     </div>
   );
