@@ -26,6 +26,7 @@ export const metadata: Metadata = createMetadata({
 });
 
 const GA_MEASUREMENT_ID = "G-N7L95Q5140";
+const IUBENDA_UNIFIED_EMBED_ID = "8a879b2f-b037-4035-8e30-0afe0eb6858f";
 
 export default function RootLayout({
   children
@@ -35,17 +36,29 @@ export default function RootLayout({
   return (
     <html lang="it" className={`${inter.variable} ${playfairDisplay.variable}`}>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
+        src={`https://embeds.iubenda.com/widgets/${IUBENDA_UNIFIED_EMBED_ID}.js`}
+        strategy="beforeInteractive"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
+      <script
+        async
+        type="text/plain"
+        className="_iub_cs_activate"
+        data-iub-purposes="4"
+        data-suppressedsrc={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+      />
+      <script
+        type="text/plain"
+        className="_iub_cs_activate-inline"
+        data-iub-purposes="4"
+        dangerouslySetInnerHTML={{
+          __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', '${GA_MEASUREMENT_ID}');
-        `}
-      </Script>
+        `
+        }}
+      />
       <body className="site-ambient-background text-sand antialiased">
         <SiteHeader />
         <main>{children}</main>

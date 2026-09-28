@@ -94,8 +94,14 @@ export const navigation: readonly NavigationItem[] = [
 export const footerNavigation = navigation;
 
 export const footerLegalNavigation = [
-  { href: "/privacy-policy", label: "Privacy Policy" },
-  { href: "/cookie-policy", label: "Cookie Policy" }
+  {
+    href: "https://www.iubenda.com/privacy-policy/81220820",
+    label: "Privacy Policy"
+  },
+  {
+    href: "https://www.iubenda.com/privacy-policy/81220820/cookie-policy",
+    label: "Cookie Policy"
+  }
 ] as const;
 
 export const socialLinks = {

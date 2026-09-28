@@ -13,9 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/chi-e-avm",
     "/contatti",
     "/consulenza",
-    "/property-decision-review",
-    "/privacy-policy",
-    "/cookie-policy"
+    "/property-decision-review"
   ];
   const staticRoutes: MetadataRoute.Sitemap = routes.map((route) => ({
     url: `${siteUrl}${route}`,
