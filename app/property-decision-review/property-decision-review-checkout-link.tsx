@@ -2,6 +2,8 @@
 
 import type { MouseEvent, ReactNode } from "react";
 
+import { trackOpenAiCheckoutStarted } from "@/app/openai-ads";
+
 type PropertyDecisionReviewCheckoutLinkProps = {
   href: string;
   className: string;
@@ -55,6 +57,7 @@ export function PropertyDecisionReviewCheckoutLink({
     };
 
     window.setTimeout(navigateToCheckout, 800);
+    trackOpenAiCheckoutStarted();
 
     if (!window.gtag) {
       navigateToCheckout();

@@ -2,6 +2,8 @@
 
 import type { MouseEvent } from "react";
 
+import { trackOpenAiCheckoutStarted } from "@/app/openai-ads";
+
 type ConsultationCheckoutLinkProps = {
   href: string;
   className: string;
@@ -55,6 +57,7 @@ export function ConsultationCheckoutLink({
     };
 
     window.setTimeout(navigateToCheckout, 800);
+    trackOpenAiCheckoutStarted();
 
     if (!window.gtag) {
       navigateToCheckout();
